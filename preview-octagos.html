@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>云心达 | 预览 · Octagos 风 Hero</title>
+  <meta name="description" content="云心达专注于干细胞再生与抗衰修复，以专业医疗技术赋能健康管理。" />
+  <style>
+    :root {
+      --brand-blue: #88ccff;
+      --brand-purple: #7755ff;
+      --brand-mid: #8b7fe8;
+      --brand-light: #a5c9fd;
+      --ink: #0d253d;
+      --ink-secondary: #273951;
+      --ink-mute: #64748b;
+      --canvas: #ffffff;
+      --canvas-soft: #f6f9fc;
+      --canvas-cream: #f5f0e8;
+      --hairline: #e3e8ee;
+      --primary: #7755ff;
+      --primary-press: #6344e0;
+      --glass-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+      --trust-bar-h: 36px;
+      --promo-bar-h: 36px;
+    }
+    body.promo-dismissed { --promo-bar-h: 0px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      line-height: 1.5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background: var(--canvas);
+      font-weight: 300;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Stripe 风：渐变光晕只在 Hero 上三分之一 */
+    .hero-mesh {
+      position: absolute; inset: 0 0 auto 0; height: 58vh; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 20%, rgba(245,233,212,0.65), transparent 55%),
+        radial-gradient(ellipse 70% 55% at 85% 15%, rgba(249,107,238,0.2), transparent 50%),
+        radial-gradient(ellipse 90% 70% at 50% 0%, rgba(136,204,255,0.45), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 35%, rgba(119,85,255,0.28), transparent 55%),
+        linear-gradient(180deg, rgba(246,249,252,0) 0%, var(--canvas) 100%);
+    }
+
+    /* Glass system */
+
+    .glass, .glass-card, .glass-panel, .glass-nav, .glass-badge, .glass-icon, .feature-visual {
+      position: relative; overflow: hidden;
+    }
+    .glass::before, .glass-card::before, .glass-panel::before, .glass-nav::before,
+    .glass-badge::before, .glass-icon::before, .feature-visual::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      opacity: 0.05; background-image: var(--glass-noise); mix-blend-mode: soft-light;
+    }
+    .glass > *, .glass-card > *, .glass-panel > *, .feature-visual > * { position: relative; z-index: 1; }
+    .glass::after, .glass-card::after, .glass-panel::after, .glass-nav::after, .feature-visual::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; border-radius: inherit;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(255,255,255,0.15);
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 32px rgba(119,85,255,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+    .glass-panel {
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 24px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 12px 40px rgba(119,85,255,0.1), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(255,255,255,0.2);
+    }
+    .glass-nav {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(119,85,255,0.06), inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.58);
+      border-radius: 16px;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 8px 32px rgba(119,85,255,0.08), inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+    .glass-card.spring-active {
+      background: rgba(255,255,255,0.35);
+      border-color: rgba(255,255,255,0.7);
+      box-shadow: 0 16px 48px rgba(119,85,255,0.14), inset 0 1px 0 rgba(255,255,255,0.85);
+    }
+    .glass-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: 999px; font-size: 0.85rem;
+      background: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(16px); color: var(--brand-purple);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .glass-icon {
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(12px); border-radius: 12px; color: var(--brand-purple);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+    .glass-input {
+      width: 100%; padding: 0.75rem 1rem; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.3); backdrop-filter: blur(12px);
+      font-size: 0.95rem; font-family: inherit; outline: none; color: #1e293b;
+      box-shadow: inset 0 1px 2px rgba(119,85,255,0.04);
+      transition: all 0.2s;
+    }
+    .glass-input:focus {
+      border-color: rgba(125,211,252,0.8);
+      background: rgba(255,255,255,0.45);
+      box-shadow: 0 0 0 3px rgba(119,85,255,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .glass-input::placeholder { color: #94a3b8; }
+    .section-header-glass {
+      display: inline-block; padding: 1.5rem 2rem; border-radius: 16px;
+      background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(16px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    /* 顶栏公告（可关闭，Octagos 风） */
+    .promo-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
+      height: var(--promo-bar-h);
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      padding: 0 2.75rem 0 1.5rem;
+      background: linear-gradient(90deg, rgba(119,85,255,0.12), rgba(136,204,255,0.1));
+      border-bottom: 1px solid rgba(119,85,255,0.15);
+      font-size: 0.75rem; font-weight: 300; color: var(--ink-secondary);
+      letter-spacing: 0.02em; text-align: center;
+      transition: height 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
+      overflow: hidden;
+    }
+    body.promo-dismissed .promo-bar {
+      opacity: 0; pointer-events: none; border-bottom-color: transparent;
+    }
+    .promo-bar strong { font-weight: 400; color: var(--primary); }
+    .promo-close {
+      position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+      width: 28px; height: 28px; border: none; border-radius: 6px;
+      background: rgba(255,255,255,0.5); color: var(--ink-mute);
+      cursor: pointer; font-size: 1.1rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .promo-close:hover { color: var(--ink); background: rgba(255,255,255,0.85); }
+
+    /* 顶部信任细条 */
+    .trust-bar {
+      position: fixed; top: var(--promo-bar-h); left: 0; right: 0; z-index: 101;
+      height: var(--trust-bar-h);
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 1.5rem;
+      background: var(--canvas-soft);
+      border-bottom: 1px solid var(--hairline);
+      font-size: 0.75rem; font-weight: 300; color: var(--ink-mute);
+      letter-spacing: 0.04em; text-align: center;
+    }
+    .trust-bar strong { font-weight: 400; color: var(--ink-secondary); }
+
+    /* Header — Stripe 风：白底细线导航，非玻璃卡片 */
+    header {
+      position: fixed; top: calc(var(--promo-bar-h) + var(--trust-bar-h)); left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--hairline);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    header.is-scrolled {
+      background: rgba(255,255,255,0.97);
+      border-bottom-color: rgba(227,232,238,0.9);
+      box-shadow: 0 4px 24px rgba(13,37,61,0.06);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+    }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 40px; width: auto; display: block; }
+    @media (min-width: 640px) { .logo img { height: 44px; } }
+    nav { display: flex; align-items: center; gap: 0.25rem; }
+    nav a.nav-link {
+      font-size: 0.9375rem; color: var(--ink-mute); padding: 0.5rem 0.75rem;
+      border-radius: 4px; font-weight: 300; transition: color 0.2s ease;
+    }
+    nav a.nav-link:hover { color: var(--primary); }
+    nav a.nav-link.is-active, .mobile-nav a.is-active {
+      color: var(--primary); font-weight: 400;
+    }
+    .btn-primary {
+      margin-left: 0.75rem; padding: 8px 16px; border-radius: 9999px;
+      font-size: 0.9375rem; font-weight: 400; color: #fff;
+      background: var(--primary); border: none;
+      box-shadow: none;
+    }
+    .btn-primary:hover { background: var(--primary-press); transform: none; filter: none; }
+    .btn-primary:active { transform: scale(0.98); }
+    .menu-btn {
+      display: none; width: 40px; height: 40px;
+      background: rgba(255,255,255,0.48); border: 1px solid rgba(255,255,255,0.62);
+      border-radius: 12px; cursor: pointer; color: #334155;
+      backdrop-filter: blur(32px) saturate(170%);
+      -webkit-backdrop-filter: blur(32px) saturate(170%);
+      position: relative; overflow: hidden; isolation: isolate;
+    }
+
+    /* Hero — 开放排版，无玻璃面板 */
+    #home {
+      position: relative; min-height: 100dvh;
+      display: flex; align-items: center; padding: 6.5rem 0 4rem; overflow: hidden;
+    }
+    #home .container { position: relative; z-index: 1; }
+    .hero-grid {
+      display: grid; gap: 3.5rem; align-items: center;
+    }
+    @media (min-width: 992px) { .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 4rem; } }
+    .hero-copy { max-width: 34rem; }
+    .gradient-text {
+      background: linear-gradient(90deg, var(--brand-blue), var(--brand-mid), var(--brand-purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .eyebrow {
+      font-size: 10px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 1rem;
+    }
+    .hero-brand { display: none; }
+    .hero-line1 {
+      display: block; font-size: clamp(2.5rem, 5.5vw, 3.5rem); font-weight: 300;
+      line-height: 1.03; letter-spacing: -0.04em; color: var(--ink);
+    }
+    .hero-line2 {
+      display: block; margin-top: 0.35rem;
+      font-size: clamp(2.5rem, 5.5vw, 3.5rem); font-weight: 300;
+      line-height: 1.03; letter-spacing: -0.04em;
+    }
+    .hero-desc {
+      margin-top: 1.5rem; font-size: 1.0625rem; font-weight: 300;
+      line-height: 1.5; color: var(--ink-mute); max-width: 28rem;
+    }
+    
+    .hero-btns > .glass-button-wrap { flex-shrink: 0; }
+    .hero-btns > .glass-button-wrap:not(.glass-button-wrap--primary) .glass-button-text {
+      display: inline-flex; align-items: center;
+      min-height: 3.25rem; padding: 0 0.35rem;
+      font-size: 1.0625rem; line-height: 1.2; box-sizing: border-box;
+    }
+    .glass-button-wrap {
+      position: relative; display: inline-flex; vertical-align: middle;
+      cursor: pointer; text-decoration: none; color: inherit; isolation: isolate;
+      border: none; outline: none; background: transparent; padding: 0;
+      font: inherit; -webkit-appearance: none; appearance: none;
+    }
+    button.glass-button-wrap { overflow: visible; }
+    .glass-button-wrap:focus { outline: none; }
+    .glass-button-wrap:focus-visible { outline: 2px solid rgba(119,85,255,0.4); outline-offset: 4px; border-radius: 999px; }
+    .glass-button {
+      position: relative; display: block; margin: 0; padding: 0; border: none;
+      background: transparent; cursor: pointer; font: inherit; border-radius: 999px;
+      transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .glass-button::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .glass-button-text {
+      position: relative; z-index: 1; display: block; user-select: none;
+      letter-spacing: -0.02em; font-weight: 500;
+      padding: 0.65rem 1.35rem; font-size: 0.9375rem; line-height: 1.2;
+    }
+    .glass-button-shadow {
+      position: absolute; left: 8%; right: 8%; top: 55%; bottom: -18%;
+      z-index: -1; border-radius: 999px; pointer-events: none;
+      filter: blur(14px); transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+    .glass-button-wrap:not(.glass-button-wrap--primary):not(.glass-button-wrap--icon) .glass-button::before,
+    .glass-button-wrap:not(.glass-button-wrap--primary):not(.glass-button-wrap--icon) .glass-button-shadow {
+      display: none;
+    }
+    .glass-button-wrap:not(.glass-button-wrap--primary):not(.glass-button-wrap--icon) .glass-button-text {
+      padding: 0.4rem 0.2rem; font-weight: 400; color: var(--primary);
+      text-shadow: 0 1px 3px rgba(119,85,255,0.28), 0 0 12px rgba(119,85,255,0.08);
+      -webkit-box-reflect: below 2px linear-gradient(transparent 12%, rgba(119,85,255,0.14) 48%, transparent 78%);
+      transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .glass-button-wrap:not(.glass-button-wrap--primary):not(.glass-button-wrap--icon):hover .glass-button-text {
+      color: var(--primary-press);
+      text-shadow: 0 2px 10px rgba(119,85,255,0.38), 0 0 16px rgba(119,85,255,0.12);
+      transform: translateX(2px);
+    }
+    .glass-button-wrap--icon:not(.glass-button-wrap--primary) .glass-button::before {
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(18px) saturate(175%); -webkit-backdrop-filter: blur(18px) saturate(175%);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.9), 0 2px 8px rgba(15,23,42,0.06);
+    }
+    .glass-button-wrap--icon:not(.glass-button-wrap--primary) .glass-button-shadow {
+      display: block; background: rgba(15,23,42,0.12); opacity: 0.45;
+    }
+    .glass-button-wrap--primary:hover .glass-button,
+    .glass-button-wrap--icon:hover .glass-button { transform: translateY(-2px); }
+    .glass-button-wrap--primary:hover .glass-button-shadow,
+    .glass-button-wrap--icon:hover .glass-button-shadow { opacity: 0.72; transform: translateY(3px) scale(1.02); }
+    .glass-button-wrap--primary:active .glass-button,
+    .glass-button-wrap--icon:active .glass-button { transform: translateY(1px) scale(0.98); }
+    .glass-button-wrap--primary.glass-button-wrap--sm .glass-button-text,
+    .glass-button-wrap--icon.glass-button-wrap--sm .glass-button-text { padding: 0.45rem 0.9rem; font-size: 0.8125rem; }
+    .glass-button-wrap--primary.glass-button-wrap--lg .glass-button-text { padding: 0.85rem 1.75rem; font-size: 1.0625rem; }
+    .glass-button-wrap--primary.glass-button-wrap--xl .glass-button-text { padding: 0.95rem 2rem; font-size: 1.125rem; }
+    .glass-button-wrap--lg:not(.glass-button-wrap--primary):not(.glass-button-wrap--icon) .glass-button-text { font-size: 1.0625rem; }
+    .glass-button-wrap--icon .glass-button-text {
+      display: flex; align-items: center; justify-content: center;
+      width: 2.5rem; height: 2.5rem; padding: 0;
+      color: var(--ink); text-shadow: none; -webkit-box-reflect: none;
+    }
+    .glass-button-wrap--primary .glass-button::before {
+      background: linear-gradient(180deg, rgba(145,120,255,0.88) 0%, rgba(99,68,224,0.96) 55%, rgba(82,54,184,0.98) 100%);
+      border: none;
+      box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.55), inset 0 -2px 4px rgba(60,35,160,0.28), 0 4px 18px rgba(119,85,255,0.32);
+    }
+    .glass-button-wrap--primary .glass-button-text {
+      color: #fff; text-shadow: 0 1px 0 rgba(55,30,140,0.35); -webkit-box-reflect: none;
+    }
+    .glass-button-wrap--primary .glass-button-shadow { background: rgba(119,85,255,0.42); opacity: 0.55; }
+    .glass-button-wrap--primary:hover .glass-button::before {
+      background: linear-gradient(180deg, rgba(155,130,255,0.92) 0%, rgba(109,78,234,0.98) 100%);
+    }
+    @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+      .glass-button-wrap:not(.glass-button-wrap--primary) .glass-button-text { -webkit-box-reflect: none; }
+    }
+    @media (max-width: 768px) {
+      .menu-btn.glass-button-wrap { display: flex; align-items: center; justify-content: center; }
+    }
+
+    .hero-btns {
+      margin-top: 2rem; display: flex; flex-wrap: nowrap; align-items: center; gap: 1.25rem;
+      overflow: visible; position: relative; z-index: 2;
+    }
+    @media (max-width: 420px) {
+      .hero-btns { flex-wrap: wrap; gap: 0.75rem; }
+    }
+    .btn-hero {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0.85rem 2rem; border-radius: 999px; font-size: 1rem; font-weight: 500;
+      color: #fff; background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 24px rgba(119,85,255,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 9999px; font-size: 1rem; font-weight: 400;
+      color: var(--primary); background: var(--canvas); border: none;
+      backdrop-filter: none; -webkit-backdrop-filter: none;
+    }
+    .btn-outline:hover {
+      background: var(--canvas); color: var(--primary-press);
+      transform: none; box-shadow: none;
+    }
+
+    /* Hero — Octagos 风产品舞台（路线 B 紫色） */
+    .hero-product-stage {
+      position: relative;
+      width: min(100%, 540px);
+      height: min(105vw, 500px);
+      margin: 2rem auto 0;
+      flex-shrink: 0;
+      touch-action: auto;
+    }
+    @media (min-width: 992px) { .hero-product-stage { margin: 0 auto; height: 480px; } }
+    @media (max-width: 768px) { .hero-product-stage { height: min(100vw, 400px); } }
+
+    .hero-orb-center {
+      position: absolute; left: 50%; top: 46%;
+      width: 58%; height: 58%;
+      z-index: 2;
+      perspective: 900px;
+      will-change: transform;
+    }
+    .hero-orb-css {
+      position: absolute; inset: -14%; z-index: 1;
+      pointer-events: none;
+    }
+    .orb-layer {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .orb-layer--outer {
+      inset: 0;
+      background: radial-gradient(circle, rgba(119,85,255,0.32) 0%, rgba(136,204,255,0.14) 42%, transparent 72%);
+      filter: blur(10px);
+      animation: orbBreath 7s ease-in-out infinite;
+    }
+    .orb-layer--mid {
+      inset: 10%;
+      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.45) 0%, rgba(119,85,255,0.18) 48%, transparent 72%);
+      animation: orbSpin 32s linear infinite;
+      will-change: transform;
+    }
+    .orb-layer--rim {
+      inset: 6%;
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 0 36px rgba(119,85,255,0.22), inset 0 0 28px rgba(136,204,255,0.1);
+    }
+    @keyframes orbSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .orb-layer--mid, .hero-orb-glow-ring, .orb-layer--outer { animation: none !important; }
+    }
+    .hero-orb-stem {
+      position: absolute; left: 50%; top: 50%;
+      width: 52%; height: 52%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      border-radius: 50%; overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 0 32px rgba(119,85,255,0.4), 0 0 56px rgba(136,204,255,0.18);
+      pointer-events: none;
+      background: #fff;
+    }
+    .hero-orb-stem img {
+      display: block; width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-orb-glow-ring {
+      position: absolute; inset: -12%; border-radius: 50%;
+      background: radial-gradient(circle, rgba(136,204,255,0.22) 0%, rgba(119,85,255,0.1) 42%, transparent 68%);
+      z-index: 0; pointer-events: none;
+      animation: orbBreath 6s ease-in-out infinite;
+    }
+    @keyframes orbBreath {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .oct-card {
+      position: absolute; z-index: 5;
+      min-width: 9.5rem; max-width: 11.5rem;
+      padding: 0.65rem 0.75rem; border-radius: 10px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(227,232,238,0.95);
+      box-shadow: 0 4px 6px rgba(13,37,61,0.04), 0 12px 32px rgba(119,85,255,0.1), 0 24px 48px rgba(13,37,61,0.06);
+      font-size: 0.6875rem; line-height: 1.35; color: var(--ink-secondary);
+    }
+    .oct-card--a { top: 6%; right: 2%; }
+    .oct-card--b { bottom: 14%; left: 0; }
+    .oct-card--c { top: 38%; left: -4%; max-width: 10rem; opacity: 0.92; }
+    @media (max-width: 768px) {
+      .oct-card--c { display: none; }
+      .oct-card { min-width: 8.5rem; max-width: 10rem; }
+    }
+    .oct-card.is-fading { opacity: 0; transform: translateY(6px) scale(0.98); }
+    .oct-label {
+      display: block; font-size: 0.5625rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-bottom: 0.2rem;
+    }
+    .oct-value {
+      font-size: 1.125rem; font-weight: 500; letter-spacing: -0.02em;
+      color: var(--ink); line-height: 1.2;
+    }
+    .oct-row {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 0.5rem; margin-top: 0.45rem; padding-top: 0.45rem;
+      border-top: 1px solid var(--hairline);
+    }
+    .oct-meta { font-size: 0.625rem; color: var(--ink-mute); text-align: right; }
+    .oct-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.35rem; }
+    .oct-chip {
+      flex-shrink: 0; padding: 2px 7px; border-radius: 999px;
+      font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .oct-chip--alert { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .oct-chip--ok { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+    .oct-chip--info { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+    .oct-list { margin-top: 0.35rem; }
+    .oct-list li { list-style: none; font-size: 0.625rem; color: var(--ink-mute); padding: 0.15rem 0; }
+    .hero-orb-caption {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 92%; z-index: 6; margin: 0; text-align: center;
+      font-size: 0.6875rem; font-weight: 300; line-height: 1.5;
+      color: var(--ink-mute);
+    }
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(119,85,255,0.75); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .scroll-indicator-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      animation: bounceSoft 2s ease-in-out infinite;
+    }
+    @keyframes meshPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.75; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounceSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Sections — Stripe 风分区 */
+    section { padding: 5.5rem 0; position: relative; }
+    .band-soft { background: var(--canvas-soft); }
+    .band-cream { background: var(--canvas-cream); }
+    .section-head { max-width: 42rem; margin-bottom: 3.5rem; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-bridge {
+      padding: 2.25rem 1.5rem; text-align: center;
+      border-top: 1px solid var(--hairline);
+      background: linear-gradient(180deg, var(--canvas) 0%, var(--canvas-soft) 100%);
+    }
+    .section-bridge p {
+      max-width: 36rem; margin: 0 auto;
+      font-size: 0.9375rem; font-weight: 300; line-height: 1.55;
+      color: var(--ink-mute); letter-spacing: 0.01em;
+    }
+    .section-label, .eyebrow.section-eyebrow { font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); }
+    .section-title, .display-lg {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 300;
+      letter-spacing: -0.03em; line-height: 1.12; color: var(--ink); margin-top: 0.75rem;
+    }
+    .section-desc, .lead {
+      margin-top: 1rem; font-size: 1.0625rem; font-weight: 300;
+      line-height: 1.5; color: var(--ink-mute);
+    }
+    .text-center { text-align: center; }
+
+    /* 业务：左右叙事行，非卡片宫格 */
+    .feature-list { border-top: 1px solid var(--hairline); }
+    .feature-row {
+      display: grid; gap: 2.5rem; align-items: center;
+      padding: 4rem 0; border-bottom: 1px solid var(--hairline);
+    }
+    @media (min-width: 992px) {
+      .feature-row { grid-template-columns: 1fr 1fr; gap: 4rem; }
+      .feature-row.reverse .feature-visual { order: 2; }
+      .feature-row.reverse .feature-copy { order: 1; }
+    }
+    .feature-copy h3 {
+      font-size: 1.625rem; font-weight: 300; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .feature-copy p { font-size: 1rem; font-weight: 300; color: var(--ink-mute); line-height: 1.55; max-width: 28rem; }
+    .feature-tag {
+      display: inline-block; margin-bottom: 1rem; padding: 4px 10px;
+      border-radius: 9999px; font-size: 10px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--primary-press);
+      background: rgba(185,185,249,0.35);
+    }
+    .feature-link {
+      display: inline-flex; margin-top: 1.25rem; font-size: 0.9375rem;
+      font-weight: 400; color: var(--primary);
+    }
+    .feature-visual {
+      min-height: 280px; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.38);
+      backdrop-filter: blur(36px) saturate(175%);
+      -webkit-backdrop-filter: blur(36px) saturate(175%);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: 0 12px 40px rgba(119,85,255,0.1), inset 0 1px 0 rgba(255,255,255,0.78);
+    }
+    .feature-visual .feature-icon {
+      font-size: 3.5rem; opacity: 0.85;
+    }
+    .feature-visual.stem-feature {
+      padding: 2rem;
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(44px) saturate(185%);
+      -webkit-backdrop-filter: blur(44px) saturate(185%);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: 0 20px 56px rgba(119,85,255,0.16), inset 0 1px 0 rgba(255,255,255,0.85);
+    }
+    .feature-visual.stem-feature img {
+      width: min(100%, 220px); height: auto; border-radius: 50%;
+      box-shadow: 0 24px 48px rgba(119,85,255,0.22);
+    }
+
+    /* 数据条 — 横排分隔，非卡片 */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .stats-row { grid-template-columns: repeat(4, 1fr); gap: 0; }
+      .stat-item { padding: 0 2rem; border-left: 1px solid var(--hairline); }
+      .stat-item:first-child { padding-left: 0; border-left: none; }
+    }
+
+    .testimonial-wrap {
+      margin-top: 3.5rem; max-width: 40rem; margin-left: auto; margin-right: auto;
+    }
+    .testimonial-card {
+      position: relative; padding: 2rem 2rem 1.75rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      box-shadow: 0 8px 32px rgba(119,85,255,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .testimonial-card::before {
+      content: "\201C"; position: absolute; top: 0.5rem; left: 1.25rem;
+      font-size: 3rem; line-height: 1; color: rgba(119,85,255,0.18); font-weight: 300;
+    }
+    .testimonial-quote {
+      position: relative; z-index: 1;
+      font-size: 1rem; font-weight: 300; line-height: 1.65;
+      color: var(--ink-secondary); font-style: italic;
+    }
+    .testimonial-author {
+      margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .testimonial-name { font-size: 0.875rem; font-weight: 400; color: var(--ink); }
+    .testimonial-role { font-size: 0.8125rem; font-weight: 300; color: var(--ink-mute); }
+    .stat-value {
+      font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 300;
+      letter-spacing: -0.04em; color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-value--text { font-size: clamp(1.35rem, 3vw, 1.75rem); letter-spacing: -0.02em; }
+    .stat-label { margin-top: 0.5rem; color: var(--ink-mute); font-size: 0.875rem; font-weight: 300; }
+
+    /* 合作伙伴 Logo 条 */
+    .logo-trust-band {
+      padding: 3rem 0 3.5rem;
+      border-bottom: 1px solid var(--hairline);
+      background: var(--canvas);
+    }
+    .logo-trust-label {
+      text-align: center; font-size: 0.6875rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mute);
+      margin-bottom: 1.75rem;
+    }
+    .logo-trust-row {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 1rem 1.5rem;
+    }
+    .logo-trust-item {
+      padding: 0.65rem 1.25rem; border-radius: 10px;
+      font-size: 0.8125rem; font-weight: 400; color: #94a3b8;
+      background: var(--canvas-soft); border: 1px solid var(--hairline);
+      letter-spacing: 0.02em; white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .logo-trust-item:hover {
+      color: var(--ink-secondary); border-color: rgba(119,85,255,0.25);
+      background: rgba(255,255,255,0.9);
+    }
+
+    /* Tab 产品能力区 */
+    .product-tabs { margin-top: 2rem; }
+    .product-tab-layout {
+      display: grid; gap: 2rem; align-items: start;
+    }
+    @media (min-width: 992px) {
+      .product-tab-layout { grid-template-columns: 0.9fr 1.1fr; gap: 3rem; }
+    }
+    .product-tab-nav {
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .product-tab {
+      display: block; width: 100%; text-align: left;
+      padding: 1rem 1.15rem; border-radius: 12px;
+      border: 1px solid var(--hairline); background: rgba(255,255,255,0.55);
+      cursor: pointer; font-family: inherit;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .product-tab:hover { border-color: rgba(119,85,255,0.3); background: #fff; }
+    .product-tab.is-active {
+      border-color: rgba(119,85,255,0.45);
+      background: #fff;
+      box-shadow: 0 8px 28px rgba(119,85,255,0.1);
+    }
+    .product-tab-kicker {
+      display: block; font-size: 0.5625rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+    .product-tab-title {
+      display: block; font-size: 1rem; font-weight: 400; color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 0.35rem;
+    }
+    .product-tab-desc {
+      display: block; font-size: 0.8125rem; font-weight: 300;
+      line-height: 1.45; color: var(--ink-mute);
+    }
+    .product-tab-panels { position: relative; min-height: 320px; }
+    .product-tab-panel {
+      position: absolute; inset: 0; opacity: 0; visibility: hidden;
+      border-radius: 20px; padding: 1.5rem;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.72);
+      backdrop-filter: blur(36px) saturate(170%);
+      -webkit-backdrop-filter: blur(36px) saturate(170%);
+      box-shadow: 0 16px 48px rgba(119,85,255,0.1), inset 0 1px 0 rgba(255,255,255,0.85);
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .product-tab-panel.is-active { opacity: 1; visibility: visible; position: relative; }
+    .panel-mock-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.25rem; padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .panel-mock-title { font-size: 0.9375rem; font-weight: 400; color: var(--ink); }
+    .panel-mock-badge {
+      font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+      background: rgba(119,85,255,0.1); color: var(--primary);
+    }
+    .panel-mock-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;
+    }
+    .panel-mock-stat {
+      padding: 0.85rem; border-radius: 10px;
+      background: rgba(255,255,255,0.7); border: 1px solid var(--hairline);
+    }
+    .panel-mock-stat .label { font-size: 0.5625rem; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+    .panel-mock-stat .value { font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-top: 0.25rem; }
+    .panel-mock-list { margin-top: 1rem; }
+    .panel-mock-list li {
+      list-style: none; font-size: 0.75rem; color: var(--ink-mute);
+      padding: 0.4rem 0; border-bottom: 1px solid var(--hairline);
+    }
+    .panel-timeline { margin-top: 0.5rem; }
+    .panel-timeline-item {
+      display: grid; grid-template-columns: auto 1fr; gap: 0.85rem;
+      padding: 0.65rem 0; border-bottom: 1px solid var(--hairline);
+    }
+    .panel-timeline-dot {
+      width: 10px; height: 10px; border-radius: 50%; margin-top: 0.35rem;
+      background: var(--primary); box-shadow: 0 0 0 3px rgba(119,85,255,0.2);
+    }
+    .panel-timeline-item.is-done .panel-timeline-dot { background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.2); }
+    .panel-timeline-item.is-pending .panel-timeline-dot { background: #94a3b8; box-shadow: none; }
+    .panel-timeline-text { font-size: 0.8125rem; color: var(--ink-secondary); line-height: 1.45; }
+    .panel-timeline-meta { font-size: 0.6875rem; color: var(--ink-mute); margin-top: 0.15rem; }
+
+    /* 四步服务专节 */
+    .workflow-section { background: var(--canvas); }
+    .workflow-grid {
+      display: grid; gap: 1.25rem; margin-top: 2.5rem;
+    }
+    @media (min-width: 768px) { .workflow-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1100px) { .workflow-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
+    .workflow-step {
+      padding: 1.5rem 1.35rem; border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.75);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 28px rgba(119,85,255,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .workflow-num {
+      display: inline-block; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.1em; color: var(--primary); margin-bottom: 0.75rem;
+    }
+    .workflow-step h3 {
+      font-size: 1.0625rem; font-weight: 400; color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 0.5rem;
+    }
+    .workflow-step p { font-size: 0.875rem; font-weight: 300; line-height: 1.55; color: var(--ink-mute); }
+
+    /* 证言轮播 */
+    .testimonial-carousel { position: relative; margin-top: 3.5rem; max-width: 42rem; margin-left: auto; margin-right: auto; }
+    .testimonial-track { position: relative; min-height: 200px; }
+    .testimonial-carousel .testimonial-card {
+      position: absolute; inset: 0; opacity: 0; visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .testimonial-carousel .testimonial-card.is-active { opacity: 1; visibility: visible; position: relative; }
+    .testimonial-controls {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .testimonial-dot {
+      width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0;
+      background: rgba(119,85,255,0.25); cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .testimonial-dot.is-active { background: var(--primary); transform: scale(1.15); }
+
+    /* 案例成果块 */
+    .case-study {
+      margin-top: 3rem; padding: 2rem 2rem 1.75rem;
+      border-radius: 20px; text-align: center;
+      background: linear-gradient(135deg, rgba(119,85,255,0.08), rgba(136,204,255,0.12));
+      border: 1px solid rgba(119,85,255,0.18);
+    }
+    .case-study-metric {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 300;
+      letter-spacing: -0.03em; color: var(--ink);
+    }
+    .case-study-metric em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--brand-blue), var(--brand-purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .case-study-desc {
+      margin: 1rem auto 0; max-width: 32rem;
+      font-size: 0.9375rem; font-weight: 300; line-height: 1.55; color: var(--ink-mute);
+    }
+    .case-study-link {
+      display: inline-flex; margin-top: 1.25rem;
+      font-size: 0.9375rem; font-weight: 400; color: var(--primary);
+    }
+
+    /* 活动 */
+    .event-grid {
+      display: grid; gap: 1.25rem; margin-top: 2.5rem;
+    }
+    @media (min-width: 768px) { .event-grid { grid-template-columns: repeat(3, 1fr); } }
+    .event-card {
+      padding: 1.35rem; border-radius: 14px;
+      background: rgba(255,255,255,0.6); border: 1px solid var(--hairline);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .event-card:hover { border-color: rgba(119,85,255,0.3); box-shadow: 0 8px 24px rgba(119,85,255,0.08); }
+    .event-type {
+      font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--primary);
+    }
+    .event-title { font-size: 1rem; font-weight: 400; color: var(--ink); margin-top: 0.5rem; line-height: 1.35; }
+    .event-meta { font-size: 0.75rem; color: var(--ink-mute); margin-top: 0.65rem; line-height: 1.5; }
+
+    /* 科普资源 */
+    .resource-grid {
+      display: grid; gap: 1.25rem; margin-top: 2.5rem;
+    }
+    @media (min-width: 768px) { .resource-grid { grid-template-columns: repeat(3, 1fr); } }
+    .resource-card {
+      display: block; padding: 1.35rem; border-radius: 14px;
+      background: var(--canvas); border: 1px solid var(--hairline);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .resource-card:hover {
+      border-color: rgba(119,85,255,0.35);
+      box-shadow: 0 10px 32px rgba(119,85,255,0.08);
+      transform: translateY(-2px);
+    }
+    .resource-tag {
+      font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--primary);
+    }
+    .resource-title { font-size: 1rem; font-weight: 400; color: var(--ink); margin-top: 0.5rem; line-height: 1.4; }
+    .resource-date { font-size: 0.75rem; color: var(--ink-mute); margin-top: 0.75rem; }
+
+    /* CTA 暖色带 */
+    .cta-band {
+      position: relative; text-align: center; padding: 5rem 0; overflow: hidden;
+    }
+    .cta-band::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 20% 30%, rgba(136,204,255,0.22), transparent 55%),
+        radial-gradient(ellipse 60% 50% at 80% 40%, rgba(119,85,255,0.14), transparent 50%);
+    }
+    .cta-band .container { position: relative; z-index: 1; }
+    .cta-trust {
+      margin-top: 1rem; font-size: 0.8125rem; font-weight: 300; color: var(--ink-mute);
+    }
+    .cta-band h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 300;
+      letter-spacing: -0.03em; color: var(--ink);
+    }
+    .cta-band p {
+      margin: 1rem auto 0; max-width: 36rem; color: var(--ink-mute);
+      font-size: 1.0625rem; font-weight: 300;
+    }
+
+    /* About — 开放双栏 */
+    .about-grid {
+      display: grid; gap: 4rem; align-items: start;
+    }
+    @media (min-width: 992px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; gap: 5rem; } }
+    .about-text p { color: var(--ink-mute); margin-top: 1.25rem; font-weight: 300; line-height: 1.55; }
+    .about-compliance {
+      margin-top: 1.75rem !important; padding: 1rem 1.25rem;
+      border-left: 3px solid rgba(119,85,255,0.35);
+      background: var(--canvas-soft); border-radius: 0 8px 8px 0;
+      font-size: 0.875rem !important; color: var(--ink-secondary) !important;
+    }
+    .about-aside { padding-top: 0.5rem; border-top: 1px solid var(--hairline); }
+    @media (min-width: 992px) { .about-aside { border-top: none; padding-top: 0; padding-left: 2rem; border-left: 1px solid var(--hairline); } }
+    .about-aside h3 { font-size: 1.125rem; font-weight: 300; color: var(--ink); }
+    .about-list { list-style: none; margin-top: 1.5rem; }
+    .about-list li {
+      padding: 0.85rem 0; border-bottom: 1px solid var(--hairline);
+      color: var(--ink-secondary); font-weight: 300; font-size: 0.9375rem;
+    }
+    .quote-inner {
+      margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--hairline);
+      font-size: 0.9375rem; font-weight: 300; color: var(--ink-mute); font-style: italic;
+    }
+
+    /* Contact — 列表 + 表单，无玻璃卡 */
+    .contact-grid { display: grid; gap: 3rem; margin-top: 2rem; }
+    @media (min-width: 992px) { .contact-grid { grid-template-columns: 1fr 1.4fr; gap: 5rem; } }
+    .contact-info { display: flex; flex-direction: column; }
+    .info-item {
+      display: grid; grid-template-columns: auto 1fr; gap: 1rem;
+      padding: 1.25rem 0; border-bottom: 1px solid var(--hairline);
+    }
+    .info-icon {
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      color: var(--primary); background: none; border: none; flex-shrink: 0;
+    }
+    .info-icon svg {
+      width: 18px; height: 18px; stroke: currentColor; fill: none;
+      stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .contact-promise {
+      margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: 8px;
+      background: var(--canvas-soft); border: 1px solid var(--hairline);
+      font-size: 0.875rem; font-weight: 300; color: var(--ink-mute); line-height: 1.55;
+    }
+    .contact-promise strong { color: var(--ink); font-weight: 400; }
+    .info-label { font-size: 0.75rem; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.06em; }
+    .info-value { font-weight: 400; margin-top: 4px; color: var(--ink); font-size: 0.9375rem; }
+    .form-panel { padding-top: 0.5rem; }
+    .form-grid { display: grid; gap: 1.25rem; }
+    @media (min-width: 576px) { .form-grid-2 { grid-template-columns: 1fr 1fr; } }
+    label { display: block; font-size: 0.8125rem; font-weight: 400; color: var(--ink-mute); margin-bottom: 6px; }
+    .field-input {
+      width: 100%; padding: 8px 12px; border-radius: 6px;
+      border: 1px solid #a8c3de; background: var(--canvas);
+      font-size: 0.9375rem; font-family: inherit; font-weight: 300;
+      outline: none; color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(119,85,255,0.12);
+    }
+    .field-input::placeholder { color: #94a3b8; }
+    textarea.field-input { resize: vertical; min-height: 120px; }
+    .form-note { margin-top: 1rem; font-size: 0.75rem; color: var(--ink-mute); font-weight: 300; }
+
+    /* Footer */
+    footer { padding: 0 0 5rem; border-top: 1px solid var(--hairline); background: var(--canvas); }
+    .footer-box { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 0; background: none; border: none; box-shadow: none; backdrop-filter: none; }
+    .footer-inner {
+      display: grid; gap: 1.25rem; text-align: center; justify-items: center;
+    }
+    @media (min-width: 768px) {
+      .footer-inner {
+        grid-template-columns: auto 1fr auto; align-items: center;
+        text-align: left; justify-items: stretch;
+      }
+      .footer-tagline { justify-self: center; }
+      .footer-nav { justify-self: end; }
+    }
+    .footer-tagline {
+      width: 100%; font-size: 0.8125rem; font-weight: 300;
+      color: var(--ink-mute); letter-spacing: 0.04em;
+    }
+    .footer-cta-row {
+      width: 100%; margin-top: 1.75rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .footer-cta-row {
+        flex-direction: row; justify-content: space-between; align-items: center;
+      }
+    }
+    .footer-contact {
+      text-align: center; font-size: 0.8125rem; font-weight: 300; color: #94a3b8;
+    }
+    @media (min-width: 768px) { .footer-contact { text-align: left; } }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-nav a { font-size: 0.85rem; color: #94a3b8; }
+    .footer-nav a:hover { color: var(--brand-purple); }
+    .copyright {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--hairline);
+      text-align: center; font-size: 0.8125rem; font-weight: 300; color: #94a3b8; line-height: 1.6;
+    }
+    .footer-legal { display: block; margin-top: 0.35rem; font-size: 0.75rem; color: #b0bec9; }
+
+    /* Mobile */
+    .mobile-nav {
+      display: none; position: fixed;
+      top: calc(64px + var(--promo-bar-h) + var(--trust-bar-h)); left: 0; right: 0; z-index: 99;
+      padding: 0.5rem 1.5rem 1rem;
+      background: var(--canvas); border-bottom: 1px solid var(--hairline);
+      box-shadow: 0 8px 24px rgba(13,37,61,0.06);
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block; padding: 0.75rem 0; border-bottom: 1px solid var(--hairline);
+      color: var(--ink-secondary); font-weight: 300; font-size: 0.9375rem;
+    }
+    .mobile-nav a:last-of-type:not(.mobile-nav-cta) { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--primary); }
+    .mobile-nav-cta {
+      margin-top: 0.75rem; padding: 0.85rem 1rem !important;
+      text-align: center; border: none !important; border-radius: 999px;
+      background: linear-gradient(180deg, rgba(145,120,255,0.88) 0%, rgba(99,68,224,0.96) 100%);
+      color: #fff !important; font-weight: 400;
+      box-shadow: 0 4px 16px rgba(119,85,255,0.25);
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-btn { display: flex; align-items: center; justify-content: center; }
+      .glass-panel { padding: 1.5rem; }
+      /* 手机适度减弱模糊，保留噪点质感 */
+      .glass, .glass-card, .glass-badge, .glass-icon, .glass-input, .btn-outline, .section-header-glass {
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+      }
+      .glass-panel, .glass-nav {
+        backdrop-filter: blur(28px) saturate(165%);
+        -webkit-backdrop-filter: blur(28px) saturate(165%);
+      }
+      .glass::before, .glass-card::before, .glass-panel::before, .glass-nav::before,
+      .glass-badge::before, .glass-icon::before, .glass-input::before,
+      .section-header-glass::before, .btn-outline::before { opacity: 0.035; }
+      .mesh-bg { height: 100vh; }
+      .mesh-orb { animation: none; filter: blur(72px); }
+    }
+
+    .preview-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(15,23,42,0.85); backdrop-filter: blur(12px);
+      color: #e2e8f0; text-align: center; padding: 10px; font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  
+  </style>
+</head>
+<body>
+
+  <div class="promo-bar" id="promoBar" role="note">
+    <span><strong>云心达</strong> 再生医学服务升级 — 预约评估享 24 小时内优先响应</span>
+    <button type="button" class="promo-close" onclick="closePromo()" aria-label="关闭公告">×</button>
+  </div>
+
+  <div class="trust-bar" role="note">
+    <span><strong>云心达</strong> · 专注干细胞再生与抗衰修复 · 专业医疗团队全程服务</span>
+  </div>
+
+  <header id="siteHeader">
+    <div class="header-inner">
+      <a href="#home" class="logo">
+        <img src="logo.png" alt="云心达" />
+      </a>
+      <nav>
+        <a href="#home" class="nav-link" data-nav="home">首页</a>
+        <a href="#services" class="nav-link" data-nav="services">核心业务</a>
+        <a href="#about" class="nav-link" data-nav="about">关于我们</a>
+        <a href="#contact" class="nav-link" data-nav="contact">联系我们</a>
+        <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--sm">
+          <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
+          <span class="glass-button-shadow" aria-hidden="true"></span>
+        </a>
+      </nav>
+      <button type="button" class="glass-button-wrap glass-button-wrap--icon menu-btn" onclick="toggleMenu()" aria-label="菜单">
+        <span class="glass-button"><span class="glass-button-text">☰</span></span>
+        <span class="glass-button-shadow" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home" data-nav="home" onclick="toggleMenu()">首页</a>
+    <a href="#services" data-nav="services" onclick="toggleMenu()">核心业务</a>
+    <a href="#about" data-nav="about" onclick="toggleMenu()">关于我们</a>
+    <a href="#contact" data-nav="contact" onclick="toggleMenu()">联系我们</a>
+    <a href="#contact" class="mobile-nav-cta" onclick="toggleMenu()">立即预约咨询</a>
+  </div>
+
+<section id="home">
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy" id="heroCopy">
+          <p class="eyebrow">云心达 · 干细胞再生医学</p>
+          <h1>
+            <span class="hero-line1">干细胞再生</span>
+            <span class="hero-line2 gradient-text">回归更年轻的状态</span>
+          </h1>
+          <p class="hero-desc">
+            云心达专注干细胞再生与抗衰修复，以专业医疗团队提供从评估、干预到随访的全程服务，让再生医学触手可及。
+          </p>
+          <div class="hero-btns">
+            <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--xl">
+              <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
+              <span class="glass-button-shadow" aria-hidden="true"></span>
+            </a>
+            <a href="#services" class="glass-button-wrap glass-button-wrap--lg">
+              <span class="glass-button"><span class="glass-button-text">了解业务 →</span></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-product-stage" id="heroOrbStage" aria-label="再生医学服务面板示意">
+          <div class="oct-card oct-card--a" data-depth="14" id="octCardA">
+            <div class="oct-card-head">
+              <span class="oct-label">细胞活性指数</span>
+              <span class="oct-chip oct-chip--ok" id="octChipA">良好</span>
+            </div>
+            <div class="oct-value" id="octValueA">87%</div>
+            <div class="oct-row">
+              <span class="oct-label" style="margin:0">干预阶段</span>
+              <span class="oct-meta" id="octMetaA">方案制定中</span>
+            </div>
+          </div>
+          <div class="oct-card oct-card--b" data-depth="10" id="octCardB">
+            <span class="oct-chip oct-chip--alert" id="octChipB">随访提醒</span>
+            <div class="oct-value" id="octValueB" style="margin-top:0.35rem;font-size:0.9375rem;">7 天内复查</div>
+            <ul class="oct-list" id="octListB">
+              <li>干细胞再生 · 个性化方案</li>
+              <li>档案编号 YXD-2026-0842</li>
+            </ul>
+          </div>
+          <div class="oct-card oct-card--c" data-depth="6" id="octCardC">
+            <span class="oct-label">综合评估</span>
+            <div class="oct-value" id="octValueC" style="font-size:1rem;">82</div>
+            <div class="oct-row" style="margin-top:0.3rem;padding-top:0.3rem;">
+              <span class="oct-label" style="margin:0">待评项目</span>
+              <span class="oct-meta" id="octMetaC">3 项</span>
+            </div>
+          </div>
+          <div class="hero-orb-center" id="heroOrbCenter">
+            <div class="hero-orb-glow-ring" aria-hidden="true"></div>
+            <div class="hero-orb-css" aria-hidden="true">
+              <div class="orb-layer orb-layer--outer"></div>
+              <div class="orb-layer orb-layer--mid"></div>
+              <div class="orb-layer orb-layer--rim"></div>
+            </div>
+            <div class="hero-orb-stem" id="heroOrbStem">
+              <img src="stem-cell-hero.png" alt="干细胞再生示意" width="280" height="280" draggable="false" />
+            </div>
+          </div>
+          <p class="hero-orb-caption" id="heroOrbCaption">
+            云心达智能随访连接评估、干预与随访数据，形成可追溯的再生医学服务档案。
+          </p>
+        </div>
+      </div>
+    </div>
+    <a href="#services" class="scroll-indicator" aria-label="向下探索">
+      <span>向下探索</span>
+      <span class="scroll-indicator-icon" aria-hidden="true">↓</span>
+    </a>
+  </section>
+
+  <section class="logo-trust-band" id="partners" aria-label="合作机构">
+    <div class="container">
+      <p class="logo-trust-label" data-reveal>合作医疗机构与再生医学伙伴</p>
+      <div class="logo-trust-row" data-reveal>
+        <span class="logo-trust-item">华西再生医学中心</span>
+        <span class="logo-trust-item">协和抗衰研究院</span>
+        <span class="logo-trust-item">瑞金干细胞实验室</span>
+        <span class="logo-trust-item">中山机能修复中心</span>
+        <span class="logo-trust-item">待补充合作机构</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>以干细胞技术为核心，连接评估、干预与随访的每一步</p>
+  </div>
+
+  <section id="platform" class="band-soft">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="section-label">数字化服务能力</p>
+        <h2 class="section-title">评估、干预与随访，一屏掌握</h2>
+        <p class="section-desc lead">借鉴 Octagos 产品展示逻辑，将云心达核心能力以可交互面板呈现，帮助客户快速理解服务价值。</p>
+      </div>
+      <div class="product-tabs" data-reveal id="productTabs">
+        <div class="product-tab-layout">
+          <div class="product-tab-nav" role="tablist" aria-label="产品能力">
+            <button type="button" class="product-tab is-active" role="tab" aria-selected="true" data-tab="assess" id="tab-btn-assess">
+              <span class="product-tab-kicker">综合评估</span>
+              <span class="product-tab-title">多维健康筛查与指标解读</span>
+              <span class="product-tab-desc">整合个体档案与检测数据，生成可执行的再生医学评估报告。</span>
+            </button>
+            <button type="button" class="product-tab" role="tab" aria-selected="false" data-tab="intervene" id="tab-btn-intervene">
+              <span class="product-tab-kicker">干细胞干预</span>
+              <span class="product-tab-title">个性化方案与进度追踪</span>
+              <span class="product-tab-desc">从方案制定到干预执行，全程可视化记录每一个关键节点。</span>
+            </button>
+            <button type="button" class="product-tab" role="tab" aria-selected="false" data-tab="followup" id="tab-btn-followup">
+              <span class="product-tab-kicker">随访管理</span>
+              <span class="product-tab-title">智能提醒与恢复指数</span>
+              <span class="product-tab-desc">自动推送复查周期，连接医护团队与客户的持续健康管理。</span>
+            </button>
+          </div>
+          <div class="product-tab-panels">
+            <div class="product-tab-panel is-active" role="tabpanel" id="tab-assess" aria-labelledby="tab-btn-assess">
+              <div class="panel-mock-head">
+                <span class="panel-mock-title">综合评估报告 · YXD-2026</span>
+                <span class="panel-mock-badge">待评 3 项</span>
+              </div>
+              <div class="panel-mock-grid">
+                <div class="panel-mock-stat"><div class="label">综合评分</div><div class="value">82</div></div>
+                <div class="panel-mock-stat"><div class="label">细胞活性</div><div class="value">87%</div></div>
+                <div class="panel-mock-stat"><div class="label">机能指数</div><div class="value">良好</div></div>
+                <div class="panel-mock-stat"><div class="label">建议周期</div><div class="value">4–6 周</div></div>
+              </div>
+              <ul class="panel-mock-list">
+                <li>干细胞再生适宜性评估 · 已完成</li>
+                <li>抗衰机能筛查 · 进行中</li>
+                <li>个性化方案建议 · 待生成</li>
+              </ul>
+            </div>
+            <div class="product-tab-panel" role="tabpanel" id="tab-intervene" aria-labelledby="tab-btn-intervene" hidden>
+              <div class="panel-mock-head">
+                <span class="panel-mock-title">干预方案 · 阶段 2/3</span>
+                <span class="panel-mock-badge">进行中</span>
+              </div>
+              <div class="panel-timeline">
+                <div class="panel-timeline-item is-done">
+                  <span class="panel-timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <div class="panel-timeline-text">方案制定与知情确认</div>
+                    <div class="panel-timeline-meta">已完成 · 第 1 周</div>
+                  </div>
+                </div>
+                <div class="panel-timeline-item is-done">
+                  <span class="panel-timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <div class="panel-timeline-text">干细胞再生干预执行</div>
+                    <div class="panel-timeline-meta">进行中 · 第 2–4 周</div>
+                  </div>
+                </div>
+                <div class="panel-timeline-item is-pending">
+                  <span class="panel-timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <div class="panel-timeline-text">恢复指数评估与方案调整</div>
+                    <div class="panel-timeline-meta">预计 · 第 5 周</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="product-tab-panel" role="tabpanel" id="tab-followup" aria-labelledby="tab-btn-followup" hidden>
+              <div class="panel-mock-head">
+                <span class="panel-mock-title">随访面板 · 活跃提醒 2 条</span>
+                <span class="panel-mock-badge">随访中</span>
+              </div>
+              <div class="panel-mock-grid">
+                <div class="panel-mock-stat"><div class="label">下次复查</div><div class="value">7 天</div></div>
+                <div class="panel-mock-stat"><div class="label">恢复指数</div><div class="value">良好</div></div>
+              </div>
+              <ul class="panel-mock-list">
+                <li>随访提醒：7 天内复查 · 高优先级</li>
+                <li>上次随访：12 天前 · 恢复趋势稳定</li>
+                <li>档案编号：YXD-2026-0842 · 全程可追溯</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>深入了解四大核心业务板块</p>
+  </div>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="section-label">核心业务</p>
+        <h2 class="section-title">从再生修复到全程管理的医疗能力</h2>
+        <p class="section-desc lead">以干细胞技术为核心，为个人与机构提供可信赖的再生医学服务与数字化支持。</p>
+      </div>
+      <div class="feature-list">
+        <article class="feature-row" data-reveal>
+          <div class="feature-copy">
+            <span class="feature-tag">干细胞再生</span>
+            <h3>干细胞再生干预</h3>
+            <p>通过专业干细胞技术，支持组织修复与机能再生，帮助身体维持更年轻、更有活力的状态。</p>
+            <a href="#contact" class="feature-link">了解方案 →</a>
+          </div>
+          <div class="feature-visual stem-feature">
+            <img src="stem-cell-hero.png" alt="" width="220" height="220" draggable="false" />
+          </div>
+        </article>
+        <article class="feature-row reverse" data-reveal>
+          <div class="feature-copy">
+            <span class="feature-tag">抗衰修复</span>
+            <h3>抗衰与机能修复</h3>
+            <p>针对衰老相关机能下降，提供个性化修复路径与持续跟踪，让干预过程清晰、可预期。</p>
+            <a href="#contact" class="feature-link">预约咨询 →</a>
+          </div>
+          <div class="feature-visual"><span class="feature-icon">✦</span></div>
+        </article>
+        <article class="feature-row" data-reveal>
+          <div class="feature-copy">
+            <span class="feature-tag">精准干预</span>
+            <h3>精准评估与方案管理</h3>
+            <p>基于个体情况制定干预方案，配合数据化记录与随访，确保每一步都有据可依。</p>
+            <a href="#contact" class="feature-link">获取详情 →</a>
+          </div>
+          <div class="feature-visual"><span class="feature-icon">◎</span></div>
+        </article>
+        <article class="feature-row reverse" data-reveal>
+          <div class="feature-copy">
+            <span class="feature-tag">全程服务</span>
+            <h3>全生命周期健康协作</h3>
+            <p>从咨询、方案到随访，提供连贯服务体验，让再生医学不只停留在单次干预。</p>
+            <a href="#contact" class="feature-link">开始沟通 →</a>
+          </div>
+          <div class="feature-visual"><span class="feature-icon">∞</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow" class="workflow-section">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="section-label">服务流程</p>
+        <h2 class="section-title">从咨询到随访，四步完整服务</h2>
+        <p class="section-desc lead">参照 Octagos「快速接入」叙事结构，云心达以清晰流程降低合作门槛，让再生医学服务可预期、可追踪。</p>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-step" data-reveal>
+          <span class="workflow-num">01</span>
+          <h3>24h 响应咨询</h3>
+          <p>提交需求后，专业顾问在 24 小时内联系您，初步了解健康状况与合作意向。</p>
+        </article>
+        <article class="workflow-step" data-reveal>
+          <span class="workflow-num">02</span>
+          <h3>个性化综合评估</h3>
+          <p>基于个体情况完成健康筛查与再生医学评估，输出可执行的干预建议。</p>
+        </article>
+        <article class="workflow-step" data-reveal>
+          <span class="workflow-num">03</span>
+          <h3>方案制定与干预</h3>
+          <p>医疗团队制定干细胞再生方案并执行干预，全程数据化记录关键节点。</p>
+        </article>
+        <article class="workflow-step" data-reveal>
+          <span class="workflow-num">04</span>
+          <h3>持续随访档案</h3>
+          <p>智能随访提醒与恢复指数跟踪，形成可追溯的再生医学服务档案。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>专业团队、合规标准与持续随访，构成可信赖的再生医学服务</p>
+  </div>
+
+  <section id="advantages" class="band-soft">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="section-label">我们的优势</p>
+        <h2 class="section-title">值得信赖的医疗科技伙伴</h2>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item" data-reveal><div class="stat-value" data-count="10" data-suffix="+">0+</div><div class="stat-label">年再生医学经验</div></div>
+        <div class="stat-item" data-reveal><div class="stat-value" data-count="200" data-suffix="+">0+</div><div class="stat-label">服务客户与机构</div></div>
+        <div class="stat-item" data-reveal><div class="stat-value stat-value--text">全程合规</div><div class="stat-label">严格保护隐私与数据</div></div>
+        <div class="stat-item" data-reveal><div class="stat-value" data-count="24" data-suffix="h">0h</div><div class="stat-label">内响应咨询</div></div>
+      </div>
+      <div class="testimonial-carousel" id="testimonialCarousel" data-reveal>
+        <div class="testimonial-track">
+          <figure class="testimonial-card is-active" data-index="0">
+            <blockquote class="testimonial-quote">与云心达合作后，我们的再生医学服务流程更清晰，从评估到随访都有专业团队跟进，患者反馈也更积极。</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-name">合作医疗机构负责人</span>
+              <span class="testimonial-role">再生医学合作项目 · 待补充真实姓名</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card" data-index="1">
+            <blockquote class="testimonial-quote">云心达的评估与随访体系让我们的抗衰修复项目有了完整闭环，客户对服务过程的可视化反馈非常好。</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-name">健康管理机构运营总监</span>
+              <span class="testimonial-role">抗衰修复合作 · 待补充真实姓名</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card" data-index="2">
+            <blockquote class="testimonial-quote">从咨询响应到方案落地，云心达团队始终保持专业与高效。数字化档案让我们在合规管理上更省心。</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-name">私立医疗中心医务主任</span>
+              <span class="testimonial-role">干细胞干预合作 · 待补充真实姓名</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card" data-index="3">
+            <blockquote class="testimonial-quote">作为个人客户，我最感受到的是随访提醒和恢复指数的持续跟踪，让我对每一次干预都更有信心。</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-name">个人健康管理客户</span>
+              <span class="testimonial-role">再生医学全程服务 · 待补充真实姓名</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="testimonial-controls" aria-label="证言切换">
+          <button type="button" class="testimonial-dot is-active" data-slide="0" aria-label="证言 1"></button>
+          <button type="button" class="testimonial-dot" data-slide="1" aria-label="证言 2"></button>
+          <button type="button" class="testimonial-dot" data-slide="2" aria-label="证言 3"></button>
+          <button type="button" class="testimonial-dot" data-slide="3" aria-label="证言 4"></button>
+        </div>
+      </div>
+      <div class="case-study" data-reveal>
+        <div class="case-study-metric">随访完成率提升至 <em>92%</em></div>
+        <p class="case-study-desc">一家合作医疗机构在启用云心达智能随访体系后，8 周内显著提升了复查到院率与客户满意度，运营效率同步改善。</p>
+        <a href="#contact" class="case-study-link">了解合作案例 →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>深入了解云心达的理念、团队与服务承诺</p>
+  </div>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-text" data-reveal>
+        <p class="section-label">关于我们</p>
+        <h2 class="section-title">关于云心达</h2>
+        <p>云心达致力于将前沿再生医学融入健康管理，以干细胞技术推动身体机能修复与抗衰干预。</p>
+        <p>我们拥有专业的医疗科技与研发团队，深耕行业多年，始终以客户需求为导向，提供可信赖的产品与服务。</p>
+        <p>未来，云心达将继续秉承「科技向善、健康为本」的理念，与合作伙伴携手，共建再生医学服务新生态。</p>
+        <p class="about-compliance">我们严格遵守医疗行业合规要求，咨询信息与患者隐私仅用于医疗服务沟通，全程保密处理。</p>
+      </div>
+      <aside class="about-aside" data-reveal>
+        <h3>我们的服务原则</h3>
+        <ul class="about-list">
+          <li>专业再生医学团队</li>
+          <li>符合行业合规标准</li>
+          <li>持续创新研发投入</li>
+          <li>全生命周期服务支持</li>
+        </ul>
+        <p class="quote-inner">「以科技之力，守护每一份健康与希望。」</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="events" class="band-soft">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="section-label">近期活动</p>
+        <h2 class="section-title">交流与研讨</h2>
+        <p class="section-desc lead">参与云心达主办的再生医学交流活动，与行业专家、合作伙伴共同探讨抗衰修复与干细胞应用。</p>
+      </div>
+      <div class="event-grid">
+        <article class="event-card" data-reveal>
+          <span class="event-type">研讨会</span>
+          <h3 class="event-title">云心达再生医学客户沙龙</h3>
+          <p class="event-meta">2026 年 7 月 · 上海<br />聚焦干细胞干预与随访管理最佳实践</p>
+        </article>
+        <article class="event-card" data-reveal>
+          <span class="event-type">公开课</span>
+          <h3 class="event-title">抗衰修复与机能再生趋势分享</h3>
+          <p class="event-meta">2026 年 8 月 · 线上直播<br />面向医疗机构运营与医务团队</p>
+        </article>
+        <article class="event-card" data-reveal>
+          <span class="event-type">合作洽谈</span>
+          <h3 class="event-title">区域合作伙伴招募说明会</h3>
+          <p class="event-meta">2026 年 9 月 · 北京<br />了解云心达合作模式与服务支持体系</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>阅读科普内容，了解再生医学与抗衰修复</p>
+  </div>
+
+  <section id="resources">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="section-label">科普与资源</p>
+        <h2 class="section-title">再生医学知识库</h2>
+        <p class="section-desc lead">为个人客户与合作机构提供易懂的专业内容，帮助做出更明智的健康决策。</p>
+      </div>
+      <div class="resource-grid">
+        <a href="#contact" class="resource-card" data-reveal>
+          <span class="resource-tag">患者科普</span>
+          <h3 class="resource-title">什么是干细胞再生干预？</h3>
+          <p class="resource-date">2026 年 6 月 · 阅读约 5 分钟</p>
+        </a>
+        <a href="#contact" class="resource-card" data-reveal>
+          <span class="resource-tag">常见问题</span>
+          <h3 class="resource-title">抗衰修复干预前需要了解什么？</h3>
+          <p class="resource-date">2026 年 6 月 · 阅读约 4 分钟</p>
+        </a>
+        <a href="#contact" class="resource-card" data-reveal>
+          <span class="resource-tag">随访指南</span>
+          <h3 class="resource-title">为什么随访对再生医学效果至关重要？</h3>
+          <p class="resource-date">2026 年 5 月 · 阅读约 6 分钟</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>迈出合作的第一步，让再生医学服务真正触手可及</p>
+  </div>
+
+  <section class="band-cream cta-band">
+    <div class="container" data-reveal>
+      <h2>准备好开启再生医学合作了吗？</h2>
+      <p>无论是干细胞干预、抗衰修复还是方案管理，云心达愿与您携手共创。</p>
+      <p class="cta-trust">免费咨询 · 24 小时内回复 · 信息严格保密</p>
+      <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--lg" style="margin-top:2rem;">
+        <span class="glass-button"><span class="glass-button-text">立即联系我们</span></span>
+        <span class="glass-button-shadow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-bridge" aria-hidden="true">
+    <p>填写表单或直接联系我们，开启您的再生医学咨询</p>
+  </div>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="section-label">联系我们</p>
+        <h2 class="section-title">期待与您合作</h2>
+        <p class="section-desc">如有业务咨询或合作意向，请填写表单或直接通过以下方式联系我们。</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="info-item" data-reveal>
+            <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="info-label">联系电话</div><div class="info-value">待补充（上线前替换）</div></div>
+          </div>
+          <div class="info-item" data-reveal>
+            <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></div>
+            <div><div class="info-label">电子邮箱</div><div class="info-value">待补充（上线前替换）</div></div>
+          </div>
+          <div class="info-item" data-reveal>
+            <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="info-label">公司地址</div><div class="info-value">待补充（上线前替换）</div></div>
+          </div>
+          <div class="info-item" data-reveal>
+            <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="info-label">工作时间</div><div class="info-value">周一至周五 9:00 - 18:00</div></div>
+          </div>
+          <p class="contact-promise" data-reveal><strong>咨询承诺：</strong>提交后我们将在 1 个工作日内回复，您的信息仅用于业务沟通。</p>
+        </div>
+        <div class="form-panel" data-reveal>
+          <div class="form-grid form-grid-2">
+            <div><label>姓名 *</label><input class="field-input" type="text" placeholder="请输入您的姓名" required /></div>
+            <div><label>电话 *</label><input class="field-input" type="tel" placeholder="请输入您的电话" required /></div>
+          </div>
+          <div style="margin-top:1.25rem;">
+            <label>邮箱（选填）</label>
+            <input class="field-input" type="email" placeholder="方便我们发送资料给您" />
+          </div>
+          <div style="margin-top:1.25rem;">
+            <label>留言内容 *</label>
+            <textarea class="field-input" placeholder="请描述您的需求或合作意向" required></textarea>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <button type="button" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--lg" onclick="alert('预览模式：正式版将连接后端提交')">
+            <span class="glass-button"><span class="glass-button-text">提交留言</span></span>
+            <span class="glass-button-shadow" aria-hidden="true"></span>
+          </button>
+          </div>
+          <p class="form-note">您的信息仅用于业务沟通，我们将严格保护您的隐私。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-box">
+      <div class="footer-inner">
+        <a href="#home" class="logo">
+          <img src="logo.png" alt="云心达" />
+        </a>
+        <p class="footer-tagline">干细胞再生 · 抗衰修复 · 再生医学服务</p>
+        <nav class="footer-nav">
+          <a href="#home">首页</a>
+          <a href="#platform">服务能力</a>
+          <a href="#services">核心业务</a>
+          <a href="#about">关于我们</a>
+          <a href="#resources">科普资源</a>
+          <a href="#contact">联系我们</a>
+        </nav>
+      </div>
+      <div class="footer-cta-row">
+        <p class="footer-contact">咨询邮箱：待补充 · 联系电话：待补充</p>
+        <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--sm">
+          <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
+          <span class="glass-button-shadow" aria-hidden="true"></span>
+        </a>
+      </div>
+      <p class="copyright">© 2026 云心达. All rights reserved.<span class="footer-legal">业务咨询专用 · 用户隐私严格保护</span></p>
+    </div>
+  </footer>
+
+  <div class="preview-banner">
+    📌 Octagos 结构完整预览版（GSAP 动效）— preview-octagos.html · 需联网 · Ctrl+F5 强刷
+  </div>
+
+<script>
+function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
+function closePromo() {
+  document.body.classList.add('promo-dismissed');
+  try { localStorage.setItem('yxd-promo-dismissed', '1'); } catch (_) {}
+}
+try {
+  if (localStorage.getItem('yxd-promo-dismissed') === '1') document.body.classList.add('promo-dismissed');
+} catch (_) {}
+function initHeaderScroll() {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+function initNavActive() {
+  const links = document.querySelectorAll('[data-nav]');
+  const sections = ['home', 'services', 'about', 'contact']
+    .map((id) => document.getElementById(id)).filter(Boolean);
+  const update = () => {
+    const trustH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--trust-bar-h'), 10) || 36;
+    const promoH = parseInt(getComputedStyle(document.body).getPropertyValue('--promo-bar-h'), 10) || 0;
+    const y = window.scrollY + 100 + trustH + promoH;
+    let current = 'home';
+    sections.forEach((sec) => { if (sec.offsetTop <= y) current = sec.id; });
+    links.forEach((l) => l.classList.toggle('is-active', l.dataset.nav === current));
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+initHeaderScroll();
+initNavActive();
+</script>
+
+<script type="module">
+import { gsap } from 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/index.js';
+import { ScrollTrigger } from 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js';
+import { ScrollToPlugin } from 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollToPlugin.js';
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const CARD_SETS = [
+  { a: { value: '87%', chip: '良好', chipClass: 'oct-chip--ok', meta: '方案制定中' },
+    b: { value: '7 天内复查', chip: '随访提醒', chipClass: 'oct-chip--alert', list: ['干细胞再生 · 个性化方案', '档案编号 YXD-2026-0842'] },
+    c: { value: '82', meta: '3 项' },
+    caption: '云心达智能随访连接评估、干预与随访数据，形成可追溯的再生医学服务档案。' },
+  { a: { value: '阶段 2/3', chip: '进行中', chipClass: 'oct-chip--info', meta: '干细胞再生干预' },
+    b: { value: '恢复指数 良好', chip: '随访', chipClass: 'oct-chip--ok', list: ['上次随访 12 天前', '预计周期 4–6 周'] },
+    c: { value: '14 天', meta: '建议周期' },
+    caption: '从评估到干预全程数据化记录，让每一位客户的再生医学旅程清晰可追踪。' },
+  { a: { value: '3 项', chip: '待评估', chipClass: 'oct-chip--info', meta: '综合健康筛查' },
+    b: { value: '预约评估', chip: '新咨询', chipClass: 'oct-chip--alert', list: ['抗衰修复 · 机能修复', '24h 内响应咨询'] },
+    c: { value: '—', meta: '待生成' },
+    caption: '基于个体情况制定干预方案，专业团队全程跟进每一次评估与随访。' }
+];
+
+function applyCardSet(idx) {
+  const d = CARD_SETS[idx];
+  document.getElementById('octValueA').textContent = d.a.value;
+  document.getElementById('octMetaA').textContent = d.a.meta;
+  const chipA = document.getElementById('octChipA');
+  chipA.textContent = d.a.chip;
+  chipA.className = 'oct-chip ' + d.a.chipClass;
+  document.getElementById('octValueB').textContent = d.b.value;
+  const chipB = document.getElementById('octChipB');
+  chipB.textContent = d.b.chip;
+  chipB.className = 'oct-chip ' + d.b.chipClass;
+  document.getElementById('octListB').innerHTML = d.b.list.map((t) => '<li>' + t + '</li>').join('');
+  document.getElementById('octValueC').textContent = d.c.value;
+  document.getElementById('octMetaC').textContent = d.c.meta;
+  const caption = document.getElementById('heroOrbCaption');
+  if (caption) caption.textContent = d.caption;
+}
+
+function getScrollOffset() {
+  const trustH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--trust-bar-h'), 10) || 36;
+  const promoH = parseInt(getComputedStyle(document.body).getPropertyValue('--promo-bar-h'), 10) || 0;
+  const header = document.getElementById('siteHeader');
+  return (header ? header.offsetHeight : 0) + trustH + promoH;
+}
+
+function initSmoothScroll(reduceMotion) {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      gsap.to(window, {
+        duration: reduceMotion ? 0 : 0.9,
+        ease: 'power2.inOut',
+        scrollTo: { y: target, offsetY: getScrollOffset() }
+      });
+      const mobileNav = document.getElementById('mobileNav');
+      if (mobileNav?.classList.contains('open')) toggleMenu();
+    });
+  });
+}
+
+function initStatCounters(reduceMotion) {
+  document.querySelectorAll('.stat-value[data-count]').forEach((el) => {
+    const end = Number(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    if (reduceMotion) {
+      el.textContent = end + suffix;
+      return;
+    }
+    const obj = { val: 0 };
+    ScrollTrigger.create({
+      trigger: el.closest('.stat-item'),
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        gsap.to(obj, {
+          val: end,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate: () => { el.textContent = Math.round(obj.val) + suffix; }
+        });
+      }
+    });
+  });
+}
+
+function initScrollReveal() {
+  document.querySelectorAll('.feature-list, .stats-row, .contact-info, .contact-grid, .about-grid, .workflow-grid, .event-grid, .resource-grid').forEach((grid) => {
+    grid.querySelectorAll(':scope > [data-reveal]').forEach((el, i) => {
+      el.dataset.revealDelay = String(i * 80);
+    });
+  });
+  gsap.set('[data-reveal]', { autoAlpha: 0, y: 40 });
+  ScrollTrigger.batch('[data-reveal]', {
+    interval: 0.1,
+    batchMax: 5,
+    start: 'top 88%',
+    once: true,
+    onEnter: (batch) => {
+      gsap.to(batch, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.65,
+        ease: 'power2.out',
+        stagger: { each: 0.08, from: 'start' },
+        overwrite: true
+      });
+    }
+  });
+}
+
+function initProductTabs(reduceMotion) {
+  const root = document.getElementById('productTabs');
+  if (!root) return;
+  const tabs = root.querySelectorAll('.product-tab');
+  const panels = root.querySelectorAll('.product-tab-panel');
+  const activate = (tab) => {
+    const id = tab.dataset.tab;
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach((panel) => {
+      const on = panel.id === 'tab-' + id;
+      panel.classList.toggle('is-active', on);
+      if (on) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+      if (on && !reduceMotion) {
+        gsap.fromTo(panel, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out', overwrite: true });
+      }
+    });
+  };
+  tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
+}
+
+function initTestimonialCarousel(reduceMotion) {
+  const root = document.getElementById('testimonialCarousel');
+  if (!root) return;
+  const slides = gsap.utils.toArray('.testimonial-card', root);
+  const dots = gsap.utils.toArray('.testimonial-dot', root);
+  if (!slides.length) return;
+  let current = 0;
+  let timer;
+
+  const goTo = (idx) => {
+    current = idx;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === idx));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
+  };
+
+  const resetTimer = () => {
+    clearInterval(timer);
+    if (!reduceMotion && slides.length > 1) {
+      timer = setInterval(() => goTo((current + 1) % slides.length), 5500);
+    }
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.dataset.slide));
+      resetTimer();
+    });
+  });
+
+  goTo(0);
+  resetTimer();
+}
+
+function initHeroEntrance(orb, onComplete) {
+  gsap.set('#heroCopy .eyebrow, #heroCopy .hero-line1, #heroCopy .hero-line2, #heroCopy .hero-desc', { autoAlpha: 0, y: 28 });
+  gsap.set('#heroCopy .hero-btns > *', { autoAlpha: 0, y: 24 });
+  gsap.set(orb, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 0.88 });
+  gsap.set('.oct-card--a', { autoAlpha: 0, y: 20, x: 28 });
+  gsap.set('.oct-card--b', { autoAlpha: 0, y: 20, x: -28 });
+  gsap.set('.oct-card--c', { autoAlpha: 0, y: 20, x: -22 });
+  gsap.set('#heroOrbCaption', { autoAlpha: 0, y: 12 });
+  gsap.set('.scroll-indicator', { autoAlpha: 0, y: 10 });
+
+  const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' }, onComplete });
+  heroTl
+    .to('#heroCopy .eyebrow', { autoAlpha: 1, y: 0, duration: 0.5 })
+    .to('#heroCopy .hero-line1', { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.32')
+    .to('#heroCopy .hero-line2', { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.42')
+    .to('#heroCopy .hero-desc', { autoAlpha: 1, y: 0, duration: 0.55 }, '-=0.38')
+    .to('#heroCopy .hero-btns > *', { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.12 }, '-=0.32')
+    .to(orb, { autoAlpha: 1, scale: 1, duration: 0.8, ease: 'power3.out' }, '-=0.45')
+    .to('.oct-card--a', { autoAlpha: 1, y: 0, x: 0, duration: 0.5 }, '-=0.5')
+    .to('.oct-card--b', { autoAlpha: 1, y: 0, x: 0, duration: 0.5 }, '-=0.42')
+    .to('.oct-card--c', { autoAlpha: 1, y: 0, x: 0, duration: 0.45 }, '-=0.42')
+    .to('#heroOrbCaption', { autoAlpha: 1, y: 0, duration: 0.45 }, '-=0.35')
+    .to('.scroll-indicator', { autoAlpha: 1, y: 0, duration: 0.4 }, '-=0.3');
+  return heroTl;
+}
+
+function startOrbSway(orb) {
+  gsap.fromTo(orb,
+    { rotationY: -22, x: -16 },
+    { rotationY: 22, x: 16, duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1 }
+  );
+}
+
+function initCardCarousel(cards, caption) {
+  let slide = 0;
+  applyCardSet(0);
+  gsap.timeline({ repeat: -1, repeatDelay: 3.8 })
+    .to(cards, { autoAlpha: 0, y: 10, duration: 0.32, stagger: 0.05, ease: 'power2.in' })
+    .to(caption, { autoAlpha: 0, y: 6, duration: 0.25 }, '<0.05')
+    .add(() => { slide = (slide + 1) % CARD_SETS.length; applyCardSet(slide); })
+    .to(cards, { autoAlpha: 1, y: 0, duration: 0.48, stagger: 0.07, ease: 'power2.out' })
+    .to(caption, { autoAlpha: 1, y: 0, duration: 0.35 }, '<0.1');
+}
+
+function initFeatureParallax() {
+  gsap.utils.toArray('.feature-row').forEach((row) => {
+    const visual = row.querySelector('.feature-visual');
+    if (!visual) return;
+    gsap.fromTo(visual,
+      { y: 20 },
+      {
+        y: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: row,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      }
+    );
+  });
+}
+
+gsap.context(() => {
+  const orb = document.getElementById('heroOrbCenter');
+  const cards = gsap.utils.toArray('.oct-card');
+  const caption = document.getElementById('heroOrbCaption');
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    reduceMotion: '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 769px)'
+  }, (context) => {
+    const { reduceMotion, isDesktop } = context.conditions;
+    initSmoothScroll(reduceMotion);
+
+    if (reduceMotion) {
+      applyCardSet(0);
+      if (orb) gsap.set(orb, { xPercent: -50, yPercent: -50, autoAlpha: 1, scale: 1, rotationY: 0, x: 0 });
+      gsap.set('[data-reveal], #heroCopy .eyebrow, #heroCopy .hero-line1, #heroCopy .hero-line2, #heroCopy .hero-desc, #heroCopy .hero-btns > *, .oct-card, #heroOrbCaption, .scroll-indicator', { autoAlpha: 1, y: 0, x: 0 });
+      initStatCounters(true);
+      initProductTabs(true);
+      initTestimonialCarousel(true);
+      return;
+    }
+
+    initScrollReveal();
+    initStatCounters(false);
+    initProductTabs(false);
+    initTestimonialCarousel(false);
+    initHeroEntrance(orb, () => {
+      startOrbSway(orb);
+      initCardCarousel(cards, caption);
+    });
+    if (isDesktop) initFeatureParallax();
+  });
+});
+</script>
+</body>
+</html>
