@@ -1736,6 +1736,53 @@
     .product-card-empty:hover { border-color: rgba(119,85,255,0.35); background: rgba(119,85,255,0.03); }
     .product-card-empty svg { width: 36px; height: 36px; opacity: 0.3; }
 
+    /* 丽常生 Agent 展示区 */
+    .lichangsheng-hero { margin-top: 2rem; }
+    .lcs-card { padding: 2.5rem; }
+    .lcs-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    @media (max-width: 768px) {
+      .lcs-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .lcs-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    @media (max-width: 560px) { .lcs-stats { grid-template-columns: repeat(2, 1fr); } }
+    .lcs-stat {
+      text-align: center; padding: 0.75rem 0.5rem;
+      background: rgba(119,85,255,0.04); border-radius: 12px;
+    }
+    .lcs-stat-value {
+      display: block; font-size: 1.25rem; font-weight: 700; color: var(--brand-purple);
+    }
+    .lcs-stat-label {
+      display: block; font-size: 0.75rem; color: var(--ink-mute); margin-top: 0.25rem;
+    }
+    .lcs-demo-card {
+      background: rgba(255,255,255,0.7); border-radius: 16px;
+      border: 1px solid var(--hairline); overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .lcs-demo-header {
+      display: flex; align-items: center; gap: 6px;
+      padding: 0.75rem 1rem; border-bottom: 1px solid var(--hairline);
+      background: rgba(246,249,252,0.8);
+    }
+    .lcs-demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .lcs-demo-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .lcs-demo-msg {
+      max-width: 85%; padding: 0.6rem 0.9rem; border-radius: 12px;
+      font-size: 0.8rem; line-height: 1.5;
+    }
+    .lcs-demo-msg--bot {
+      background: rgba(119,85,255,0.06); border: 1px solid rgba(119,85,255,0.12);
+      align-self: flex-start; color: var(--ink-body);
+    }
+    .lcs-demo-msg--user {
+      background: var(--brand-purple); color: #fff; align-self: flex-end;
+    }
+
     /* 活动展示 */
     .activities-grid {
       display: grid; gap: 1.5rem; margin-top: 2.5rem;
@@ -2065,19 +2112,85 @@
     <div class="container">
       <div class="section-head center" data-reveal>
         <h2 class="section-title">产品展示</h2>
+        <p class="section-desc lead">智能筛查工具，科学守护肠道健康</p>
       </div>
-      <div class="products-grid">
-        <div class="product-card-empty" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-          <span>产品内容待补充</span>
+
+      <!-- 丽常生 Agent 主卡片 -->
+      <div class="lichangsheng-hero" data-reveal>
+        <div class="lcs-card glass-panel">
+          <div class="lcs-grid">
+            <div class="lcs-info">
+              <div class="glass-badge" style="margin-bottom:1rem;">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                AI 智能评估
+              </div>
+              <h3 style="font-size:1.75rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">丽常生 · 肠癌早筛智能Agent</h3>
+              <p style="color:var(--ink-body);line-height:1.7;margin-bottom:1.5rem;">通过 3 个简单问题，AI 为您评估结直肠癌风险等级，并展示早筛与晚期发现的费用和生存率对比。居家采样、无创无痛，仅需 889 元即可完成深度多靶点 DNA 检测。</p>
+              <div class="lcs-stats">
+                <div class="lcs-stat">
+                  <span class="lcs-stat-value">96%</span>
+                  <span class="lcs-stat-label">准确性</span>
+                </div>
+                <div class="lcs-stat">
+                  <span class="lcs-stat-value">99.8%</span>
+                  <span class="lcs-stat-label">特异性</span>
+                </div>
+                <div class="lcs-stat">
+                  <span class="lcs-stat-value">5-7年</span>
+                  <span class="lcs-stat-label">提早预警</span>
+                </div>
+                <div class="lcs-stat">
+                  <span class="lcs-stat-value">889元</span>
+                  <span class="lcs-stat-label">筛查费用</span>
+                </div>
+              </div>
+            </div>
+            <div class="lcs-visual">
+              <div class="lcs-demo-card">
+                <div class="lcs-demo-header">
+                  <span class="lcs-demo-dot" style="background:#ff5f56;"></span>
+                  <span class="lcs-demo-dot" style="background:#ffbd2e;"></span>
+                  <span class="lcs-demo-dot" style="background:#27c93f;"></span>
+                  <span style="margin-left:0.5rem;font-size:0.75rem;color:var(--ink-mute);">丽常生智能评估</span>
+                </div>
+                <div class="lcs-demo-body">
+                  <div class="lcs-demo-msg lcs-demo-msg--bot">您好！回答3个问题，即可获取肠癌风险评估结果。</div>
+                  <div class="lcs-demo-msg lcs-demo-msg--user">我55岁，偶有便血，父亲有肠癌史</div>
+                  <div class="lcs-demo-msg lcs-demo-msg--bot">
+                    <strong style="color:#e53e3e;">风险等级：高</strong><br/>
+                    风险因素：年龄>50、家族史、便血<br/>
+                    晚期治疗费用：30-100万元<br/>
+                    <span style="color:var(--brand-purple);">建议尽快使用丽常生进行筛查</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="product-card-empty" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-          <span>产品内容待补充</span>
+      </div>
+
+      <!-- 功能特点三卡片 -->
+      <div class="products-grid" style="margin-top:2rem;" data-reveal>
+        <div class="glass-card" style="padding:1.5rem;text-align:center;">
+          <div class="glass-icon" style="width:48px;height:48px;margin:0 auto 1rem;font-size:1.25rem;">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--brand-purple)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4 style="font-weight:600;margin-bottom:0.5rem;">6基因 · 30+位点</h4>
+          <p style="font-size:0.875rem;color:var(--ink-mute);">多靶点 DNA 突变检测，覆盖结直肠癌核心基因通路</p>
         </div>
-        <div class="product-card-empty" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-          <span>产品内容待补充</span>
+        <div class="glass-card" style="padding:1.5rem;text-align:center;">
+          <div class="glass-icon" style="width:48px;height:48px;margin:0 auto 1rem;font-size:1.25rem;">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--brand-purple)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h4 style="font-weight:600;margin-bottom:0.5rem;">提早5-7年发现</h4>
+          <p style="font-size:0.875rem;color:var(--ink-mute);">在癌前病变阶段即可预警，早期治疗费用仅2-3万元</p>
+        </div>
+        <div class="glass-card" style="padding:1.5rem;text-align:center;">
+          <div class="glass-icon" style="width:48px;height:48px;margin:0 auto 1rem;font-size:1.25rem;">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--brand-purple)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 22V12h6v10"/></svg>
+          </div>
+          <h4 style="font-weight:600;margin-bottom:0.5rem;">居家采样 · 无创无痛</h4>
+          <p style="font-size:0.875rem;color:var(--ink-mute);">自然排便取样，无需肠道准备，快递到家即可完成</p>
         </div>
       </div>
     </div>
