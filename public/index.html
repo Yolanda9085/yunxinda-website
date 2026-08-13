@@ -1834,6 +1834,26 @@
     .lcs-demo-msg--user {
       background: var(--brand-purple); color: #fff; align-self: flex-end;
     }
+    .lcs-screen { display: flex; flex-direction: column; gap: 0.75rem; }
+    .lcs-btn {
+      align-self: center; margin-top: 0.25rem;
+      padding: 0.5rem 1.25rem; border: none; border-radius: 999px;
+      background: var(--brand-purple); color: #fff; font-size: 0.8rem;
+      font-weight: 600; cursor: pointer; transition: background 0.2s ease;
+    }
+    .lcs-btn:hover { background: var(--primary-press); }
+    .lcs-progress { font-size: 0.7rem; color: var(--ink-mute); text-align: center; }
+    .lcs-options { display: flex; flex-direction: column; gap: 0.5rem; }
+    .lcs-option {
+      padding: 0.55rem 0.9rem; border: 1px solid var(--hairline);
+      border-radius: 10px; background: rgba(255,255,255,0.6);
+      font-size: 0.8rem; color: var(--ink-body); cursor: pointer;
+      transition: all 0.2s ease; text-align: left;
+    }
+    .lcs-option:hover {
+      border-color: var(--brand-purple); background: rgba(119,85,255,0.06);
+      color: var(--brand-purple);
+    }
 
   </style>
 </head>
@@ -2145,14 +2165,19 @@
                   <span class="lcs-demo-dot" style="background:#27c93f;"></span>
                   <span style="margin-left:0.5rem;font-size:0.75rem;color:var(--ink-mute);">丽常生智能评估</span>
                 </div>
-                <div class="lcs-demo-body">
-                  <div class="lcs-demo-msg lcs-demo-msg--bot">您好！回答3个问题，即可获取肠癌风险评估结果。</div>
-                  <div class="lcs-demo-msg lcs-demo-msg--user">我55岁，偶有便血，父亲有肠癌史</div>
-                  <div class="lcs-demo-msg lcs-demo-msg--bot">
-                    <strong style="color:#e53e3e;">风险等级：高</strong><br/>
-                    风险因素：年龄&gt;50、家族史、便血<br/>
-                    晚期治疗费用：30-100万元<br/>
-                    <span style="color:var(--brand-purple);">建议尽快使用丽常生进行筛查</span>
+                <div class="lcs-demo-body" id="lcsQuiz">
+                  <div class="lcs-screen" data-screen="intro">
+                    <div class="lcs-demo-msg lcs-demo-msg--bot">您好！回答 3 个问题，即可获取肠癌风险评估结果。</div>
+                    <button class="lcs-btn" data-action="start" type="button">开始评估</button>
+                  </div>
+                  <div class="lcs-screen" data-screen="quiz" hidden>
+                    <div class="lcs-progress">第 <span id="lcsStep">1</span>/3 题</div>
+                    <div class="lcs-demo-msg lcs-demo-msg--bot" id="lcsQuestion"></div>
+                    <div class="lcs-options" id="lcsOptions"></div>
+                  </div>
+                  <div class="lcs-screen" data-screen="result" hidden>
+                    <div class="lcs-demo-msg lcs-demo-msg--bot" id="lcsResult"></div>
+                    <button class="lcs-btn" data-action="restart" type="button">重新评估</button>
                   </div>
                 </div>
               </div>
@@ -2578,6 +2603,60 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     el.style.transform = 'translateY(0)';
   });
 }
+
+  // 丽常生肠癌风险交互评估
+  (function () {
+    var quiz = document.getElementById('lcsQuiz');
+    if (!quiz) return;
+    var questions = [
+      { q: '您的年龄是？', opts: ['< 50 岁', '≥ 50 岁'], score: [0, 1], factor: [null, '年龄 > 50'] },
+      { q: '近期是否有便血、腹痛或排便习惯改变？', opts: ['是', '否'], score: [2, 0], factor: ['便血等症状', null] },
+      { q: '直系亲属是否有结直肠癌病史？', opts: ['是', '否'], score: [2, 0], factor: ['家族史', null] }
+    ];
+    var step = 0, total = 0, factors = [];
+    var screens = quiz.querySelectorAll('.lcs-screen');
+    function show(name) {
+      screens.forEach(function (s) { s.hidden = s.getAttribute('data-screen') !== name; });
+    }
+    function renderQuestion() {
+      var item = questions[step];
+      document.getElementById('lcsStep').textContent = (step + 1);
+      document.getElementById('lcsQuestion').textContent = item.q;
+      var box = document.getElementById('lcsOptions');
+      box.innerHTML = '';
+      item.opts.forEach(function (opt, i) {
+        var btn = document.createElement('button');
+        btn.className = 'lcs-option';
+        btn.type = 'button';
+        btn.textContent = opt;
+        btn.addEventListener('click', function () { answer(i); });
+        box.appendChild(btn);
+      });
+    }
+    function answer(i) {
+      total += questions[step].score[i];
+      if (questions[step].factor[i]) factors.push(questions[step].factor[i]);
+      step++;
+      if (step < questions.length) { renderQuestion(); } else { renderResult(); }
+    }
+    function renderResult() {
+      var level, color, advice;
+      if (total >= 3) { level = '高'; color = '#e53e3e'; advice = '建议尽快使用丽常生进行筛查'; }
+      else if (total >= 1) { level = '中'; color = '#dd6b20'; advice = '建议关注肠道健康，可考虑丽常生筛查'; }
+      else { level = '低'; color = '#38a169'; advice = '保持良好生活习惯，定期体检'; }
+      var html = '<strong style="color:' + color + ';">风险等级：' + level + '</strong><br/>';
+      if (factors.length) html += '风险因素：' + factors.join('、') + '<br/>';
+      html += '晚期治疗费用：30-100 万元<br/>';
+      html += '<span style="color:var(--brand-purple);">' + advice + '</span>';
+      document.getElementById('lcsResult').innerHTML = html;
+      show('result');
+    }
+    quiz.addEventListener('click', function (e) {
+      var action = e.target.getAttribute('data-action');
+      if (action === 'start') { step = 0; total = 0; factors = []; renderQuestion(); show('quiz'); }
+      if (action === 'restart') { step = 0; total = 0; factors = []; show('intro'); }
+    });
+  })();
 </script>
 </body>
 </html>
