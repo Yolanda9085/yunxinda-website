@@ -1802,58 +1802,78 @@
     }
     @media (max-width: 560px) { .lcs-stats { grid-template-columns: repeat(2, 1fr); } }
     .lcs-stat {
-      text-align: center; padding: 0.75rem 0.5rem;
-      background: rgba(119,85,255,0.04); border-radius: 12px;
+      text-align: center; padding: 0.85rem 0.5rem;
+      background: linear-gradient(135deg, rgba(119,85,255,0.06), rgba(136,204,255,0.04));
+      border-radius: 14px; border: 1px solid rgba(119,85,255,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+    .lcs-stat:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(119,85,255,0.1); }
     .lcs-stat-value {
-      display: block; font-size: 1.25rem; font-weight: 700; color: var(--brand-purple);
+      display: block; font-size: 1.35rem; font-weight: 700; color: var(--brand-purple);
     }
     .lcs-stat-label {
       display: block; font-size: 0.75rem; color: var(--ink-mute); margin-top: 0.25rem;
     }
     .lcs-demo-card {
-      background: rgba(255,255,255,0.7); border-radius: 16px;
+      background: rgba(255,255,255,0.85); border-radius: 18px;
       border: 1px solid var(--hairline); overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
     .lcs-demo-header {
       display: flex; align-items: center; gap: 6px;
       padding: 0.75rem 1rem; border-bottom: 1px solid var(--hairline);
-      background: rgba(246,249,252,0.8);
+      background: linear-gradient(135deg, rgba(119,85,255,0.06), rgba(136,204,255,0.06));
     }
     .lcs-demo-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .lcs-demo-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .lcs-demo-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; min-height: 300px; }
     .lcs-demo-msg {
-      max-width: 85%; padding: 0.6rem 0.9rem; border-radius: 12px;
-      font-size: 0.8rem; line-height: 1.5;
+      max-width: 88%; padding: 0.65rem 1rem; border-radius: 14px;
+      font-size: 0.82rem; line-height: 1.55;
     }
     .lcs-demo-msg--bot {
-      background: rgba(119,85,255,0.06); border: 1px solid rgba(119,85,255,0.12);
+      background: rgba(119,85,255,0.07); border: 1px solid rgba(119,85,255,0.14);
       align-self: flex-start; color: var(--ink-body);
     }
     .lcs-demo-msg--user {
-      background: var(--brand-purple); color: #fff; align-self: flex-end;
+      background: linear-gradient(135deg, var(--brand-purple), var(--brand-mid)); color: #fff; align-self: flex-end;
+      box-shadow: 0 4px 12px rgba(119,85,255,0.25);
     }
-    .lcs-screen { display: flex; flex-direction: column; gap: 0.75rem; }
+    .lcs-screen { display: flex; flex-direction: column; gap: 0.85rem; animation: lcsFade 0.35s ease; }
+    @keyframes lcsFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .lcs-btn {
-      align-self: center; margin-top: 0.25rem;
-      padding: 0.5rem 1.25rem; border: none; border-radius: 999px;
-      background: var(--brand-purple); color: #fff; font-size: 0.8rem;
-      font-weight: 600; cursor: pointer; transition: background 0.2s ease;
+      align-self: center; margin-top: 0.5rem;
+      padding: 0.6rem 1.75rem; border: none; border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand-purple), var(--brand-mid)); color: #fff; font-size: 0.85rem;
+      font-weight: 600; cursor: pointer; transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(119,85,255,0.3);
     }
-    .lcs-btn:hover { background: var(--primary-press); }
-    .lcs-progress { font-size: 0.7rem; color: var(--ink-mute); text-align: center; }
-    .lcs-options { display: flex; flex-direction: column; gap: 0.5rem; }
+    .lcs-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(119,85,255,0.4); }
+    .lcs-progress-wrap { margin-bottom: 0.25rem; }
+    .lcs-progress-bar { height: 5px; border-radius: 999px; background: rgba(119,85,255,0.1); overflow: hidden; }
+    .lcs-progress-fill { height: 100%; border-radius: 999px; transition: width 0.4s ease; background: linear-gradient(90deg, var(--brand-purple), var(--brand-blue)); }
+    .lcs-progress-text { font-size: 0.7rem; color: var(--ink-mute); margin-top: 0.4rem; text-align: center; }
+    .lcs-options { display: flex; flex-direction: column; gap: 0.55rem; }
     .lcs-option {
-      padding: 0.55rem 0.9rem; border: 1px solid var(--hairline);
-      border-radius: 10px; background: rgba(255,255,255,0.6);
-      font-size: 0.8rem; color: var(--ink-body); cursor: pointer;
-      transition: all 0.2s ease; text-align: left;
+      padding: 0.65rem 1rem; border: 1px solid var(--hairline);
+      border-radius: 12px; background: rgba(255,255,255,0.7);
+      font-size: 0.82rem; color: var(--ink-body); cursor: pointer;
+      transition: all 0.2s ease; text-align: left; position: relative; overflow: hidden;
+    }
+    .lcs-option::before {
+      content: ''; width: 4px; height: 100%; position: absolute; left: 0; top: 0;
+      background: var(--brand-purple); opacity: 0; transition: opacity 0.2s ease;
     }
     .lcs-option:hover {
-      border-color: var(--brand-purple); background: rgba(119,85,255,0.06);
-      color: var(--brand-purple);
+      border-color: rgba(119,85,255,0.4); background: rgba(119,85,255,0.05);
+      color: var(--ink); transform: translateX(3px);
     }
+    .lcs-option:hover::before { opacity: 1; }
+    .lcs-result-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .lcs-result-factors { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+    .lcs-factor-tag { padding: 0.25rem 0.65rem; border-radius: 8px; font-size: 0.72rem; background: rgba(119,85,255,0.07); border: 1px solid rgba(119,85,255,0.15); color: var(--brand-purple); }
+    .lcs-result-advice { padding: 0.7rem 0.9rem; border-radius: 12px; font-size: 0.8rem; line-height: 1.6; background: rgba(119,85,255,0.05); border-left: 3px solid var(--brand-purple); margin-top: 0.5rem; }
+    .lcs-cost-row { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
+    .lcs-cost-item { flex: 1; text-align: center; padding: 0.5rem 0.3rem; border-radius: 10px; font-size: 0.72rem; line-height: 1.5; }
 
   </style>
 </head>
@@ -2137,7 +2157,7 @@
                 AI 智能评估
               </div>
               <h3 style="font-size:1.75rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">丽常生 · 肠癌早筛智能Agent</h3>
-              <p style="color:var(--ink-body);line-height:1.7;margin-bottom:1.5rem;">通过 3 个简单问题，AI 为您评估结直肠癌风险等级，并展示早筛与晚期发现的费用和生存率对比。居家采样、无创无痛，仅需 889 元即可完成深度多靶点 DNA 检测。</p>
+              <p style="color:var(--ink-body);line-height:1.7;margin-bottom:1.5rem;">通过 6 个专业问题，AI 为您评估结直肠癌风险等级，并展示早筛与晚期发现的费用和生存率对比。居家采样、无创无痛，仅需 889 元即可完成深度多靶点 DNA 检测。</p>
               <div class="lcs-stats">
                 <div class="lcs-stat">
                   <span class="lcs-stat-value">96%</span>
@@ -2167,16 +2187,19 @@
                 </div>
                 <div class="lcs-demo-body" id="lcsQuiz">
                   <div class="lcs-screen" data-screen="intro">
-                    <div class="lcs-demo-msg lcs-demo-msg--bot">您好！回答 3 个问题，即可获取肠癌风险评估结果。</div>
+                    <div class="lcs-demo-msg lcs-demo-msg--bot">您好！我是丽常生 AI 评估助手。回答 6 个问题，约 1 分钟，即可获取您的结直肠癌风险评估报告。</div>
                     <button class="lcs-btn" data-action="start" type="button">开始评估</button>
                   </div>
                   <div class="lcs-screen" data-screen="quiz" hidden>
-                    <div class="lcs-progress">第 <span id="lcsStep">1</span>/3 题</div>
+                    <div class="lcs-progress-wrap">
+                      <div class="lcs-progress-bar"><div class="lcs-progress-fill" id="lcsProgressFill" style="width:0%"></div></div>
+                      <div class="lcs-progress-text">第 <span id="lcsStep">1</span>/<span id="lcsTotal">6</span> 题</div>
+                    </div>
                     <div class="lcs-demo-msg lcs-demo-msg--bot" id="lcsQuestion"></div>
                     <div class="lcs-options" id="lcsOptions"></div>
                   </div>
                   <div class="lcs-screen" data-screen="result" hidden>
-                    <div class="lcs-demo-msg lcs-demo-msg--bot" id="lcsResult"></div>
+                    <div id="lcsResult"></div>
                     <button class="lcs-btn" data-action="restart" type="button">重新评估</button>
                   </div>
                 </div>
@@ -2609,18 +2632,23 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var quiz = document.getElementById('lcsQuiz');
     if (!quiz) return;
     var questions = [
-      { q: '您的年龄是？', opts: ['< 50 岁', '≥ 50 岁'], score: [0, 1], factor: [null, '年龄 > 50'] },
-      { q: '近期是否有便血、腹痛或排便习惯改变？', opts: ['是', '否'], score: [2, 0], factor: ['便血等症状', null] },
-      { q: '直系亲属是否有结直肠癌病史？', opts: ['是', '否'], score: [2, 0], factor: ['家族史', null] }
+      { q: '您的年龄段是？', opts: ['< 40 岁', '40-49 岁', '50-64 岁', '≥ 65 岁'], score: [0, 1, 2, 3], factor: [null, null, '年龄 50-64', '年龄 ≥ 65'] },
+      { q: '一级亲属（父母、子女、兄弟姐妹）是否有结直肠癌病史？', opts: ['无', '1 位（确诊 ≥ 50 岁）', '1 位（确诊 < 50 岁）或 ≥ 2 位', '不清楚'], score: [0, 2, 3, 1], factor: [null, '家族史（1位）', '家族史（高危）', null] },
+      { q: '近期是否有以下症状？便血、排便习惯改变、持续腹痛、不明原因消瘦', opts: ['无任何症状', '有 1 项', '有 2 项及以上'], score: [0, 2, 3], factor: [null, '肠道症状（1项）', '肠道症状（多项）'] },
+      { q: '是否有以下既往病史？炎症性肠病、腺瘤性息肉、2 型糖尿病', opts: ['无', '有 1 项', '有 2 项及以上'], score: [0, 2, 3], factor: [null, '既往病史（1项）', '既往病史（多项）'] },
+      { q: '您的 BMI（体重指数）范围是？', opts: ['< 24 正常', '24-27.9 超重', '≥ 28 肥胖', '不清楚'], score: [0, 1, 2, 0], factor: [null, '超重', '肥胖', null] },
+      { q: '生活方式：吸烟、饮酒、红肉/加工肉高频摄入', opts: ['均无', '有 1 项', '有 2 项及以上'], score: [0, 1, 2], factor: [null, '不良习惯（1项）', '不良习惯（多项）'] }
     ];
     var step = 0, total = 0, factors = [];
     var screens = quiz.querySelectorAll('.lcs-screen');
+    document.getElementById('lcsTotal').textContent = questions.length;
     function show(name) {
       screens.forEach(function (s) { s.hidden = s.getAttribute('data-screen') !== name; });
     }
     function renderQuestion() {
       var item = questions[step];
       document.getElementById('lcsStep').textContent = (step + 1);
+      document.getElementById('lcsProgressFill').style.width = ((step / questions.length) * 100) + '%';
       document.getElementById('lcsQuestion').textContent = item.q;
       var box = document.getElementById('lcsOptions');
       box.innerHTML = '';
@@ -2640,14 +2668,20 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (step < questions.length) { renderQuestion(); } else { renderResult(); }
     }
     function renderResult() {
-      var level, color, advice;
-      if (total >= 3) { level = '高'; color = '#e53e3e'; advice = '建议尽快使用丽常生进行筛查'; }
-      else if (total >= 1) { level = '中'; color = '#dd6b20'; advice = '建议关注肠道健康，可考虑丽常生筛查'; }
-      else { level = '低'; color = '#38a169'; advice = '保持良好生活习惯，定期体检'; }
-      var html = '<strong style="color:' + color + ';">风险等级：' + level + '</strong><br/>';
-      if (factors.length) html += '风险因素：' + factors.join('、') + '<br/>';
-      html += '晚期治疗费用：30-100 万元<br/>';
-      html += '<span style="color:var(--brand-purple);">' + advice + '</span>';
+      document.getElementById('lcsProgressFill').style.width = '100%';
+      var level, color, bg, advice;
+      if (total >= 6) { level = '高风险'; color = '#e53e3e'; bg = 'rgba(229,62,62,0.1)'; advice = '建议尽快使用丽常生进行筛查，并咨询专业医生进一步评估。'; }
+      else if (total >= 3) { level = '中风险'; color = '#dd6b20'; bg = 'rgba(221,107,32,0.1)'; advice = '建议关注肠道健康，可考虑丽常生筛查，保持定期体检。'; }
+      else { level = '低风险'; color = '#38a169'; bg = 'rgba(56,161,105,0.1)'; advice = '风险较低，保持良好生活习惯，建议 45 岁起定期筛查。'; }
+      var html = '<div class="lcs-result-badge" style="background:' + bg + ';color:' + color + ';">' + level + '</div>';
+      html += '<div style="font-size:0.78rem;color:var(--ink-body);line-height:1.6;">综合评分：<strong style="color:' + color + ';">' + total + '</strong> / ' + (questions.length * 3) + ' 分</div>';
+      if (factors.length) {
+        html += '<div style="font-size:0.75rem;color:var(--ink-mute);margin-top:0.5rem;">主要风险因素：</div><div class="lcs-result-factors">';
+        factors.forEach(function (f) { html += '<span class="lcs-factor-tag">' + f + '</span>'; });
+        html += '</div>';
+      }
+      html += '<div class="lcs-cost-row"><div class="lcs-cost-item" style="background:rgba(56,161,105,0.08);color:#38a169;">早筛费用<br/><strong>889 元</strong></div><div class="lcs-cost-item" style="background:rgba(229,62,62,0.08);color:#e53e3e;">晚期治疗<br/><strong>30-100 万</strong></div></div>';
+      html += '<div class="lcs-result-advice" style="border-left-color:' + color + ';">' + advice + '</div>';
       document.getElementById('lcsResult').innerHTML = html;
       show('result');
     }
