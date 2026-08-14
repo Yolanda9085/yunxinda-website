@@ -1908,6 +1908,88 @@
     .destiny-btn--ghost { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
     .destiny-btn--ghost:hover { background: rgba(255,255,255,0.12); }
 
+    /* G. 人生余额提醒 */
+    .balance-section { padding: 4rem 0; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+    .balance-phone { max-width: 380px; margin: 0 auto; background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,0.4); overflow: hidden; }
+    .balance-bar { height: 6px; background: linear-gradient(90deg, #e53e3e, #f56565); }
+    .balance-header { padding: 1.5rem 1.5rem 1rem; text-align: center; }
+    .balance-icon { width: 56px; height: 56px; margin: 0 auto 0.75rem; border-radius: 50%; background: rgba(229,62,62,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; }
+    .balance-title { font-size: 1.15rem; font-weight: 700; color: #1a202c; }
+    .balance-sub { font-size: 0.78rem; color: #718096; margin-top: 0.25rem; }
+    .balance-body { padding: 0 1.5rem 1.25rem; }
+    .balance-amount { text-align: center; padding: 1rem; border-radius: 14px; background: rgba(229,62,62,0.06); margin-bottom: 1rem; }
+    .balance-amount-num { font-size: 2rem; font-weight: 800; color: #e53e3e; }
+    .balance-amount-label { font-size: 0.75rem; color: #718096; margin-top: 0.25rem; }
+    .balance-warn { font-size: 0.8rem; color: #c53030; text-align: center; margin-bottom: 1rem; line-height: 1.6; }
+    .balance-plans { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .balance-plan { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 12px; background: #f7fafc; border: 1px solid #e2e8f0; }
+    .balance-plan-tag { font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 6px; background: rgba(119,85,255,0.1); color: #7755ff; font-weight: 600; white-space: nowrap; }
+    .balance-plan-text { flex: 1; font-size: 0.8rem; color: #4a5568; }
+    .balance-plan-gain { font-size: 0.82rem; font-weight: 700; color: #38a169; white-space: nowrap; }
+    .balance-actions { display: flex; gap: 0.75rem; }
+    .balance-btn { flex: 1; padding: 0.8rem; border: none; border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .balance-btn--primary { background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; }
+    .balance-btn--primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(119,85,255,0.35); }
+    .balance-btn--ghost { background: #f7fafc; color: #718096; border: 1px solid #e2e8f0; }
+    .balance-btn--ghost:hover { background: #edf2f7; }
+    .balance-confirm { display: none; padding: 1.25rem; text-align: center; }
+    .balance-confirm.active { display: block; }
+    .balance-confirm-num { font-size: 2.5rem; font-weight: 800; color: #e53e3e; margin: 0.5rem 0; }
+
+    /* B. 健康信用分 */
+    .credit-section { padding: 4rem 0; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; }
+    .credit-wrap { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: center; }
+    @media (max-width: 720px) { .credit-wrap { grid-template-columns: 1fr; gap: 1.5rem; } }
+    .credit-gauge { position: relative; width: 240px; height: 240px; margin: 0 auto; }
+    .credit-ring { width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from -90deg, #38a169 0%, #a78bfa 40%, #fbbf24 70%, #f56565 100%); mask: radial-gradient(circle, transparent 58%, #000 59%); -webkit-mask: radial-gradient(circle, transparent 58%, #000 59%); }
+    .credit-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .credit-score { font-size: 3rem; font-weight: 800; color: #fff; }
+    .credit-level { font-size: 0.85rem; color: #fbbf24; margin-top: 0.25rem; }
+    .credit-max { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+    .credit-info h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .credit-info p { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 1.25rem; }
+    .credit-dims { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .credit-dim { display: flex; align-items: center; gap: 0.75rem; }
+    .credit-dim-name { width: 80px; font-size: 0.78rem; color: rgba(255,255,255,0.7); flex-shrink: 0; }
+    .credit-dim-bar { flex: 1; height: 7px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .credit-dim-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
+    .credit-dim-val { width: 36px; font-size: 0.75rem; color: rgba(255,255,255,0.6); text-align: right; flex-shrink: 0; }
+    .credit-tips { font-size: 0.78rem; color: rgba(255,255,255,0.7); line-height: 1.7; padding: 0.85rem 1rem; border-radius: 12px; background: rgba(119,85,255,0.08); border: 1px solid rgba(119,85,255,0.15); margin-bottom: 1rem; }
+    .credit-cta { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .credit-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(119,85,255,0.4); }
+
+    /* A. 健康外卖单 */
+    .order-section { padding: 4rem 0; background: #f5f6f8; }
+    .order-head { text-align: center; margin-bottom: 0.5rem; }
+    .order-title { font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+    .order-slogan { font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.25rem; }
+    .order-flow { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0 2rem; font-size: 0.75rem; color: var(--ink-mute); align-items: center; }
+    .order-flow span { padding: 0.3rem 0.75rem; background: #fff; border-radius: 999px; border: 1px solid var(--hairline); }
+    .order-flow b { color: var(--brand-purple); }
+    .order-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .order-item { display: flex; gap: 1rem; padding: 1rem 1.25rem; background: #fff; border-radius: 16px; border: 1px solid var(--hairline); box-shadow: 0 2px 8px rgba(0,0,0,0.03); transition: box-shadow 0.2s ease; }
+    .order-item:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .order-emoji { width: 64px; height: 64px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+    .order-detail { flex: 1; }
+    .order-name { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+    .order-tags { display: flex; gap: 0.35rem; margin: 0.35rem 0; flex-wrap: wrap; }
+    .order-tag { font-size: 0.65rem; padding: 0.15rem 0.45rem; border-radius: 5px; background: rgba(119,85,255,0.08); color: var(--brand-purple); }
+    .order-meta { font-size: 0.72rem; color: var(--ink-mute); }
+    .order-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; min-width: 90px; }
+    .order-price { font-size: 1.15rem; font-weight: 800; color: #e53e3e; }
+    .order-price small { font-size: 0.7rem; font-weight: 400; color: var(--ink-mute); }
+    .order-qty { display: flex; align-items: center; gap: 0.5rem; }
+    .order-qty button { width: 28px; height: 28px; border: none; border-radius: 8px; background: rgba(119,85,255,0.1); color: var(--brand-purple); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+    .order-qty button:hover { background: var(--brand-purple); color: #fff; }
+    .order-qty span { font-size: 0.85rem; font-weight: 600; min-width: 16px; text-align: center; color: var(--ink); }
+    .order-cart { max-width: 680px; margin: 1.25rem auto 0; display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; background: var(--ink); border-radius: 16px; color: #fff; }
+    .order-cart-info { flex: 1; }
+    .order-cart-count { font-size: 0.8rem; opacity: 0.7; }
+    .order-cart-total { font-size: 1.1rem; font-weight: 700; }
+    .order-cart-btn { padding: 0.6rem 1.75rem; border: none; border-radius: 999px; background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .order-cart-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(119,85,255,0.4); }
+    .order-cart-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
   </style>
 </head>
 <body>
@@ -2250,6 +2332,86 @@
         <h2 class="destiny-title">选择你的命运</h2>
         <p class="destiny-subtitle">一次"再等等"的代价，可能远超你的想象</p>
         <div id="destinyStage"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="balance" class="balance-section">
+    <div class="container">
+      <div class="balance-phone">
+        <div class="balance-bar"></div>
+        <div class="balance-header">
+          <div class="balance-icon">⚠️</div>
+          <div class="balance-title">健康账户余额不足</div>
+          <div class="balance-sub">云心达 · 健康账户中心</div>
+        </div>
+        <div class="balance-body" id="balanceBody">
+          <div class="balance-amount">
+            <div class="balance-amount-num">-1,460 天</div>
+            <div class="balance-amount-label">当前健康余额（已逾期 2 年）</div>
+          </div>
+          <div class="balance-warn">您的健康账户已连续透支 2 年 3 个月<br/>再不充值，账户将被冻结（不可恢复）</div>
+          <div class="balance-plans">
+            <div class="balance-plan"><span class="balance-plan-tag">早筛</span><span class="balance-plan-text">完成一次丽常生肠癌早筛</span><span class="balance-plan-gain">+1,825 天</span></div>
+            <div class="balance-plan"><span class="balance-plan-tag">体检</span><span class="balance-plan-text">完成年度全面体检</span><span class="balance-plan-gain">+365 天</span></div>
+            <div class="balance-plan"><span class="balance-plan-tag">监测</span><span class="balance-plan-text">绑定日常监测（每月）</span><span class="balance-plan-gain">+30 天/月</span></div>
+          </div>
+          <div class="balance-actions">
+            <button class="balance-btn balance-btn--primary" data-scroll="products">立即充值</button>
+            <button class="balance-btn balance-btn--ghost" id="balanceLater">稍后提醒</button>
+          </div>
+        </div>
+        <div class="balance-confirm" id="balanceConfirm">
+          <div style="font-size:0.85rem;color:#c53030;line-height:1.6;margin-bottom:0.5rem;">您确定继续透支健康账户吗？</div>
+          <div class="balance-confirm-num">-1,460 天</div>
+          <div style="font-size:0.78rem;color:#718096;margin-bottom:1.25rem;line-height:1.6;">每拖延 1 天，健康余额再 -1 天<br/>逾期 3 年将永久冻结账户</div>
+          <div class="balance-actions">
+            <button class="balance-btn balance-btn--primary" data-scroll="products">马上充值</button>
+            <button class="balance-btn balance-btn--ghost" id="balanceBack">返回</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credit" class="credit-section">
+    <div class="container">
+      <div class="credit-wrap">
+        <div class="credit-gauge">
+          <div class="credit-ring"></div>
+          <div class="credit-center">
+            <div class="credit-score" id="creditScore">0</div>
+            <div class="credit-level">一般</div>
+            <div class="credit-max">/ 850 分</div>
+          </div>
+        </div>
+        <div class="credit-info">
+          <h3>您的健康信用分</h3>
+          <p>芝麻信用影响你能不能借钱，健康信用影响你能不能活着花钱。完成早筛、规律监测，分数自然上涨。</p>
+          <div class="credit-dims" id="creditDims"></div>
+          <div class="credit-tips">💡 提升方式：完成一次早筛 +50 · 年度体检 +30 · 绑定日常监测 +20 · 戒烟限酒 +15</div>
+          <button class="credit-cta" data-scroll="products">立即提升信用分</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order" class="order-section">
+    <div class="container">
+      <div class="order-head">
+        <div class="order-title">🛵 健康外卖 · 居家早筛</div>
+        <div class="order-slogan">比外卖还快，比叫奶茶还简单</div>
+      </div>
+      <div class="order-flow">
+        <span>下单</span>→<span>包邮到家</span>→<span>居家采样</span>→<span>寄回</span>→<span><b>3天出报告</b></span>
+      </div>
+      <div class="order-list" id="orderList"></div>
+      <div class="order-cart">
+        <div class="order-cart-info">
+          <div class="order-cart-count" id="orderCount">未选购</div>
+          <div class="order-cart-total" id="orderTotal">¥ 0</div>
+        </div>
+        <button class="order-cart-btn" id="orderBtn" disabled>去结算</button>
       </div>
     </div>
   </section>
@@ -2834,6 +2996,75 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (t.hasAttribute('data-scroll')) document.getElementById(t.getAttribute('data-scroll')).scrollIntoView({ behavior: 'smooth' });
     });
     render('start');
+  })();
+
+  // G. 人生余额提醒
+  (function () {
+    var body = document.getElementById('balanceBody');
+    var confirm = document.getElementById('balanceConfirm');
+    var later = document.getElementById('balanceLater');
+    var back = document.getElementById('balanceBack');
+    if (!body) return;
+    later.addEventListener('click', function () { body.style.display = 'none'; confirm.classList.add('active'); });
+    back.addEventListener('click', function () { confirm.classList.remove('active'); body.style.display = 'block'; });
+  })();
+
+  // B. 健康信用分
+  (function () {
+    var scoreEl = document.getElementById('creditScore');
+    var dimsEl = document.getElementById('creditDims');
+    if (!scoreEl) return;
+    var dims = [
+      { name: '筛查记录', val: 40, color: '#f56565' },
+      { name: '风险因素', val: 55, color: '#fbbf24' },
+      { name: '生活习惯', val: 62, color: '#fbbf24' },
+      { name: '监测依从', val: 30, color: '#f56565' },
+      { name: '症状预警', val: 70, color: '#a78bfa' }
+    ];
+    dims.forEach(function (d) {
+      var row = document.createElement('div');
+      row.className = 'credit-dim';
+      row.innerHTML = '<div class="credit-dim-name">' + d.name + '</div><div class="credit-dim-bar"><div class="credit-dim-fill" style="width:0%;background:' + d.color + ';"></div></div><div class="credit-dim-val">' + d.val + '</div>';
+      dimsEl.appendChild(row);
+    });
+    var score = 642, n = 0;
+    var timer = setInterval(function () { n += 12; if (n >= score) { n = score; clearInterval(timer); } scoreEl.textContent = n; }, 30);
+    setTimeout(function () {
+      dimsEl.querySelectorAll('.credit-dim-fill').forEach(function (f, i) { f.style.width = dims[i].val + '%'; });
+    }, 200);
+  })();
+
+  // A. 健康外卖单
+  (function () {
+    var list = document.getElementById('orderList');
+    if (!list) return;
+    var products = [
+      { name: '丽常生 · 肠癌早筛', emoji: '🧬', bg: 'rgba(119,85,255,0.1)', tags: ['居家采样', '无创无痛', '6基因检测'], sold: '12,386', rating: '98%', price: 889 },
+      { name: '常乐芯 · 肝癌早筛', emoji: '🩺', bg: 'rgba(56,161,105,0.1)', tags: ['居家采样', '无创', 'AFP+异常凝血酶'], sold: '8,201', rating: '97%', price: 599 },
+      { name: '丽畅轻 · 代谢筛查', emoji: '💧', bg: 'rgba(136,204,255,0.1)', tags: ['居家采样', '尿液检测', '代谢综合评估'], sold: '5,478', rating: '96%', price: 399 }
+    ];
+    var qty = [0, 0, 0];
+    products.forEach(function (p, i) {
+      var item = document.createElement('div');
+      item.className = 'order-item';
+      item.innerHTML = '<div class="order-emoji" style="background:' + p.bg + ';">' + p.emoji + '</div><div class="order-detail"><div class="order-name">' + p.name + '</div><div class="order-tags">' + p.tags.map(function (t) { return '<span class="order-tag">' + t + '</span>'; }).join('') + '</div><div class="order-meta">已售 ' + p.sold + ' · 好评 ' + p.rating + '</div></div><div class="order-right"><div class="order-price">¥' + p.price + '<small>/份</small></div><div class="order-qty"><button data-minus="' + i + '">−</button><span id="orderQty' + i + '">0</span><button data-plus="' + i + '">+</button></div></div>';
+      list.appendChild(item);
+    });
+    var countEl = document.getElementById('orderCount');
+    var totalEl = document.getElementById('orderTotal');
+    var btn = document.getElementById('orderBtn');
+    function update() {
+      var total = 0, count = 0;
+      qty.forEach(function (q, i) { total += q * products[i].price; count += q; document.getElementById('orderQty' + i).textContent = q; });
+      countEl.textContent = count ? '已选 ' + count + ' 件' : '未选购';
+      totalEl.textContent = '¥ ' + total.toLocaleString();
+      btn.disabled = count === 0;
+    }
+    list.addEventListener('click', function (e) {
+      var p = e.target.getAttribute('data-plus'), m = e.target.getAttribute('data-minus');
+      if (p !== null) { qty[+p]++; update(); }
+      if (m !== null && qty[+m] > 0) { qty[+m]--; update(); }
+    });
   })();
 </script>
 </body>
