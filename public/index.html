@@ -1875,6 +1875,39 @@
     .lcs-cost-row { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
     .lcs-cost-item { flex: 1; text-align: center; padding: 0.5rem 0.3rem; border-radius: 10px; font-size: 0.72rem; line-height: 1.5; }
 
+    /* 选择你的命运 - 互动剧情 */
+    .destiny-section { padding: 4rem 0; background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 100%); color: #e8eef5; }
+    .destiny-card { max-width: 680px; margin: 0 auto; padding: 2.5rem; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.3); min-height: 420px; display: flex; flex-direction: column; }
+    .destiny-title { text-align: center; font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(90deg, #88ccff, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .destiny-subtitle { text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.75rem; }
+    .destiny-time { display: inline-block; padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.72rem; background: rgba(136,204,255,0.12); color: #88ccff; border: 1px solid rgba(136,204,255,0.2); margin-bottom: 1rem; align-self: flex-start; }
+    .destiny-scene { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); min-height: 80px; margin-bottom: 1.5rem; }
+    .destiny-cursor { display: inline-block; width: 2px; height: 1em; background: #88ccff; margin-left: 2px; vertical-align: middle; animation: destinyBlink 0.8s infinite; }
+    @keyframes destinyBlink { 50% { opacity: 0; } }
+    .destiny-choices { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
+    .destiny-choice { padding: 0.85rem 1.25rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.9); font-size: 0.88rem; cursor: pointer; transition: all 0.25s ease; text-align: left; display: flex; align-items: center; gap: 0.75rem; }
+    .destiny-choice:hover { border-color: rgba(136,204,255,0.5); background: rgba(136,204,255,0.1); transform: translateX(4px); }
+    .destiny-choice-icon { font-size: 1.1rem; opacity: 0.7; }
+    .destiny-jump { text-align: center; font-size: 1.4rem; font-weight: 700; color: #88ccff; margin: 0.5rem 0 1rem; animation: destinyFadeUp 0.6s ease; }
+    @keyframes destinyFadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .destiny-ending { animation: destinyFadeUp 0.5s ease; }
+    .destiny-stat-row { display: flex; gap: 1rem; margin: 1.25rem 0; }
+    .destiny-stat { flex: 1; text-align: center; padding: 1rem 0.5rem; border-radius: 14px; }
+    .destiny-stat-value { display: block; font-size: 1.5rem; font-weight: 700; }
+    .destiny-stat-label { display: block; font-size: 0.72rem; opacity: 0.7; margin-top: 0.25rem; }
+    .destiny-survival { margin: 1rem 0; }
+    .destiny-survival-bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.1); overflow: hidden; }
+    .destiny-survival-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
+    .destiny-survival-label { font-size: 0.75rem; opacity: 0.7; margin-top: 0.4rem; }
+    .destiny-lesson { padding: 1rem 1.25rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; border-left: 3px solid; }
+    .destiny-quote { font-size: 0.82rem; font-style: italic; opacity: 0.65; margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.15); }
+    .destiny-actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+    .destiny-btn { flex: 1; padding: 0.75rem; border: none; border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .destiny-btn--primary { background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; }
+    .destiny-btn--primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(119,85,255,0.4); }
+    .destiny-btn--ghost { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
+    .destiny-btn--ghost:hover { background: rgba(255,255,255,0.12); }
+
   </style>
 </head>
 <body>
@@ -2207,6 +2240,16 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="destiny" class="destiny-section">
+    <div class="container">
+      <div class="destiny-card" id="destinyCard">
+        <h2 class="destiny-title">选择你的命运</h2>
+        <p class="destiny-subtitle">一次"再等等"的代价，可能远超你的想象</p>
+        <div id="destinyStage"></div>
       </div>
     </div>
   </section>
@@ -2690,6 +2733,107 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (action === 'start') { step = 0; total = 0; factors = []; renderQuestion(); show('quiz'); }
       if (action === 'restart') { step = 0; total = 0; factors = []; show('intro'); }
     });
+  })();
+
+  // 选择你的命运 - 互动剧情
+  (function () {
+    var stage = document.getElementById('destinyStage');
+    if (!stage) return;
+    var nodes = {
+      start: {
+        time: '2026 年 8 月',
+        scene: '你今年 45 岁，收到了云心达的健康体检提醒。平时感觉身体还行，偶尔肠胃不太舒服，但没什么大事。',
+        choices: [
+          { text: '预约体检，早筛一下', icon: '✅', next: 'good' },
+          { text: '再等等，感觉挺健康的', icon: '⏰', next: 'wait1' }
+        ]
+      },
+      wait1: {
+        jump: '1 年后 · 2027 年',
+        time: '2027 年',
+        scene: '最近偶尔便血，你上网搜了搜，"十男九痔"，大概率是痔疮吧。',
+        choices: [
+          { text: '还是去检查一下放心', icon: '✅', next: 'mid' },
+          { text: '网上都说是痔疮，再观察观察', icon: '⏰', next: 'wait2' }
+        ]
+      },
+      wait2: {
+        jump: '又过 2 年 · 2029 年',
+        time: '2029 年',
+        scene: '持续腹痛，体重不知不觉掉了 10 斤，终于撑不住了，你走进了医院。',
+        next: 'bad'
+      },
+      good: {
+        ending: true, time: '体检当天',
+        scene: '你做了丽常生肠癌早筛，居家采样，一周后出报告。报告显示早期腺瘤性息肉，医生建议肠镜切除，门诊小手术即可。',
+        stats: [{ value: '≈ 2,889 元', label: '早筛 + 肠镜切除', bg: 'rgba(56,161,105,0.12)', color: '#48bb78' }, { value: '90%', label: '5 年生存率', bg: 'rgba(56,161,105,0.12)', color: '#48bb78' }],
+        survival: { pct: 90, color: '#48bb78' },
+        lesson: '一次不到 3000 元，换来几十年安心。你庆幸自己来了。', lessonColor: '#48bb78', lessonBg: 'rgba(56,161,105,0.08)'
+      },
+      mid: {
+        ending: true,
+        scene: '丽常生早筛显示中风险，肠镜确诊为中期。能治，但需要手术 + 化疗。',
+        stats: [{ value: '≈ 8 万元', label: '早筛 + 治疗', bg: 'rgba(221,107,32,0.12)', color: '#ed8936' }, { value: '70%', label: '5 年生存率', bg: 'rgba(221,107,32,0.12)', color: '#ed8936' }],
+        survival: { pct: 70, color: '#ed8936' },
+        lesson: '早一年发现，能省 8 万、免化疗。那个"再等等"，花了 8 万。', lessonColor: '#ed8936', lessonBg: 'rgba(221,107,32,0.08)'
+      },
+      bad: {
+        ending: true,
+        scene: '确诊结直肠癌晚期，已淋巴转移。需要造口、长期化疗，人生从此不同。',
+        stats: [{ value: '30-100 万', label: '治疗费用', bg: 'rgba(229,62,62,0.12)', color: '#f56565' }, { value: '12%', label: '5 年生存率', bg: 'rgba(229,62,62,0.12)', color: '#f56565' }],
+        survival: { pct: 12, color: '#f56565' },
+        quote: '"如果 3 年前那个体检提醒你去了，完全是另一个结局。" —— 主治医生',
+        lesson: '3 年前的一次"再等等"——代价是 30-100 万、造口、化疗，和可能回不来的人生。', lessonColor: '#f56565', lessonBg: 'rgba(229,62,62,0.08)', cta: true
+      }
+    };
+    var typing = null;
+    function clear() { if (typing) { clearInterval(typing); typing = null; } }
+    function typeWriter(el, text, done) {
+      clear(); el.innerHTML = '<span class="destiny-cursor"></span>';
+      var i = 0;
+      typing = setInterval(function () {
+        i++; el.innerHTML = text.slice(0, i) + '<span class="destiny-cursor"></span>';
+        if (i >= text.length) { clear(); el.innerHTML = text; if (done) done(); }
+      }, 28);
+    }
+    function render(key) {
+      var n = nodes[key], html = '';
+      if (n.jump) html += '<div class="destiny-jump">⏰ ' + n.jump + '</div>';
+      if (n.time) html += '<div class="destiny-time">' + n.time + '</div>';
+      html += '<div class="destiny-scene" id="destinyScene"></div>';
+      if (n.ending) {
+        html += '<div class="destiny-ending">';
+        if (n.stats) {
+          html += '<div class="destiny-stat-row">';
+          n.stats.forEach(function (s) { html += '<div class="destiny-stat" style="background:' + s.bg + ';"><span class="destiny-stat-value" style="color:' + s.color + ';">' + s.value + '</span><span class="destiny-stat-label">' + s.label + '</span></div>'; });
+          html += '</div>';
+        }
+        if (n.survival) html += '<div class="destiny-survival"><div class="destiny-survival-bar"><div class="destiny-survival-fill" style="width:0%;background:' + n.survival.color + ';"></div></div><div class="destiny-survival-label">5 年生存率</div></div>';
+        if (n.quote) html += '<div class="destiny-quote">' + n.quote + '</div>';
+        if (n.lesson) html += '<div class="destiny-lesson" style="background:' + n.lessonBg + ';border-left-color:' + n.lessonColor + ';color:rgba(255,255,255,0.9);">' + n.lesson + '</div>';
+        html += '<div class="destiny-actions">';
+        if (n.cta) { html += '<button class="destiny-btn destiny-btn--primary" data-scroll="products">立即做丽常生早筛</button>'; html += '<button class="destiny-btn destiny-btn--ghost" data-restart="1">重新选择</button>'; }
+        else { html += '<button class="destiny-btn destiny-btn--ghost" data-restart="1">重新体验</button>'; }
+        html += '</div></div>';
+      } else if (n.choices) {
+        html += '<div class="destiny-choices">';
+        n.choices.forEach(function (c) { html += '<button class="destiny-choice" data-next="' + c.next + '"><span class="destiny-choice-icon">' + c.icon + '</span>' + c.text + '</button>'; });
+        html += '</div>';
+      } else if (n.next) {
+        html += '<div class="destiny-choices"><button class="destiny-choice" data-next="' + n.next + '"><span class="destiny-choice-icon">▶</span>继续</button></div>';
+      }
+      stage.innerHTML = html;
+      var sceneEl = document.getElementById('destinyScene');
+      if (sceneEl) typeWriter(sceneEl, n.scene, function () { if (n.survival) { var f = stage.querySelector('.destiny-survival-fill'); if (f) f.style.width = n.survival.pct + '%'; } });
+    }
+    stage.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-next],[data-restart],[data-scroll]');
+      if (!t) return;
+      if (t.hasAttribute('data-next')) render(t.getAttribute('data-next'));
+      if (t.hasAttribute('data-restart')) render('start');
+      if (t.hasAttribute('data-scroll')) document.getElementById(t.getAttribute('data-scroll')).scrollIntoView({ behavior: 'smooth' });
+    });
+    render('start');
   })();
 </script>
 </body>
