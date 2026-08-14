@@ -1989,6 +1989,12 @@
     .order-cart-btn { padding: 0.6rem 1.75rem; border: none; border-radius: 999px; background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
     .order-cart-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(119,85,255,0.4); }
     .order-cart-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+    .order-block { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--hairline); }
+
+    /* 觉醒三步引导 */
+    .awaken-step { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; background: rgba(136,204,255,0.15); color: #88ccff; border: 1px solid rgba(136,204,255,0.25); margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+    .awaken-arrow { text-align: center; padding: 0.5rem 0; color: rgba(136,204,255,0.5); font-size: 1.5rem; animation: arrowBounce 1.5s infinite; }
+    @keyframes arrowBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
   </style>
 </head>
@@ -2260,7 +2266,7 @@
   <section id="products">
     <div class="container">
       <div class="section-head center" data-reveal>
-        <h2 class="section-title">产品展示</h2>
+        <h2 class="section-title">丽常生 · 居家早筛</h2>
       </div>
       <!-- 丽常生 Agent 主卡片 -->
       <div class="lichangsheng-hero" data-reveal>
@@ -2323,17 +2329,36 @@
           </div>
         </div>
       </div>
+      <div class="order-block">
+        <div class="order-head">
+          <div class="order-title">🛵 健康外卖 · 居家早筛</div>
+          <div class="order-slogan">比外卖还快，比叫奶茶还简单</div>
+        </div>
+        <div class="order-flow">
+          <span>下单</span>→<span>包邮到家</span>→<span>居家采样</span>→<span>寄回</span>→<span><b>3天出报告</b></span>
+        </div>
+        <div class="order-list" id="orderList"></div>
+        <div class="order-cart">
+          <div class="order-cart-info">
+            <div class="order-cart-count" id="orderCount">未选购</div>
+            <div class="order-cart-total" id="orderTotal">¥ 0</div>
+          </div>
+          <button class="order-cart-btn" id="orderBtn" disabled>去结算</button>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="destiny" class="destiny-section">
     <div class="container">
       <div class="destiny-card" id="destinyCard">
+        <div class="awaken-step">第 1 步 · 觉醒体验</div>
         <h2 class="destiny-title">选择你的命运</h2>
         <p class="destiny-subtitle">一次"再等等"的代价，可能远超你的想象</p>
         <div id="destinyStage"></div>
       </div>
     </div>
+    <div class="awaken-arrow">↓</div>
   </section>
 
   <section id="balance" class="balance-section">
@@ -2342,6 +2367,7 @@
         <div class="balance-bar"></div>
         <div class="balance-header">
           <div class="balance-icon">⚠️</div>
+          <div class="awaken-step">第 2 步 · 觉醒体验</div>
           <div class="balance-title">健康账户余额不足</div>
           <div class="balance-sub">云心达 · 健康账户中心</div>
         </div>
@@ -2372,6 +2398,7 @@
         </div>
       </div>
     </div>
+    <div class="awaken-arrow">↓</div>
   </section>
 
   <section id="credit" class="credit-section">
@@ -2386,6 +2413,7 @@
           </div>
         </div>
         <div class="credit-info">
+          <div class="awaken-step">第 3 步 · 觉醒体验</div>
           <h3>您的健康信用分</h3>
           <p>芝麻信用影响你能不能借钱，健康信用影响你能不能活着花钱。完成早筛、规律监测，分数自然上涨。</p>
           <div class="credit-dims" id="creditDims"></div>
@@ -2396,25 +2424,6 @@
     </div>
   </section>
 
-  <section id="order" class="order-section">
-    <div class="container">
-      <div class="order-head">
-        <div class="order-title">🛵 健康外卖 · 居家早筛</div>
-        <div class="order-slogan">比外卖还快，比叫奶茶还简单</div>
-      </div>
-      <div class="order-flow">
-        <span>下单</span>→<span>包邮到家</span>→<span>居家采样</span>→<span>寄回</span>→<span><b>3天出报告</b></span>
-      </div>
-      <div class="order-list" id="orderList"></div>
-      <div class="order-cart">
-        <div class="order-cart-info">
-          <div class="order-cart-count" id="orderCount">未选购</div>
-          <div class="order-cart-total" id="orderTotal">¥ 0</div>
-        </div>
-        <button class="order-cart-btn" id="orderBtn" disabled>去结算</button>
-      </div>
-    </div>
-  </section>
 
   <section id="activities" class="band-soft">
     <div class="container">
