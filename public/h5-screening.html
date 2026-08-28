@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>肠道健康早筛意识唤醒 | 云心达·丽常生</title>
+<meta name="description" content="一次关于肠道健康的沉浸式体验：了解肠道变化、选择你的结局、看懂早筛的价值。">
+<style>
+  :root {
+    --navy: #1A365D;
+    --blue: #2563EB;
+    --orange: #DD6B20;
+    --orange-soft: #F56565;
+    --green: #38A169;
+    --paper: #F7FAFC;
+    --ink: #0F1F33;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    background: var(--navy);
+    color: #fff;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #h5App {
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  .h5-page {
+    height: 100vh;
+    height: 100dvh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    padding-top: calc(2rem + env(safe-area-inset-top));
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  /* 1 开场页 */
+  .page-open { background: radial-gradient(circle at 50% 32%, #2a4d7d 0%, var(--navy) 68%); text-align: center; }
+  .breath-circle { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(37,99,235,0.55), rgba(37,99,235,0.04)); margin: 0 auto 2rem; animation: breathe 3s ease-in-out infinite; }
+  @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.15); opacity: 1; } }
+  .h5-title { font-size: 1.6rem; font-weight: 700; line-height: 1.55; margin-bottom: 0.75rem; }
+  .h5-subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.75; }
+  .scroll-hint { position: absolute; bottom: calc(1.5rem + env(safe-area-inset-bottom)); left: 0; right: 0; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.55); animation: hintBounce 1.6s ease-in-out infinite; cursor: pointer; }
+  @keyframes hintBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+  /* 2 场景代入页 */
+  .page-scene { background: linear-gradient(180deg, var(--navy), #14294a); }
+  .scene-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 1.75rem 1.5rem; }
+  .scene-text { font-size: 1.05rem; line-height: 2; color: rgba(255,255,255,0.92); margin-bottom: 1rem; }
+  .scene-ask { font-size: 0.92rem; color: #93c5fd; font-weight: 600; }
+  .next-btn { margin: 2rem auto 0; display: block; padding: 0.75rem 2.2rem; border-radius: 999px; border: none; background: var(--blue); color: #fff; font-size: 0.9rem; font-weight: 600; }
+
+  /* 3 肠道变化科普页 */
+  .page-anim { background: linear-gradient(180deg, #14294a, var(--navy)); }
+  .anim-stage-area { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 220px; }
+  .anim-blob { width: 120px; height: 120px; border-radius: 50%; transition: background 0.6s ease, box-shadow 0.6s ease; margin-bottom: 1.5rem; box-shadow: 0 0 44px currentColor; }
+  .anim-caption-title { font-size: 1.02rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
+  .anim-caption-text { font-size: 0.88rem; text-align: center; line-height: 1.8; color: rgba(255,255,255,0.82); min-height: 68px; }
+  .anim-progress { display: flex; justify-content: center; gap: 0.4rem; margin: 1.25rem 0; }
+  .anim-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: background 0.3s; }
+  .anim-dot.active { background: var(--blue); }
+  .anim-tap-hint { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-align: center; margin-top: 0.5rem; }
+  .anim-continue-btn { display: none; margin: 1rem auto 0; padding: 0.7rem 2rem; border-radius: 999px; border: none; background: var(--blue); color: #fff; font-size: 0.88rem; font-weight: 600; }
+  .anim-source { font-size: 0.66rem; color: rgba(255,255,255,0.4); text-align: center; margin-top: 1.25rem; line-height: 1.6; }
+
+  /* 4 双结局选择页 */
+  .page-fork { background: linear-gradient(180deg, var(--navy), #0f1f33); }
+  .fork-title { font-size: 1.15rem; font-weight: 700; text-align: center; margin-bottom: 0.6rem; }
+  .fork-sub { font-size: 0.85rem; color: rgba(255,255,255,0.62); text-align: center; margin-bottom: 2rem; line-height: 1.7; }
+  .fork-choices { display: flex; flex-direction: column; gap: 1rem; }
+  .fork-choice { text-align: left; padding: 1.1rem 1.25rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #fff; cursor: pointer; transition: all 0.25s ease; }
+  .fork-choice:active { transform: scale(0.98); }
+  .fork-choice-emoji { font-size: 1.3rem; display: block; margin-bottom: 0.4rem; }
+  .fork-choice-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .fork-choice-desc { font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .fork-choice--wait:hover, .fork-choice--wait:active { border-color: rgba(245,101,101,0.5); background: rgba(245,101,101,0.08); }
+  .fork-choice--screen:hover, .fork-choice--screen:active { border-color: rgba(56,161,105,0.5); background: rgba(56,161,105,0.08); }
+
+  /* 5 结局页（晚期/早期共用结构） */
+  .page-ending-late { background: linear-gradient(180deg, #4a1515, #1a0a0a); }
+  .page-ending-early { background: linear-gradient(180deg, #0f3320, #0a1a12); }
+  .ending-badge { display: inline-block; align-self: center; font-size: 0.72rem; font-weight: 700; padding: 0.35rem 1rem; border-radius: 999px; margin: 0 auto 1rem; }
+  .ending-badge--late { background: rgba(245,101,101,0.18); color: #feb2b2; border: 1px solid rgba(245,101,101,0.35); }
+  .ending-badge--early { background: rgba(72,187,120,0.18); color: #9ae6b4; border: 1px solid rgba(72,187,120,0.35); }
+  .ending-title { font-size: 1.2rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; line-height: 1.5; }
+  .ending-desc { font-size: 0.85rem; text-align: center; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 1.5rem; }
+  .ending-stats { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .ending-stat { flex: 1; text-align: center; padding: 0.9rem 0.5rem; border-radius: 14px; }
+  .ending-stat--late { background: rgba(245,101,101,0.12); }
+  .ending-stat--early { background: rgba(72,187,120,0.12); }
+  .ending-stat-value { display: block; font-size: 1.25rem; font-weight: 700; }
+  .ending-stat--late .ending-stat-value { color: #feb2b2; }
+  .ending-stat--early .ending-stat-value { color: #9ae6b4; }
+  .ending-stat-label { display: block; font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; line-height: 1.4; }
+  .ending-extra { font-size: 0.8rem; line-height: 1.75; padding: 0.9rem 1rem; border-radius: 12px; margin-bottom: 1rem; }
+  .ending-extra--late { background: rgba(245,101,101,0.08); color: rgba(255,255,255,0.8); }
+  .ending-extra--early { background: rgba(72,187,120,0.08); color: rgba(255,255,255,0.8); }
+  .ending-source { font-size: 0.66rem; color: rgba(255,255,255,0.45); text-align: center; line-height: 1.7; margin-bottom: 0.75rem; }
+  .ending-disclaimer { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-align: center; line-height: 1.7; margin-bottom: 1.25rem; }
+  .ending-cta-btn { display: block; width: 100%; padding: 0.85rem; border-radius: 999px; border: none; font-size: 0.9rem; font-weight: 700; text-align: center; text-decoration: none; }
+  .ending-cta-btn--late { background: linear-gradient(135deg, var(--orange-soft), var(--orange)); color: #fff; }
+  .ending-cta-btn--early { background: linear-gradient(135deg, #38a169, #48bb78); color: #fff; }
+  .ending-restart { display: block; text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.9rem; }
+
+  /* 6 产品引导页 */
+  .page-product { background: linear-gradient(180deg, var(--navy) 0%, #0c1930 100%); }
+  .product-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 1.6rem 1.4rem; }
+  .product-eyebrow { font-size: 0.7rem; color: #93c5fd; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .product-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .product-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-bottom: 1.1rem; line-height: 1.6; }
+  .product-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.25rem; }
+  .product-feature { background: rgba(37,99,235,0.12); border-radius: 12px; padding: 0.7rem 0.6rem; text-align: center; }
+  .product-feature-value { display: block; font-size: 1.05rem; font-weight: 700; color: #93c5fd; }
+  .product-feature-label { display: block; font-size: 0.66rem; color: rgba(255,255,255,0.6); margin-top: 0.25rem; line-height: 1.4; }
+  .product-price-row { display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .product-price { font-size: 1.6rem; font-weight: 700; color: #fff; }
+  .product-price-note { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
+  .product-btn-row { display: flex; gap: 0.75rem; }
+  .product-btn { flex: 1; text-align: center; padding: 0.8rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; text-decoration: none; }
+  .product-btn--primary { background: var(--blue); color: #fff; }
+  .product-btn--ghost { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); }
+  .product-footnote { font-size: 0.64rem; color: rgba(255,255,255,0.4); text-align: center; margin-top: 1.1rem; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div id="h5App">
+
+  <!-- 1 开场页 -->
+  <section class="h5-page page-open" id="pOpen">
+    <div class="breath-circle"></div>
+    <h1 class="h5-title">关于肠道健康<br>你真的了解吗？</h1>
+    <p class="h5-subtitle">用 3 分钟，看看两种选择<br>会带来怎样不同的结局</p>
+    <div class="scroll-hint" data-goto="pScene">向上滑动 ↑</div>
+  </section>
+
+  <!-- 2 场景代入页 -->
+  <section class="h5-page page-scene" id="pScene">
+    <div class="scene-card">
+      <p class="scene-text">你今年 45 岁，平时工作忙，作息不太规律。最近总感觉肠胃有点不对劲——偶尔腹胀、排便不太规律，但都不严重，你没太在意，觉得"忍忍就过去了"。</p>
+      <p class="scene-ask">这样的感觉，你是不是也似乎经历过？</p>
+    </div>
+    <button class="next-btn" data-goto="pAnim">继续</button>
+  </section>
+
+  <!-- 3 肠道变化科普页 -->
+  <section class="h5-page page-anim" id="pAnim">
+    <div class="anim-stage-area">
+      <div class="anim-blob" id="animBlob"></div>
+      <div class="anim-caption-title" id="animTitle"></div>
+      <div class="anim-caption-text" id="animText"></div>
+    </div>
+    <div class="anim-progress" id="animProgress"></div>
+    <p class="anim-tap-hint" id="animHint">点击图案，看看肠道会经历什么</p>
+    <button class="anim-continue-btn" id="animContinueBtn" data-goto="pFork">我明白了，继续</button>
+    <p class="anim-source">数据参考：息肉发展为癌变平均需要 5-10 年 —— 美国癌症协会（American Cancer Society）《Can Colorectal Cancer Be Found Early?》</p>
+  </section>
+
+  <!-- 4 双结局选择页 -->
+  <section class="h5-page page-fork" id="pFork">
+    <div class="fork-title">如果是你，你会怎么做？</div>
+    <p class="fork-sub">这一次的选择，决定了接下来看到的结局</p>
+    <div class="fork-choices">
+      <button class="fork-choice fork-choice--wait" data-ending="late">
+        <span class="fork-choice-emoji">⏳</span>
+        <span class="fork-choice-title">等有症状再说</span>
+        <span class="fork-choice-desc">现在也没什么大事，等真的不舒服了再去检查也不迟</span>
+      </button>
+      <button class="fork-choice fork-choice--screen" data-ending="early">
+        <span class="fork-choice-emoji">🔍</span>
+        <span class="fork-choice-title">了解一下早筛</span>
+        <span class="fork-choice-desc">花几分钟看看，居家就能做的早筛到底是怎么回事</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 5A 晚期结局页 -->
+  <section class="h5-page page-ending-late" id="pEndingLate">
+    <span class="ending-badge ending-badge--late">如果一直拖着</span>
+    <h2 class="ending-title">很多人是这样，一步步拖到晚期的</h2>
+    <p class="ending-desc">身体的异常信号常常是"忽强忽弱"的，容易被当成小毛病。等真正出现明显症状、体重下降、持续腹痛时，病情往往已经进展到中晚期，治疗方式变成手术＋放化疗甚至靶向药，对身体的负担也大得多。</p>
+    <div class="ending-stats">
+      <div class="ending-stat ending-stat--late">
+        <span class="ending-stat-value">13%-18%</span>
+        <span class="ending-stat-label">远处转移期<br>5 年生存率</span>
+      </div>
+      <div class="ending-stat ending-stat--late">
+        <span class="ending-stat-value">8.3 万元</span>
+        <span class="ending-stat-label">IV 期患者<br>人均直接医疗支出</span>
+      </div>
+    </div>
+    <p class="ending-extra ending-extra--late">同一项全国调查显示：新确诊患者一年内的自付费用，平均占家庭上一年收入的 59.9%，75% 的家庭因此陷入难以承受的经济负担。</p>
+    <p class="ending-source">数据来源：美国癌症协会《Cancer Facts &amp; Figures 2026》（基于 SEER 数据库 2014-2020 年病例，远处转移期结直肠癌 5 年相对生存率）；《Expenditure and financial burden for the diagnosis and treatment of colorectal cancer in China》，Chinese Journal of Cancer，全国 13 省 37 家三甲医院 2356 例患者调查</p>
+    <p class="ending-disclaimer">以上为公开研究的群体统计数据，用于说明早筛的价值，不代表对个人病情的预测或诊断。</p>
+    <a class="ending-cta-btn ending-cta-btn--late" data-goto="pFork">看看还有没有别的选择 →</a>
+    <a class="ending-restart" data-goto="pOpen">重新开始</a>
+  </section>
+
+  <!-- 5B 早期发现页 -->
+  <section class="h5-page page-ending-early" id="pEndingEarly">
+    <span class="ending-badge ending-badge--early">早发现的结局</span>
+    <h2 class="ending-title">这就是"早一点"能改变的事</h2>
+    <p class="ending-desc">如果在没有明显症状时就通过早筛发现异常，大多数情况下只是癌前病变或早期病灶，通过微创手术即可切除，恢复快、住院时间短，也不需要经历化疗和长期治疗的煎熬。</p>
+    <div class="ending-stats">
+      <div class="ending-stat ending-stat--early">
+        <span class="ending-stat-value">90%-91%</span>
+        <span class="ending-stat-label">局限期<br>5 年生存率</span>
+      </div>
+      <div class="ending-stat ending-stat--early">
+        <span class="ending-stat-value">5.6 万元</span>
+        <span class="ending-stat-label">I 期患者<br>人均直接医疗支出</span>
+      </div>
+    </div>
+    <p class="ending-extra ending-extra--early">早筛本身的费用只要 889 元起，和晚期动辄数万甚至更高的治疗支出相比，是一次性价比极高的"提前投资"。</p>
+    <p class="ending-source">数据来源：美国癌症协会《Cancer Facts &amp; Figures 2026》（基于 SEER 数据库 2014-2020 年病例，局限期结直肠癌 5 年相对生存率）；《Expenditure and financial burden for the diagnosis and treatment of colorectal cancer in China》，Chinese Journal of Cancer，全国 13 省 37 家三甲医院 2356 例患者调查</p>
+    <p class="ending-disclaimer">以上为公开研究的群体统计数据，用于说明早筛的价值，不代表对个人病情的预测或诊断。</p>
+    <a class="ending-cta-btn ending-cta-btn--early" data-goto="pProduct">看看早筛是怎么做的 →</a>
+    <a class="ending-restart" data-goto="pOpen">重新开始</a>
+  </section>
+
+  <!-- 6 产品引导页 -->
+  <section class="h5-page page-product" id="pProduct">
+    <div class="product-card">
+      <div class="product-eyebrow">云心达 · 出品</div>
+      <div class="product-name">丽常生 · 肠癌深度早筛</div>
+      <p class="product-tagline">深度多靶点肠道重疾检查，一次性使用粪便采集保存管，居家采样，无创无痛。</p>
+      <div class="product-features">
+        <div class="product-feature"><span class="product-feature-value">6 基因 30+ 位点</span><span class="product-feature-label">多靶点联合检测</span></div>
+        <div class="product-feature"><span class="product-feature-value">96%</span><span class="product-feature-label">准确率</span></div>
+        <div class="product-feature"><span class="product-feature-value">99.8%</span><span class="product-feature-label">特异性</span></div>
+        <div class="product-feature"><span class="product-feature-value">提早 5-7 年</span><span class="product-feature-label">发现癌前病变</span></div>
+      </div>
+      <div class="product-price-row">
+        <span class="product-price">889 元起</span>
+        <span class="product-price-note">居家采样 · 无需请假 · 无需空腹</span>
+      </div>
+      <div class="product-btn-row">
+        <a class="product-btn product-btn--ghost" href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer">了解详情</a>
+        <a class="product-btn product-btn--primary" href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer">立即购买 ↗</a>
+      </div>
+      <p class="product-footnote">点击后将跳转至云心达小程序完成下单。产品准确率、特异性数据来自厂商临床验证报告，个体结果可能存在差异，检测结果请以专业医生解读为准。</p>
+    </div>
+  </section>
+
+</div>
+<script>
+(function () {
+  var app = document.getElementById('h5App');
+
+  function gotoPage(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  app.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-goto]');
+    if (t) { gotoPage(t.getAttribute('data-goto')); return; }
+  });
+
+  // 3 肠道变化科普页：点击推进的分阶段动画
+  var animSteps = [
+    { color: '#48bb78', title: '第 1 步 · 健康肠道', text: '肠道黏膜光滑健康，正常的细胞更新周期在有序进行。' },
+    { color: '#93c5fd', title: '第 2 步 · 息肉形成', text: '部分人群的肠道黏膜会长出小小的腺瘤性息肉，这个阶段通常没有任何感觉。' },
+    { color: '#f6ad55', title: '第 3 步 · 异型增生', text: '息肉中的细胞开始出现异常变化，这个过程往往悄无声息地持续数年。' },
+    { color: '#f56565', title: '第 4 步 · 癌变', text: '异常细胞失去控制、持续增殖，发展为癌症。整个过程平均需要 5-10 年。' }
+  ];
+  var animIndex = 0;
+  var blob = document.getElementById('animBlob');
+  var titleEl = document.getElementById('animTitle');
+  var textEl = document.getElementById('animText');
+  var progressEl = document.getElementById('animProgress');
+  var hintEl = document.getElementById('animHint');
+  var continueBtn = document.getElementById('animContinueBtn');
+
+  animSteps.forEach(function () {
+    var dot = document.createElement('span');
+    dot.className = 'anim-dot';
+    progressEl.appendChild(dot);
+  });
+
+  function renderAnimStep(i) {
+    var step = animSteps[i];
+    blob.style.background = step.color;
+    blob.style.color = step.color;
+    titleEl.textContent = step.title;
+    textEl.textContent = step.text;
+    var dots = progressEl.querySelectorAll('.anim-dot');
+    dots.forEach(function (d, idx) { d.classList.toggle('active', idx <= i); });
+    if (i === animSteps.length - 1) {
+      hintEl.style.display = 'none';
+      continueBtn.style.display = 'block';
+    }
+  }
+
+  renderAnimStep(0);
+
+  blob.addEventListener('click', function () {
+    if (animIndex < animSteps.length - 1) {
+      animIndex++;
+      renderAnimStep(animIndex);
+    }
+  });
+
+  // 4 双结局选择页
+  var forkButtons = document.querySelectorAll('[data-ending]');
+  forkButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var ending = btn.getAttribute('data-ending');
+      gotoPage(ending === 'late' ? 'pEndingLate' : 'pEndingEarly');
+    });
+  });
+})();
+</script>
+</body>
+</html>

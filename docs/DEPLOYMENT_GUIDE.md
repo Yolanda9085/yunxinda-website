@@ -85,4 +85,21 @@ npm start        # 启动生产服务器
 
 ---
 
+## 肠道健康早筛 H5 页面部署说明
+
+`public/h5-screening.html` 是独立的移动端 H5 互动页面，和主站 `public/index.html` 是同级的静态文件，走同一套部署流程：
+
+1. 本地改完后直接 `git add public/h5-screening.html` 提交
+2. 推送到 GitHub（`Yolanda9085/yunxinda-website`）
+3. Vercel 自动检测更新并部署（因为 `vercel.json` 里 `outputDirectory` 指向 `public`，不需要走 Next.js 构建）
+
+部署完成后访问地址：
+```
+https://yunxinda-website.vercel.app/h5-screening.html
+```
+
+这个页面不依赖 `index.html` 里的任何样式或脚本，颜色变量、动画逻辑都是独立内嵌在文件里的，改动它不会影响主站。适合直接在朋友圈、社群或短信里分享这个链接做专题传播。
+
+---
+
 祝部署顺利！🎉
