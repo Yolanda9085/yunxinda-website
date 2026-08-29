@@ -161,7 +161,9 @@
       display: flex; align-items: center; gap: 1.75rem; min-width: 0;
     }
     @media (min-width: 769px) {
-      .header-start { gap: 2rem; }
+      .header-start { gap: 2rem; flex: 1; }
+      nav { flex: 1; }
+      .points-badge { margin-left: auto; }
     }
     .header-actions {
       display: none;
@@ -183,6 +185,29 @@
     nav .nav-cta {
       margin-left: 0.375rem; flex-shrink: 0;
     }
+    .nav-item { position: relative; display: inline-flex; }
+    .nav-dropdown {
+      position: absolute; top: 100%; left: 50%; padding-top: 0.4rem;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 168px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      z-index: 50;
+    }
+    .nav-item:hover .nav-dropdown, .nav-item:focus-within .nav-dropdown {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-inner {
+      background: #fff; border: 1px solid var(--hairline); border-radius: 14px;
+      box-shadow: 0 12px 32px rgba(15,23,42,0.14); padding: 0.5rem;
+    }
+    .nav-dropdown-item {
+      display: flex; align-items: center; gap: 0.45rem; padding: 0.6rem 0.8rem;
+      border-radius: 10px; font-size: 0.875rem; color: var(--ink-secondary);
+      white-space: nowrap; transition: background 0.15s ease, color 0.15s ease;
+    }
+    .nav-dropdown-item:hover { background: rgba(119,85,255,0.08); color: var(--primary); }
+    @media (max-width: 768px) { .nav-item { display: none; } }
     .btn-primary {
       margin-left: 0.75rem; padding: 8px 16px; border-radius: 9999px;
       font-size: 0.9375rem; font-weight: 400; color: #fff;
@@ -465,7 +490,7 @@
       }
     /* Sections — Stripe 风分区 */
     section { padding: 5.5rem 0; position: relative; }
-    .band-soft { background: var(--canvas-soft); }
+    #checkupSection, #screeningSection, #sleepSection { scroll-margin-top: 80px; }
     .band-cream { background: var(--canvas-cream); }
     .section-head { max-width: 42rem; margin-bottom: 3.5rem; }
     .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
@@ -492,9 +517,20 @@
     @media (max-width: 720px) {
       #services .section-title { white-space: normal; }
     }
+    #products .section-head .section-title {
+      white-space: nowrap;
+      font-size: clamp(1.875rem, 3.4vw, 2.75rem);
+    }
+    @media (max-width: 720px) {
+      #products .section-head .section-title { white-space: normal; }
+    }
     .section-desc, .lead {
       margin-top: 1rem; font-size: 1.1875rem; font-weight: 400;
       line-height: 1.55; color: var(--ink-body);
+    }
+    .section-desc--oneline { white-space: nowrap; overflow-x: auto; }
+    @media (max-width: 720px) {
+      .section-desc--oneline { font-size: 1rem; white-space: normal; }
     }
     .text-center { text-align: center; }
 
@@ -851,14 +887,8 @@
       .bento-suite.is-hero-open .bento-hero { max-height: 420px; }
     }
 
-    /* 第一部分 · 服务能力简介 */
-    .services-intro { max-width: 46rem; margin-bottom: 2.5rem; }
-    .services-pillar-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
-    .services-pillar-tag {
-      padding: 0.45rem 1.1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-      background: rgba(119,85,255,0.08); color: var(--primary);
-      border: 1px solid rgba(119,85,255,0.15);
-    }
+    /* 平台能为你做什么 / 四步上手 - 内嵌于 #services 内 */
+    .advantages-inline, .workflow-inline { margin-bottom: 3.5rem; }
 
     /* 第二部分 · 智慧工具卡片（Octagos Trusted Tools） */
     .capabilities-block {
@@ -1360,31 +1390,6 @@
       font-size: 1.1875rem; font-weight: 400;
     }
 
-    /* About — 开放双栏 */
-    .about-grid {
-      display: grid; gap: 4rem; align-items: start;
-    }
-    @media (min-width: 992px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; gap: 5rem; } }
-    .about-text p { color: var(--ink-body); margin-top: 1.25rem; font-size: 1.0625rem; font-weight: 400; line-height: 1.6; }
-    .about-compliance {
-      margin-top: 1.75rem !important; padding: 1rem 1.25rem;
-      border-left: 3px solid rgba(119,85,255,0.35);
-      background: var(--canvas-soft); border-radius: 0 8px 8px 0;
-      font-size: 0.9375rem !important; color: var(--ink-secondary) !important;
-    }
-    .about-aside { padding-top: 0.5rem; border-top: 1px solid var(--hairline); }
-    @media (min-width: 992px) { .about-aside { border-top: none; padding-top: 0; padding-left: 2rem; border-left: 1px solid var(--hairline); } }
-    .about-aside h3 { font-size: 1.25rem; font-weight: 500; color: var(--ink); }
-    .about-list { list-style: none; margin-top: 1.5rem; }
-    .about-list li {
-      padding: 0.85rem 0; border-bottom: 1px solid var(--hairline);
-      color: var(--ink-body); font-weight: 400; font-size: 1rem;
-    }
-    .quote-inner {
-      margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--hairline);
-      font-size: 1rem; font-weight: 400; color: var(--ink-body); font-style: italic;
-    }
-
     /* Contact — 列表 + 表单，无玻璃卡 */
     .contact-grid { display: grid; gap: 3rem; margin-top: 2rem; }
     @media (min-width: 992px) { .contact-grid { grid-template-columns: 1fr 1.4fr; gap: 5rem; } }
@@ -1579,22 +1584,106 @@
 
     /* 产品展示 */
     #products { background: var(--canvas-soft); }
-    .products-grid {
+
+    /* 体检套餐展示 */
+    .packages-section-head-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.85rem; flex-wrap: wrap;
+    }
+    .package-video-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 0.9rem; border-radius: 999px;
+      border: 1px solid rgba(119,85,255,0.35);
+      background: rgba(119,85,255,0.06);
+      color: var(--primary); font-size: 0.875rem; font-weight: 500;
+      cursor: pointer; font-family: inherit;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .package-video-link:hover {
+      background: rgba(119,85,255,0.12); border-color: rgba(119,85,255,0.5); transform: translateY(-1px);
+    }
+    .package-video-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .packages-grid {
       display: grid; gap: 1.5rem; margin-top: 2.5rem;
       grid-template-columns: repeat(3, 1fr);
     }
-    @media (max-width: 768px) { .products-grid { grid-template-columns: 1fr; } }
-    @media (min-width: 769px) and (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
-    .product-card-empty {
-      border-radius: 20px; border: 1.5px dashed var(--hairline);
-      background: rgba(255,255,255,0.6);
-      min-height: 260px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 0.75rem; color: var(--ink-mute); font-size: 0.875rem;
-      transition: border-color 0.2s, background 0.2s;
+    @media (max-width: 768px) { .packages-grid { grid-template-columns: 1fr; } }
+    @media (min-width: 769px) and (max-width: 1100px) { .packages-grid { grid-template-columns: repeat(2, 1fr); } }
+    .package-card {
+      display: flex; flex-direction: column;
+      border-radius: 20px; overflow: hidden;
+      background: #fff; border: 1px solid var(--hairline);
+      box-shadow: 0 4px 16px rgba(15,23,42,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    .product-card-empty:hover { border-color: rgba(119,85,255,0.35); background: rgba(119,85,255,0.03); }
-    .product-card-empty svg { width: 36px; height: 36px; opacity: 0.3; }
+    .package-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(119,85,255,0.25);
+      box-shadow: 0 16px 40px rgba(119,85,255,0.12);
+    }
+    .package-card-img { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--canvas-soft); }
+    .package-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .package-card-body { padding: 1.25rem 1.35rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .package-card-tag {
+      display: inline-block; align-self: flex-start;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 0.65rem;
+      background: rgba(119,85,255,0.1); color: var(--primary-press);
+    }
+    .package-card-name {
+      font-size: 1.125rem; font-weight: 600; color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 0.5rem;
+    }
+    .package-card-highlights { list-style: none; margin: 0 0 1rem; flex: 1; }
+    .package-card-highlights li {
+      font-size: 0.8125rem; color: var(--ink-body); line-height: 1.55;
+      padding-left: 1rem; position: relative; margin-bottom: 0.3rem;
+    }
+    .package-card-highlights li::before {
+      content: ""; position: absolute; left: 0; top: 0.5em;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--primary);
+    }
+    .package-card-foot {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 0.75rem; margin-top: auto; padding-top: 0.85rem;
+      border-top: 1px solid var(--hairline);
+    }
+    .package-card-price { font-size: 1.25rem; font-weight: 700; color: var(--primary-press); letter-spacing: -0.02em; }
+    .package-card-btn {
+      flex-shrink: 0; padding: 0.5rem 1.1rem; border-radius: 999px;
+      background: var(--primary); color: #fff; font-size: 0.8125rem; font-weight: 500;
+      transition: background 0.2s ease;
+    }
+    .package-card-btn:hover { background: var(--primary-press); }
+    .package-note { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--ink-mute); text-align: center; }
+
+    /* 体检流程视频弹层 */
+    .package-video-modal {
+      position: fixed; inset: 0; z-index: 1300;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem; opacity: 0; visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+    .package-video-modal.is-open { opacity: 1; visibility: visible; }
+    .package-video-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(15,23,42,0.6); backdrop-filter: blur(6px);
+    }
+    .package-video-dialog {
+      position: relative; z-index: 1; width: min(100%, 720px);
+      border-radius: 20px; overflow: hidden; background: #000;
+      box-shadow: 0 28px 80px rgba(15,23,42,0.35);
+    }
+    .package-video-dialog video { width: 100%; height: auto; display: block; max-height: 80vh; }
+    .package-video-close {
+      position: absolute; top: 0.75rem; right: 0.75rem; z-index: 2;
+      width: 32px; height: 32px; border-radius: 999px;
+      border: none; background: rgba(255,255,255,0.9);
+      color: var(--ink); font-size: 1.125rem; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; font-family: inherit;
+    }
+    .package-video-close:hover { background: #fff; }
 
     /* 丽常生 Agent 展示区 */
     .lichangsheng-hero { margin-top: 2rem; }
@@ -1683,38 +1772,41 @@
     .lcs-cost-row { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
     .lcs-cost-item { flex: 1; text-align: center; padding: 0.5rem 0.3rem; border-radius: 10px; font-size: 0.72rem; line-height: 1.5; }
 
-    /* 选择你的命运 - 互动剧情 */
-    .destiny-section { padding: 4rem 0; background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 100%); color: #e8eef5; }
-    .destiny-card { max-width: 680px; margin: 0 auto; padding: 2.5rem; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.3); min-height: 420px; display: flex; flex-direction: column; }
-    .destiny-title { text-align: center; font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(90deg, #88ccff, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .destiny-subtitle { text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.75rem; }
-    .destiny-time { display: inline-block; padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.72rem; background: rgba(136,204,255,0.12); color: #88ccff; border: 1px solid rgba(136,204,255,0.2); margin-bottom: 1rem; align-self: flex-start; }
-    .destiny-scene { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); min-height: 80px; margin-bottom: 1.5rem; }
-    .destiny-cursor { display: inline-block; width: 2px; height: 1em; background: #88ccff; margin-left: 2px; vertical-align: middle; animation: destinyBlink 0.8s infinite; }
-    @keyframes destinyBlink { 50% { opacity: 0; } }
-    .destiny-choices { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
-    .destiny-choice { padding: 0.85rem 1.25rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.9); font-size: 0.88rem; cursor: pointer; transition: all 0.25s ease; text-align: left; display: flex; align-items: center; gap: 0.75rem; }
-    .destiny-choice:hover { border-color: rgba(136,204,255,0.5); background: rgba(136,204,255,0.1); transform: translateX(4px); }
-    .destiny-choice-icon { font-size: 1.1rem; opacity: 0.7; }
-    .destiny-jump { text-align: center; font-size: 1.4rem; font-weight: 700; color: #88ccff; margin: 0.5rem 0 1rem; animation: destinyFadeUp 0.6s ease; }
-    @keyframes destinyFadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .destiny-ending { animation: destinyFadeUp 0.5s ease; }
-    .destiny-stat-row { display: flex; gap: 1rem; margin: 1.25rem 0; }
-    .destiny-stat { flex: 1; text-align: center; padding: 1rem 0.5rem; border-radius: 14px; }
-    .destiny-stat-value { display: block; font-size: 1.5rem; font-weight: 700; }
-    .destiny-stat-label { display: block; font-size: 0.72rem; opacity: 0.7; margin-top: 0.25rem; }
-    .destiny-survival { margin: 1rem 0; }
-    .destiny-survival-bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.1); overflow: hidden; }
-    .destiny-survival-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
-    .destiny-survival-label { font-size: 0.75rem; opacity: 0.7; margin-top: 0.4rem; }
-    .destiny-lesson { padding: 1rem 1.25rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; border-left: 3px solid; }
-    .destiny-quote { font-size: 0.82rem; font-style: italic; opacity: 0.65; margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.15); }
-    .destiny-actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
-    .destiny-btn { flex: 1; padding: 0.75rem; border: none; border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
-    .destiny-btn--primary { background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; }
-    .destiny-btn--primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(119,85,255,0.4); }
-    .destiny-btn--ghost { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
-    .destiny-btn--ghost:hover { background: rgba(255,255,255,0.12); }
+    /* 早筛意识唤醒 - 互动剧情（还原旧版玩法，数据已核实） */
+    .screening-section { padding: 4rem 0; background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 100%); color: #e8eef5; }
+    .scr-card { max-width: 680px; margin: 0 auto; padding: 2.5rem; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.3); min-height: 420px; display: flex; flex-direction: column; }
+    .scr-title { text-align: center; font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(90deg, #88ccff, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .scr-subtitle { text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.75rem; }
+    .scr-time { display: inline-block; padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.72rem; background: rgba(136,204,255,0.12); color: #88ccff; border: 1px solid rgba(136,204,255,0.2); margin-bottom: 1rem; align-self: flex-start; }
+    .scr-scene { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); min-height: 80px; margin-bottom: 1.5rem; }
+    .scr-cursor { display: inline-block; width: 2px; height: 1em; background: #88ccff; margin-left: 2px; vertical-align: middle; animation: scrBlink 0.8s infinite; }
+    @keyframes scrBlink { 50% { opacity: 0; } }
+    .scr-choices { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
+    .scr-choice { padding: 0.85rem 1.25rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.9); font-size: 0.88rem; cursor: pointer; transition: all 0.25s ease; text-align: left; display: flex; align-items: center; gap: 0.75rem; }
+    .scr-choice:hover { border-color: rgba(136,204,255,0.5); background: rgba(136,204,255,0.1); transform: translateX(4px); }
+    .scr-choice-icon { font-size: 1.1rem; opacity: 0.7; }
+    .scr-jump { text-align: center; font-size: 1.4rem; font-weight: 700; color: #88ccff; margin: 0.5rem 0 1rem; animation: scrFadeUp 0.6s ease; }
+    @keyframes scrFadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .scr-ending { animation: scrFadeUp 0.5s ease; }
+    .scr-stat-row { display: flex; gap: 1rem; margin: 1.25rem 0; }
+    .scr-stat { flex: 1; text-align: center; padding: 1rem 0.5rem; border-radius: 14px; }
+    .scr-stat-value { display: block; font-size: 1.35rem; font-weight: 700; }
+    .scr-stat-label { display: block; font-size: 0.7rem; opacity: 0.75; margin-top: 0.3rem; line-height: 1.4; }
+    .scr-survival { margin: 1rem 0; }
+    .scr-survival-bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.1); overflow: hidden; }
+    .scr-survival-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
+    .scr-survival-label { font-size: 0.75rem; opacity: 0.7; margin-top: 0.4rem; }
+    .scr-extra { font-size: 0.8rem; line-height: 1.75; padding: 0.85rem 1rem; border-radius: 12px; margin: 1rem 0; }
+    .scr-quote { font-size: 0.82rem; font-style: italic; opacity: 0.65; margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.15); }
+    .scr-lesson { padding: 1rem 1.25rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; border-left: 3px solid; }
+    .scr-source { font-size: 0.65rem; color: rgba(255,255,255,0.45); line-height: 1.7; margin-top: 0.75rem; }
+    .scr-disclaimer { font-size: 0.68rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.4rem; }
+    .scr-actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+    .scr-btn { flex: 1; padding: 0.75rem; border: none; border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .scr-btn--primary { background: linear-gradient(135deg, #7755ff, #8b7fe8); color: #fff; }
+    .scr-btn--primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(119,85,255,0.4); }
+    .scr-btn--ghost { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
+    .scr-btn--ghost:hover { background: rgba(255,255,255,0.12); }
 
     /* G. 人生余额提醒 */
     .balance-section { padding: 4rem 0; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
@@ -1819,6 +1911,45 @@
     .mini-agent-price-item strong { display: block; font-size: 0.85rem; }
     .mp-bridge-block { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--hairline); }
 
+    /* 产品直展卡片：规格清单 + "我需要吗"提示（睡眠垫/蛋白粉不做问答） */
+    .product-spec-list { background: rgba(255,255,255,0.85); border-radius: 14px; border: 1px solid var(--hairline); padding: 1.1rem 1.2rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .product-spec-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .product-spec-item + .product-spec-item { padding-top: 0.65rem; border-top: 1px dashed var(--hairline); }
+    .product-spec-label { font-size: 0.7rem; font-weight: 700; color: var(--brand-purple); }
+    .product-spec-value { font-size: 0.8rem; color: var(--ink-body); line-height: 1.6; }
+    .product-tip-box { margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 12px; background: rgba(221,107,32,0.06); border-left: 3px solid #dd6b20; }
+    .product-tip-title { font-size: 0.82rem; font-weight: 700; color: #dd6b20; margin-bottom: 0.35rem; }
+    .product-tip-text { font-size: 0.78rem; color: var(--ink-body); line-height: 1.65; }
+
+    /* 睡眠监护仪：三个场景展示，不用问答 */
+    .sleep-scene-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1024px) { .sleep-scene-grid { grid-template-columns: 1fr; } }
+    .sleep-scene-card {
+      background: #fff; border-radius: 20px; border: 1px solid var(--hairline);
+      box-shadow: 0 6px 24px rgba(15,23,42,0.05); overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .sleep-scene-img {
+      width: 100%; aspect-ratio: 4 / 3; background: var(--canvas-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; color: var(--ink-mute); text-align: center; padding: 1rem;
+    }
+    .sleep-scene-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sleep-scene-body { padding: 1.35rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .sleep-scene-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 0.2rem 0.6rem;
+      border-radius: 999px; background: rgba(119,85,255,0.1); color: var(--brand-purple);
+      margin-bottom: 0.5rem; align-self: flex-start;
+    }
+    .sleep-scene-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .sleep-scene-text { font-size: 0.85rem; color: var(--ink-body); line-height: 1.7; }
+    .sleep-summary-box { margin-top: 2rem; background: #fff; border: 1px solid var(--hairline); border-radius: 20px; padding: 1.75rem 2rem; box-shadow: 0 8px 28px rgba(15,23,42,0.05); }
+    .sleep-summary-quote { font-size: 1rem; font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 1rem; }
+    .sleep-summary-desc { font-size: 0.88rem; color: var(--ink-body); line-height: 1.75; text-align: center; max-width: 640px; margin: 0 auto 1.25rem; }
+    .sleep-summary-list { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 1.25rem; }
+    .sleep-summary-item { flex: 1; min-width: 220px; max-width: 260px; text-align: center; padding: 0.85rem 0.75rem; border-radius: 12px; background: rgba(119,85,255,0.05); font-size: 0.8rem; color: var(--ink-body); line-height: 1.6; }
+    .sleep-summary-item strong { display: block; color: var(--brand-purple); font-size: 0.85rem; margin-bottom: 0.2rem; }
+
     /* 叙事引导段落（早晚对比 / 社会数据钩子） */
     .section-lead-block { max-width: 640px; margin: 0 auto 2rem; padding: 1rem 1.25rem; border-left: 3px solid var(--brand-purple); background: rgba(119,85,255,0.04); border-radius: 0 12px 12px 0; }
     .section-lead-block p { font-size: 0.9rem; color: var(--ink-body); line-height: 1.7; margin: 0; }
@@ -1917,7 +2048,16 @@
         <nav>
           <a href="#home" class="nav-link" data-nav="home">首页</a>
           <a href="#services" class="nav-link" data-nav="services">核心业务</a>
-          <a href="#about" class="nav-link" data-nav="about">关于我们</a>
+          <div class="nav-item">
+            <a href="#productsDisplay" class="nav-link" data-nav="products">健康导诊台</a>
+            <div class="nav-dropdown">
+              <div class="nav-dropdown-inner">
+                <a href="#checkupSection" class="nav-dropdown-item">🩺 体检</a>
+                <a href="#screeningSection" class="nav-dropdown-item">🔬 肠癌筛查</a>
+                <a href="#sleepSection" class="nav-dropdown-item">🛏️ 睡眠监测</a>
+              </div>
+            </div>
+          </div>
           <button type="button" class="points-badge" id="pointsBadge">🌱 健康积分 0</button>
           <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--sm nav-cta">
             <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
@@ -1934,8 +2074,10 @@
   <div class="mobile-nav" id="mobileNav">
     <a href="#home" data-nav="home" onclick="toggleMenu()">首页</a>
     <a href="#services" data-nav="services" onclick="toggleMenu()">核心业务</a>
-    <a href="#products" onclick="toggleMenu()">产品展示</a>
-    <a href="#about" data-nav="about" onclick="toggleMenu()">关于我们</a>
+    <a href="#products" onclick="toggleMenu()">健康导诊台</a>
+    <a href="#checkupSection" onclick="toggleMenu()">　🩺 体检</a>
+    <a href="#screeningSection" onclick="toggleMenu()">　🔬 肠癌筛查</a>
+    <a href="#sleepSection" onclick="toggleMenu()">　🛏️ 睡眠监测</a>
     <button type="button" class="points-badge points-badge--mobile" id="pointsBadgeMobile">🌱 健康积分 0</button>
     <a href="#contact" class="mobile-nav-cta" onclick="toggleMenu()">预约咨询</a>
   </div>
@@ -1950,10 +2092,6 @@
             <span class="hero-line1">全周期健康守护</span>
             <span class="hero-line2 gradient-text">从咨询到监测，一站到位</span>
           </h1>
-          <p class="hero-desc">
-            <span class="hero-desc-line">云心达整合全天候全科医生咨询、健康早筛、日常监测与智能提醒，</span>
-            <span class="hero-desc-line">支持家庭成员协同管理，让专业健康服务触手可及。</span>
-          </p>
           <div class="hero-btns">
             <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--xl">
               <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
@@ -1993,16 +2131,52 @@
 
   <section id="services">
     <div class="container">
-      <div class="services-intro" data-reveal>
-        <h2 class="section-title">每项服务，每个环节</h2>
-        <p class="section-desc lead">云心达无缝整合专业咨询、健康早筛、日常监测与智能管理，一站贯通。点击下方卡片查看界面详情。</p>
-        <div class="services-pillar-row">
-          <span class="services-pillar-tag">专业咨询</span>
-          <span class="services-pillar-tag">健康早筛</span>
-          <span class="services-pillar-tag">日常监测</span>
-          <span class="services-pillar-tag">智能管理</span>
+      <section id="advantages" class="advantages-inline">
+        <div class="section-head center" data-reveal>
+          <h2 class="section-title">平台能为你做什么？</h2>
+          <p class="section-desc lead section-desc--oneline">云心达把咨询、早筛、监测和提醒连成一个持续的健康管理闭环。</p>
         </div>
-      </div>
+        <div class="stats-row">
+          <div class="stat-item" data-reveal><div class="stat-value">档案+体质</div><div class="stat-label">健康档案与中医体质测评，一次评估长期追踪</div></div>
+          <div class="stat-item" data-reveal><div class="stat-value">用药+复查</div><div class="stat-label">持续提醒，不错过关键的复查节点</div></div>
+          <div class="stat-item" data-reveal><div class="stat-value">全家协同</div><div class="stat-label">子女可远程查看父母的体检与监测数据</div></div>
+          <div class="stat-item" data-reveal><div class="stat-value">24×7</div><div class="stat-label">视频医生+专属健管师，有问题随时找到人</div></div>
+        </div>
+        <div class="testimonial-wrap" data-reveal>
+          <figure class="testimonial-card">
+            <blockquote class="testimonial-quote">平台内还沉淀了大量由医院医生录制的健康科普内容，配合 AI 问答帮你理解报告、看懂指标，而不是拿到一堆数字却不知道意味着什么。数据全程加密，仅用于你和家人的健康管理。</blockquote>
+          </figure>
+        </div>
+      </section>
+
+      <section id="workflow" class="workflow-section workflow-inline">
+        <div class="section-head center" data-reveal>
+          <h2 class="section-title">从注册到管理，四步上手</h2>
+          <p class="section-desc lead">清晰流程降低使用门槛，让健康管理服务可预期、可持续。</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-step" data-reveal>
+            <span class="workflow-num">01</span>
+            <h3>注册与家庭绑定</h3>
+            <p>建立个人健康档案，可添加家庭成员信息，方便代为查看报告与监测数据。</p>
+          </article>
+          <article class="workflow-step" data-reveal>
+            <span class="workflow-num">02</span>
+            <h3>咨询与资料评估</h3>
+            <p>上传健康资料获取分析，或使用健康问问 AI；需要时可发起 24 小时全科医生视频咨询。</p>
+          </article>
+          <article class="workflow-step" data-reveal>
+            <span class="workflow-num">03</span>
+            <h3>早筛与日常监测</h3>
+            <p>选购早筛产品完成居家检测，绑定睡眠垫并查看血压、血糖、血氧等日常指标。</p>
+          </article>
+          <article class="workflow-step" data-reveal>
+            <span class="workflow-num">04</span>
+            <h3>提醒与持续管理</h3>
+            <p>设置用药、复查与运动提醒，浏览科普视频与健康商城，形成长期管理习惯。</p>
+          </article>
+        </div>
+      </section>
 
       <div class="capabilities-block" data-reveal>
         <div class="section-head center">
@@ -2028,7 +2202,7 @@
             <p class="cap-card-desc">智能问答、科普视频与报告解读。</p>
             <div class="cap-card-visual cap-card-visual--blue"><div class="cap-img-slot" data-img-src="consult-ai.png">界面预览</div></div>
           </article>
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="通用技术（宝石花）在线健康咨询：7×24 小时在线极速咨询，线上问诊不用排队。365 元/365 天，已有 15,985 人购买，健康类目销量第一。">
+          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="通用技术（宝石花）在线健康咨询：7×24 小时在线极速咨询，线上问诊不用排队。">
             <div class="cap-card-top">
               <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
               <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
@@ -2069,62 +2243,10 @@
     </div>
   </section>
 
-  <section id="advantages" class="band-soft">
-    <div class="container">
-      <div class="section-head center" data-reveal>
-        <h2 class="section-title">在推荐任何产品之前，先说说平台能为你做什么</h2>
-        <p class="section-desc lead">云心达不是单卖一件检测盒或一台设备，而是把咨询、早筛、监测和提醒连成一个持续的健康管理闭环。</p>
-      </div>
-      <div class="stats-row">
-        <div class="stat-item" data-reveal><div class="stat-value">档案+体质</div><div class="stat-label">健康档案与中医体质测评，一次评估长期追踪</div></div>
-        <div class="stat-item" data-reveal><div class="stat-value">用药+复查</div><div class="stat-label">持续提醒，不错过关键的复查节点</div></div>
-        <div class="stat-item" data-reveal><div class="stat-value">全家协同</div><div class="stat-label">子女可远程查看父母的体检与监测数据</div></div>
-        <div class="stat-item" data-reveal><div class="stat-value">24×7</div><div class="stat-label">视频医生+专属健管师，有问题随时找到人</div></div>
-      </div>
-      <div class="testimonial-wrap" data-reveal>
-        <figure class="testimonial-card">
-          <blockquote class="testimonial-quote">平台内还沉淀了大量由医院医生录制的健康科普内容，配合 AI 问答帮你理解报告、看懂指标，而不是拿到一堆数字却不知道意味着什么。数据全程加密，仅用于你和家人的健康管理。</blockquote>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section id="workflow" class="workflow-section">
-    <div class="container">
-      <div class="section-head center" data-reveal>
-        <h2 class="section-title">从注册到管理，四步上手</h2>
-        <p class="section-desc lead">清晰流程降低使用门槛，让健康管理服务可预期、可持续。</p>
-      </div>
-      <div class="workflow-grid">
-        <article class="workflow-step" data-reveal>
-          <span class="workflow-num">01</span>
-          <h3>注册与家庭绑定</h3>
-          <p>建立个人健康档案，可添加家庭成员信息，方便代为查看报告与监测数据。</p>
-        </article>
-        <article class="workflow-step" data-reveal>
-          <span class="workflow-num">02</span>
-          <h3>咨询与资料评估</h3>
-          <p>上传健康资料获取分析，或使用健康问问 AI；需要时可发起 24 小时全科医生视频咨询。</p>
-        </article>
-        <article class="workflow-step" data-reveal>
-          <span class="workflow-num">03</span>
-          <h3>早筛与日常监测</h3>
-          <p>选购早筛产品完成居家检测，绑定睡眠垫并查看血压、血糖、血氧等日常指标。</p>
-        </article>
-        <article class="workflow-step" data-reveal>
-          <span class="workflow-num">04</span>
-          <h3>提醒与持续管理</h3>
-          <p>设置用药、复查与运动提醒，浏览科普视频与健康商城，形成长期管理习惯。</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <section id="products">
     <div class="container">
       <div class="section-head center" data-reveal>
         <h2 class="section-title">从一次体检开始，看清你的健康起点</h2>
-        <p class="section-desc lead">体检不是终点，而是发现问题、决定下一步该做什么的起点。花两分钟，先看看为什么"早一点"很重要，再帮你匹配合适的方向。</p>
       </div>
 
       <!-- 体检/早筛重要性科普问答：两步走第一步，先讲清楚为什么，不涉及个人信息，不制造恐慌 -->
@@ -2184,6 +2306,33 @@
         <p class="awareness-qa-bridge">了解了这些，一起看看从哪里开始比较适合你 ↓</p>
       </div>
 
+      <!-- 体检套餐展示：数据集中在 PACKAGE_DATA，明天替换真实信息只需改那一处 -->
+      <div id="productsDisplay" data-reveal>
+        <div class="section-head center">
+          <div class="packages-section-head-row">
+            <h2 class="section-title" style="margin-top:0;">体检套餐一览</h2>
+            <button type="button" class="package-video-link" id="packageVideoBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+              观看体检流程介绍视频
+            </button>
+          </div>
+          <p class="section-desc lead">全部套餐均在北京通用健康门诊部（通用健康旗舰中心）完成，统一包含星级住宿与科学营养配餐。</p>
+        </div>
+        <div class="packages-grid" id="packagesGrid"></div>
+        <p class="package-note">以上套餐名称、价格与描述为占位信息，正式内容确认后将同步更新，敬请留意。</p>
+      </div>
+
+      <div class="package-video-modal" id="packageVideoModal" role="dialog" aria-modal="true" hidden>
+        <div class="package-video-backdrop" data-video-close></div>
+        <div class="package-video-dialog">
+          <button type="button" class="package-video-close" data-video-close aria-label="关闭">✕</button>
+          <video id="packageVideoPlayer" controls playsinline preload="none">
+            <source src="checkup-intro.mp4" type="video/mp4">
+            您的浏览器不支持视频播放。
+          </video>
+        </div>
+      </div>
+
       <!-- 健康关怀问诊台：低门槛方向路由，不问敏感信息、不做风险打分 -->
       <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
         <div class="triage-card" id="triageCard">
@@ -2210,7 +2359,7 @@
 
       <!-- 体检根：体检套餐匹配自测 -->
       <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
-        <div class="mini-agent-card mini-agent-card--root">
+        <div class="mini-agent-card mini-agent-card--root" id="checkupSection">
           <div class="mini-agent-head">
             <div class="mini-agent-icon" aria-hidden="true">🏥</div>
             <div>
@@ -2245,7 +2394,7 @@
       </div>
 
       <!-- 丽常生 Agent 主卡片 -->
-      <div class="lichangsheng-hero" data-reveal>
+      <div class="lichangsheng-hero" data-reveal id="screeningSection">
         <div class="lcs-card glass-panel">
           <div class="lcs-grid">
             <div class="lcs-info">
@@ -2320,33 +2469,25 @@
       </div>
 
       <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
-        <div class="mini-agent-card">
+        <div class="mini-agent-card" id="proteinProduct">
           <div class="mini-agent-head">
             <div class="mini-agent-icon" aria-hidden="true">🥤</div>
             <div>
-              <div class="mini-agent-badge">营养风险自测 · 早筛的延伸</div>
+              <div class="mini-agent-badge">早筛的延伸 · 康复的营养支持</div>
               <h3 class="mini-agent-title">卡乐全® 全营养配方食品</h3>
             </div>
           </div>
-          <p class="mini-agent-desc">特殊医学用途全营养配方食品，可作单一或部分营养来源，适合进食受限、消化吸收障碍、代谢紊乱及术后康复人群。</p>
-          <div class="mini-agent-demo" id="proteinQuiz">
-            <div class="lcs-screen" data-screen="intro">
-              <div class="lcs-demo-msg lcs-demo-msg--bot">您好，我是营养风险评估助手。回答 4 个问题，帮您判断是否存在营养风险。</div>
-              <button class="lcs-btn" data-action="start" type="button">开始自测</button>
-            </div>
-            <div class="lcs-screen" data-screen="quiz" hidden>
-              <div class="lcs-progress-wrap">
-                <div class="lcs-progress-bar"><div class="lcs-progress-fill" id="proteinProgressFill" style="width:0%"></div></div>
-                <div class="lcs-progress-text">第 <span id="proteinStep">1</span>/<span id="proteinTotal">4</span> 题</div>
-              </div>
-              <div class="lcs-demo-msg lcs-demo-msg--bot" id="proteinQuestion"></div>
-              <div class="lcs-options" id="proteinOptions"></div>
-            </div>
-            <div class="lcs-screen" data-screen="result" hidden>
-              <div id="proteinResult"></div>
-              <button class="lcs-btn" data-action="restart" type="button">重新自测</button>
-            </div>
+          <p class="mini-agent-desc">特殊医学用途全营养配方食品（国食注字TY20230009）。如果检测提示需要关注，或者您正处于术后 / 慢病恢复期，肠道对营养的吸收功能可能需要额外支持，可作为单一或部分营养来源。</p>
+          <div class="product-spec-list">
+            <div class="product-spec-item"><span class="product-spec-label">适用人群</span><span class="product-spec-value">10 岁以上进食受限、消化吸收障碍、代谢紊乱及术后康复人群</span></div>
+            <div class="product-spec-item"><span class="product-spec-label">核心特点</span><span class="product-spec-value">可作为单一营养来源，满足全天营养需求；每盒 500g（50g×10袋）；建议在医生或临床营养师指导下使用</span></div>
+            <div class="product-spec-item"><span class="product-spec-label">规格价格</span><span class="product-spec-value">500g/盒（50g×10袋），258 元/盒</span></div>
           </div>
+          <div class="product-tip-box">
+            <p class="product-tip-title">我需要吗？</p>
+            <p class="product-tip-text">如果您属于以下情况之一，建议咨询医生或营养师：术后恢复期 / 体重明显下降 / 食欲不振，进食量明显减少 / 消化吸收功能不佳。如果只是日常保健，建议优先从饮食中获取营养。</p>
+          </div>
+          <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer" class="lcs-btn" style="margin-top:1rem;text-decoration:none;text-align:center;display:block;">去小程序了解详情 ↗</a>
         </div>
       </div>
 
@@ -2355,71 +2496,76 @@
         <div class="branch-cta-body">
           <div class="branch-cta-badge">体检的另一条线 · 随时问医生</div>
           <h3>体检报告看不懂？或者半夜突然不舒服？</h3>
-          <p>不管是体检前的疑问，还是检后报告解读，365 天 24 小时都能连线专业全科医生，365元/365天，已有 15,985 人在用，无需专门为一次咨询挂号排队。</p>
+          <p>不管是体检前的疑问，还是检后报告解读，365 天 24 小时都能连线专业全科医生，365元/365天，无需专门为一次咨询挂号排队。</p>
         </div>
         <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" class="branch-cta-btn" target="_blank" rel="noopener noreferrer">了解24×7视频医生 ↗</a>
       </div>
     </div>
   </section>
 
-  <section id="selftests" class="selftests-section">
+  <section id="sleepSection" class="selftests-section">
     <div class="container">
       <div class="section-lead-block" data-reveal>
         <p>除了肠胃，现代人的心血管健康同样值得关注。《中国心血管健康与疾病报告》显示，我国心血管疾病现患人数已超过 3 亿，且随着工作压力增大、作息不规律，发病持续走高。这是一条独立于体检和肠胃早筛的健康风险线——日常睡眠与心血管指标的监测，同样重要。</p>
       </div>
       <div class="section-head center" data-reveal>
-        <h2 class="section-title">夜间健康自测，个人与家庭都能用</h2>
-        <p class="section-desc lead">30 秒自测，了解你（或家中老人）的夜间健康状况。</p>
+        <h2 class="section-title">床垫式睡眠监护仪</h2>
+        <p class="section-desc lead">不必佩戴任何东西。给自己用，也给爸妈用，无感守护。</p>
       </div>
-      <div class="mini-agent-grid mini-agent-grid--single">
 
-        <!-- 床垫式睡眠监护仪 · 夜间健康自测 -->
-        <div class="mini-agent-card" data-reveal>
-          <div class="mini-agent-head">
-            <div class="mini-agent-icon" aria-hidden="true">🛏️</div>
-            <div>
-              <div class="mini-agent-badge">夜间健康自测 · 个人与家庭皆可用</div>
-              <h3 class="mini-agent-title">床垫式睡眠监护仪</h3>
-            </div>
-          </div>
-          <p class="mini-agent-desc">非接触式高精度传感器 + AI 算法 + 云端服务，聚焦睡眠障碍与心血管风险早期筛查。自己用可以监测睡眠质量，装在家里也能默默守护老人的夜间安全。</p>
-          <div class="mini-agent-demo" id="sleepQuiz">
-            <div class="lcs-screen" data-screen="intro">
-              <div class="lcs-demo-msg lcs-demo-msg--bot">您好，我是睡眠健康助手。回答 4 个问题，约 30 秒，了解您的夜间健康状况。</div>
-              <button class="lcs-btn" data-action="start" type="button">开始自测</button>
-            </div>
-            <div class="lcs-screen" data-screen="quiz" hidden>
-              <div class="lcs-progress-wrap">
-                <div class="lcs-progress-bar"><div class="lcs-progress-fill" id="sleepProgressFill" style="width:0%"></div></div>
-                <div class="lcs-progress-text">第 <span id="sleepStep">1</span>/<span id="sleepTotal">4</span> 题</div>
-              </div>
-              <div class="lcs-demo-msg lcs-demo-msg--bot" id="sleepQuestion"></div>
-              <div class="lcs-options" id="sleepOptions"></div>
-            </div>
-            <div class="lcs-screen" data-screen="result" hidden>
-              <div id="sleepResult"></div>
-              <button class="lcs-btn" data-action="restart" type="button">重新自测</button>
-            </div>
+      <div class="sleep-scene-grid" data-reveal>
+        <div class="sleep-scene-card">
+          <div class="sleep-scene-img"><div class="cap-img-slot" data-img-src="sleep-scene-self.jpg">场景图占位：给自己用</div></div>
+          <div class="sleep-scene-body">
+            <span class="sleep-scene-badge">场景一 · 给自己用</span>
+            <h3 class="sleep-scene-title">你睡觉时，数据都在悄悄记录</h3>
+            <p class="sleep-scene-text">心率、呼吸、翻身、离床——床垫下的传感器全部自动记录，醒来就能看报告。不需要戴任何东西，不需要改变睡眠习惯。</p>
           </div>
         </div>
+        <div class="sleep-scene-card">
+          <div class="sleep-scene-img"><div class="cap-img-slot" data-img-src="sleep-scene-parents.jpg">场景图占位：给父母用</div></div>
+          <div class="sleep-scene-body">
+            <span class="sleep-scene-badge">场景二 · 给父母用</span>
+            <h3 class="sleep-scene-title">不在身边，也能安心</h3>
+            <p class="sleep-scene-text">不在父母身边，怎么知道他们睡得好不好？远程查看睡眠报告，离床超过设定时间自动提醒——不是监视，是守护。</p>
+          </div>
+        </div>
+        <div class="sleep-scene-card">
+          <div class="sleep-scene-img"><div class="cap-img-slot" data-img-src="sleep-scene-family.jpg">场景图占位：给全家用</div></div>
+          <div class="sleep-scene-body">
+            <span class="sleep-scene-badge">场景三 · 给全家用</span>
+            <h3 class="sleep-scene-title">一张床垫，全家人的睡眠都看得到</h3>
+            <p class="sleep-scene-text">一张床垫下放一个传感器，全家的睡眠数据都能看。老人、孩子、自己，谁睡得好、谁需要关注，一目了然。</p>
+          </div>
+        </div>
+      </div>
 
+      <div class="sleep-summary-box" data-reveal>
+        <p class="sleep-summary-quote">"不必佩戴任何东西。"</p>
+        <p class="sleep-summary-desc">床垫式睡眠监护仪，高精度传感器 + AI 算法 + 云端服务。监测心率、呼吸、离床、睡眠质量。</p>
+        <div class="sleep-summary-list">
+          <div class="sleep-summary-item"><strong>给自己</strong>了解睡眠质量，提前发现异常</div>
+          <div class="sleep-summary-item"><strong>给父母</strong>远程查看夜间状态，离床超时自动提醒</div>
+          <div class="sleep-summary-item"><strong>给全家</strong>一器多用，家人健康数据随时掌握</div>
+        </div>
+        <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer" class="lcs-btn" style="text-decoration:none;text-align:center;display:block;max-width:320px;margin:0 auto;">去小程序了解详情 ↗</a>
       </div>
     </div>
   </section>
 
   <section id="awaken" class="awaken-section">
     <div class="awaken-tabbar" data-reveal role="tablist">
-      <button type="button" class="awaken-tab is-active" data-awaken-tab="destiny" role="tab" aria-selected="true">🎭 选择你的命运</button>
+      <button type="button" class="awaken-tab is-active" data-awaken-tab="screening" role="tab" aria-selected="true">🔬 早筛意识唤醒</button>
       <button type="button" class="awaken-tab" data-awaken-tab="balance" role="tab" aria-selected="false">💳 健康余额提醒</button>
       <button type="button" class="awaken-tab" data-awaken-tab="credit" role="tab" aria-selected="false">📊 健康信用分</button>
     </div>
 
-    <div class="awaken-panel destiny-section is-active" data-awaken-panel="destiny">
+    <div class="awaken-panel screening-section is-active" data-awaken-panel="screening">
       <div class="container">
-        <div class="destiny-card" id="destinyCard">
-          <h2 class="destiny-title">选择你的命运</h2>
-          <p class="destiny-subtitle">一次"再等等"的代价，可能远超你的想象</p>
-          <div id="destinyStage"></div>
+        <div class="scr-card" id="scrCard">
+          <h2 class="scr-title">肠道健康，早知道差别有多大</h2>
+          <p class="scr-subtitle">跟着走一遍，看看"早一点"和"等一等"会走向怎样不同的结局</p>
+          <div id="scrStage"></div>
         </div>
       </div>
     </div>
@@ -2482,27 +2628,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-
-  <section id="about">
-    <div class="container about-grid">
-      <div class="about-text" data-reveal>
-        <h2 class="section-title">关于云心达</h2>
-        <p>云心达致力于用数字化手段连接专业医疗资源与日常健康管理，提供全天候全科医生咨询、健康早筛、日常监测、智能提醒与家庭协同服务。我们秉承「科技向善、健康为本」，让优质健康服务更易触达。</p>
-        <p class="about-compliance">我们严格遵守医疗健康行业合规要求，用户咨询信息与隐私数据仅用于健康管理服务，全程保密处理。</p>
-      </div>
-      <aside class="about-aside" data-reveal>
-        <h3>我们的服务原则</h3>
-        <ul class="about-list">
-          <li>专业医生与智能咨询</li>
-          <li>居家早筛与日常监测</li>
-          <li>家庭成员协同管理</li>
-          <li>提醒与内容持续陪伴</li>
-        </ul>
-        <p class="quote-inner">「以科技之力，守护每一份健康与希望。」</p>
-      </aside>
     </div>
   </section>
 
@@ -2584,7 +2709,6 @@
         <nav class="footer-nav">
           <a href="#home">首页</a>
           <a href="#services">核心业务</a>
-          <a href="#about">关于我们</a>
           <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer">早筛小程序 ↗</a>
           <a href="#contact">联系我们</a>
         </nav>
@@ -2626,7 +2750,7 @@ function initHeaderScroll() {
 
 function initNavActive() {
   const links = document.querySelectorAll('[data-nav]');
-  const sections = ['home', 'services', 'about', 'contact']
+  const sections = ['home', 'services', 'products', 'contact']
     .map((id) => document.getElementById(id)).filter(Boolean);
   const update = () => {
     const y = window.scrollY + 100;
@@ -2795,7 +2919,7 @@ function initCapDetail() {
 }
 
 function initRevealOnScroll() {
-  document.querySelectorAll('.feature-list, .stats-row, .contact-info, .contact-grid, .about-grid, .hero-grid, .workflow-grid').forEach((grid) => {
+  document.querySelectorAll('.feature-list, .stats-row, .contact-info, .contact-grid, .hero-grid, .workflow-grid').forEach((grid) => {
     grid.querySelectorAll(':scope > [data-reveal]').forEach((el, i) => {
       if (!el.dataset.revealDelay) el.dataset.revealDelay = String(i * 80);
     });
@@ -2809,11 +2933,87 @@ function initRevealOnScroll() {
   });
 }
 
+// 体检套餐数据：明天替换真实信息只需改这一处，图片放 public/packages/ 目录，命名对应 img 字段
+const PACKAGE_DATA = [
+  {
+    tag: '标准',
+    name: '套餐A',
+    price: '10,000元',
+    img: 'https://picsum.photos/400/300?1',
+    highlights: ['标准体检套餐', '星级住宿 + 科学营养配餐']
+  },
+  {
+    tag: '深度',
+    name: '套餐B',
+    price: '15,000元',
+    img: 'https://picsum.photos/400/300?2',
+    highlights: ['深度体检套餐', '星级住宿 + 科学营养配餐']
+  },
+  {
+    tag: '专项',
+    name: '套餐C',
+    price: '20,000元',
+    img: 'https://picsum.photos/400/300?3',
+    highlights: ['心脑血管专项套餐', '星级住宿 + 科学营养配餐']
+  },
+  {
+    tag: '男性专享',
+    name: '套餐D',
+    price: '10,000元',
+    img: 'https://picsum.photos/400/300?4',
+    highlights: ['男性专享套餐', '星级住宿 + 科学营养配餐']
+  },
+  {
+    tag: '女性专享',
+    name: '套餐E',
+    price: '10,000元',
+    img: 'https://picsum.photos/400/300?5',
+    highlights: ['女性专享套餐', '星级住宿 + 科学营养配餐']
+  }
+];
+
+function initPackages() {
+  const grid = document.getElementById('packagesGrid');
+  if (!grid) return;
+  grid.innerHTML = PACKAGE_DATA.map((pkg) => `
+    <div class="package-card">
+      <div class="package-card-img"><img src="${pkg.img}" alt="${pkg.name}" loading="lazy" /></div>
+      <div class="package-card-body">
+        <span class="package-card-tag">${pkg.tag}</span>
+        <h3 class="package-card-name">${pkg.name}</h3>
+        <ul class="package-card-highlights">${pkg.highlights.map((h) => `<li>${h}</li>`).join('')}</ul>
+        <div class="package-card-foot">
+          <span class="package-card-price">${pkg.price}</span>
+          <a class="package-card-btn" href="#contact">咨询预约</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function initPackageVideo() {
+  const btn = document.getElementById('packageVideoBtn');
+  const modal = document.getElementById('packageVideoModal');
+  if (!btn || !modal) return;
+  const player = document.getElementById('packageVideoPlayer');
+  const open = () => { modal.removeAttribute('hidden'); requestAnimationFrame(() => modal.classList.add('is-open')); };
+  const close = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('hidden', '');
+    if (player) player.pause();
+  };
+  btn.addEventListener('click', open);
+  modal.querySelectorAll('[data-video-close]').forEach((el) => el.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+}
+
 initHeaderScroll();
 initNavActive();
 initCapImages();
 initCapDetail();
 initAwakenTabs();
+initPackages();
+initPackageVideo();
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   initRevealOnScroll();
@@ -2894,9 +3094,9 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     });
   })();
 
-  // 选择你的命运 - 互动剧情
+  // 早筛意识唤醒 - 互动剧情（还原旧版分支玩法，数据已核实）
   (function () {
-    var stage = document.getElementById('destinyStage');
+    var stage = document.getElementById('scrStage');
     if (!stage) return;
     var nodes = {
       start: {
@@ -2912,7 +3112,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         time: '2027 年',
         scene: '最近偶尔便血，你上网搜了搜，"十男九痔"，大概率是痔疮吧。',
         choices: [
-          { text: '还是去检查一下放心', icon: '✅', next: 'mid' },
+          { text: '还是去检查一下放心', icon: '✅', next: 'good' },
           { text: '网上都说是痔疮，再观察观察', icon: '⏰', next: 'wait2' }
         ]
       },
@@ -2923,67 +3123,66 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         next: 'bad'
       },
       good: {
-        ending: true, time: '体检当天',
-        scene: '你做了丽常生肠癌早筛，居家采样，一周后出报告。报告显示早期腺瘤性息肉，医生建议肠镜切除，门诊小手术即可。',
-        stats: [{ value: '≈ 2,889 元', label: '早筛 + 肠镜切除', bg: 'rgba(56,161,105,0.12)', color: '#48bb78' }, { value: '90%', label: '5 年生存率', bg: 'rgba(56,161,105,0.12)', color: '#48bb78' }],
-        survival: { pct: 90, color: '#48bb78' },
-        lesson: '一次不到 3000 元，换来几十年安心。你庆幸自己来了。', lessonColor: '#48bb78', lessonBg: 'rgba(56,161,105,0.08)'
-      },
-      mid: {
-        ending: true,
-        scene: '丽常生早筛显示中风险，肠镜确诊为中期。能治，但需要手术 + 化疗。',
-        stats: [{ value: '≈ 8 万元', label: '早筛 + 治疗', bg: 'rgba(221,107,32,0.12)', color: '#ed8936' }, { value: '70%', label: '5 年生存率', bg: 'rgba(221,107,32,0.12)', color: '#ed8936' }],
-        survival: { pct: 70, color: '#ed8936' },
-        lesson: '早一年发现，能省 8 万、免化疗。那个"再等等"，花了 8 万。', lessonColor: '#ed8936', lessonBg: 'rgba(221,107,32,0.08)'
+        ending: true, time: '体检 / 就诊当天',
+        scene: '你做了丽常生肠癌早筛并及时就诊，医生确认病变仍处于局限期，尚未发生远处转移，及时干预即可。',
+        stats: [{ value: '90%-91%', label: '局限期 5 年生存率', bg: 'rgba(56,161,105,0.12)', color: '#48bb78' }, { value: '约 5.6 万元', label: '平均直接医疗费用', bg: 'rgba(56,161,105,0.12)', color: '#48bb78' }],
+        survival: { pct: 91, color: '#48bb78' },
+        lesson: '早一点发现，多一份从容。你庆幸自己没有再拖下去。', lessonColor: '#48bb78', lessonBg: 'rgba(56,161,105,0.08)',
+        source: '数据来源：美国癌症协会《Cancer Facts &amp; Figures 2026》（基于 SEER 数据库 2014-2020 年病例，局限期结直肠癌 5 年相对生存率）'
       },
       bad: {
         ending: true,
-        scene: '确诊结直肠癌晚期，已淋巴转移。需要造口、长期化疗，人生从此不同。',
-        stats: [{ value: '30-100 万', label: '治疗费用', bg: 'rgba(229,62,62,0.12)', color: '#f56565' }, { value: '12%', label: '5 年生存率', bg: 'rgba(229,62,62,0.12)', color: '#f56565' }],
-        survival: { pct: 12, color: '#f56565' },
-        quote: '"如果 3 年前那个体检提醒你去了，完全是另一个结局。" —— 主治医生',
-        lesson: '3 年前的一次"再等等"——代价是 30-100 万、造口、化疗，和可能回不来的人生。', lessonColor: '#f56565', lessonBg: 'rgba(229,62,62,0.08)', cta: true
+        scene: '确诊结直肠癌远处转移期，已发生远处转移。需要更复杂的治疗方案，人生节奏从此不同。',
+        stats: [{ value: '13%-18%', label: '远处转移期 5 年生存率', bg: 'rgba(229,62,62,0.12)', color: '#f56565' }, { value: '约 8.3 万元', label: '平均直接医疗费用', bg: 'rgba(229,62,62,0.12)', color: '#f56565' }],
+        survival: { pct: 15, color: '#f56565' },
+        extra: '同一项全国调查显示：新确诊患者一年内的自付费用，平均占家庭上一年收入的 59.9%，75% 的家庭因此陷入难以承受的经济负担。',
+        quote: '"如果 3 年前那次提醒你去查一查，也许完全是另一个结局。" —— 主治医生',
+        lesson: '3 年前的一次"再等等"——代价是更低的生存率、更高的治疗费用，和可能回不来的人生节奏。', lessonColor: '#f56565', lessonBg: 'rgba(229,62,62,0.08)', cta: true,
+        source: '数据来源：美国癌症协会《Cancer Facts &amp; Figures 2026》（基于 SEER 数据库 2014-2020 年病例，远处转移期结直肠癌 5 年相对生存率）；《Expenditure and financial burden for the diagnosis and treatment of colorectal cancer in China》，Chinese Journal of Cancer，全国 13 省 37 家三甲医院 2356 例患者调查'
       }
     };
     var typing = null;
     function clear() { if (typing) { clearInterval(typing); typing = null; } }
     function typeWriter(el, text, done) {
-      clear(); el.innerHTML = '<span class="destiny-cursor"></span>';
+      clear(); el.innerHTML = '<span class="scr-cursor"></span>';
       var i = 0;
       typing = setInterval(function () {
-        i++; el.innerHTML = text.slice(0, i) + '<span class="destiny-cursor"></span>';
+        i++; el.innerHTML = text.slice(0, i) + '<span class="scr-cursor"></span>';
         if (i >= text.length) { clear(); el.innerHTML = text; if (done) done(); }
       }, 28);
     }
     function render(key) {
       var n = nodes[key], html = '';
-      if (n.jump) html += '<div class="destiny-jump">⏰ ' + n.jump + '</div>';
-      if (n.time) html += '<div class="destiny-time">' + n.time + '</div>';
-      html += '<div class="destiny-scene" id="destinyScene"></div>';
+      if (n.jump) html += '<div class="scr-jump">⏰ ' + n.jump + '</div>';
+      if (n.time) html += '<div class="scr-time">' + n.time + '</div>';
+      html += '<div class="scr-scene" id="scrScene"></div>';
       if (n.ending) {
-        html += '<div class="destiny-ending">';
+        html += '<div class="scr-ending">';
         if (n.stats) {
-          html += '<div class="destiny-stat-row">';
-          n.stats.forEach(function (s) { html += '<div class="destiny-stat" style="background:' + s.bg + ';"><span class="destiny-stat-value" style="color:' + s.color + ';">' + s.value + '</span><span class="destiny-stat-label">' + s.label + '</span></div>'; });
+          html += '<div class="scr-stat-row">';
+          n.stats.forEach(function (s) { html += '<div class="scr-stat" style="background:' + s.bg + ';"><span class="scr-stat-value" style="color:' + s.color + ';">' + s.value + '</span><span class="scr-stat-label">' + s.label + '</span></div>'; });
           html += '</div>';
         }
-        if (n.survival) html += '<div class="destiny-survival"><div class="destiny-survival-bar"><div class="destiny-survival-fill" style="width:0%;background:' + n.survival.color + ';"></div></div><div class="destiny-survival-label">5 年生存率</div></div>';
-        if (n.quote) html += '<div class="destiny-quote">' + n.quote + '</div>';
-        if (n.lesson) html += '<div class="destiny-lesson" style="background:' + n.lessonBg + ';border-left-color:' + n.lessonColor + ';color:rgba(255,255,255,0.9);">' + n.lesson + '</div>';
-        html += '<div class="destiny-actions">';
-        if (n.cta) { html += '<button class="destiny-btn destiny-btn--primary" data-scroll="products">立即做丽常生早筛</button>'; html += '<button class="destiny-btn destiny-btn--ghost" data-restart="1">重新选择</button>'; }
-        else { html += '<button class="destiny-btn destiny-btn--ghost" data-restart="1">重新体验</button>'; }
+        if (n.survival) html += '<div class="scr-survival"><div class="scr-survival-bar"><div class="scr-survival-fill" style="width:0%;background:' + n.survival.color + ';"></div></div><div class="scr-survival-label">5 年生存率</div></div>';
+        if (n.extra) html += '<div class="scr-extra" style="background:' + n.lessonBg + ';color:rgba(255,255,255,0.85);">' + n.extra + '</div>';
+        if (n.quote) html += '<div class="scr-quote">' + n.quote + '</div>';
+        if (n.lesson) html += '<div class="scr-lesson" style="background:' + n.lessonBg + ';border-left-color:' + n.lessonColor + ';color:rgba(255,255,255,0.9);">' + n.lesson + '</div>';
+        if (n.source) html += '<div class="scr-source">' + n.source + '</div>';
+        html += '<div class="scr-disclaimer">以上为公开研究的群体统计数据，不代表个人诊疗结果，具体请以医生诊断为准。</div>';
+        html += '<div class="scr-actions">';
+        if (n.cta) { html += '<button class="scr-btn scr-btn--primary" data-scroll="products">立即做丽常生早筛</button>'; html += '<button class="scr-btn scr-btn--ghost" data-restart="1">重新选择</button>'; }
+        else { html += '<button class="scr-btn scr-btn--ghost" data-restart="1">重新体验</button>'; }
         html += '</div></div>';
       } else if (n.choices) {
-        html += '<div class="destiny-choices">';
-        n.choices.forEach(function (c) { html += '<button class="destiny-choice" data-next="' + c.next + '"><span class="destiny-choice-icon">' + c.icon + '</span>' + c.text + '</button>'; });
+        html += '<div class="scr-choices">';
+        n.choices.forEach(function (c) { html += '<button class="scr-choice" data-next="' + c.next + '"><span class="scr-choice-icon">' + c.icon + '</span>' + c.text + '</button>'; });
         html += '</div>';
       } else if (n.next) {
-        html += '<div class="destiny-choices"><button class="destiny-choice" data-next="' + n.next + '"><span class="destiny-choice-icon">▶</span>继续</button></div>';
+        html += '<div class="scr-choices"><button class="scr-choice" data-next="' + n.next + '"><span class="scr-choice-icon">▶</span>继续</button></div>';
       }
       stage.innerHTML = html;
-      var sceneEl = document.getElementById('destinyScene');
-      if (sceneEl) typeWriter(sceneEl, n.scene, function () { if (n.survival) { var f = stage.querySelector('.destiny-survival-fill'); if (f) f.style.width = n.survival.pct + '%'; } });
+      var sceneEl = document.getElementById('scrScene');
+      if (sceneEl) typeWriter(sceneEl, n.scene, function () { if (n.survival) { var f = stage.querySelector('.scr-survival-fill'); if (f) f.style.width = n.survival.pct + '%'; } });
     }
     stage.addEventListener('click', function (e) {
       var t = e.target.closest('[data-next],[data-restart],[data-scroll]');
@@ -3079,7 +3278,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       heart: {
         reply: '心脏和睡眠这类问题，靠自己"感觉"确实不太好判断，需要一点客观数据帮忙。睡眠监护仪能在家里安装，安静记录夜间指标，也适合帮家里老人多一层留意。',
         btnText: '看看睡眠监护仪',
-        targetId: 'sleepQuiz'
+        targetId: 'sleepSection'
       },
       checkup: {
         reply: '很多人对体检的困扰不是"要不要做"，而是"该做哪种"。回答几个小问题，我们可以帮你把方向理清楚，不用自己对着一堆项目名称猜。',
@@ -3180,82 +3379,6 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (action === 'restart') { step = 0; total = 0; factors = []; show('intro'); }
     });
   }
-
-  // 夜间健康自测 → 床垫式睡眠监护仪
-  initMiniQuiz({
-    rootId: 'sleepQuiz', totalId: 'sleepTotal', stepId: 'sleepStep', fillId: 'sleepProgressFill',
-    questionId: 'sleepQuestion', optionsId: 'sleepOptions', resultId: 'sleepResult', factorLabel: '主要提示',
-    questions: [
-      { q: '同床或家人是否反映您打鼾较重，或睡觉时有呼吸暂停/憋气现象？', opts: ['没有', '偶尔', '经常'], score: [0, 1, 2], factor: [null, '偶发鼾症', '睡眠呼吸异常'] },
-      { q: '您是否经常入睡困难、夜间频繁醒来或早醒后难以再入睡？', opts: ['很少', '每周 1-2 次', '几乎每天'], score: [0, 1, 2], factor: [null, '偶发失眠', '慢性失眠倾向'] },
-      { q: '您是否有高血压、心律不齐或其他心血管方面的担忧？', opts: ['无', '有一定担忧', '已确诊相关问题'], score: [0, 1, 2], factor: [null, '心血管风险关注', '已有心血管问题'] },
-      { q: '家中是否有独居或夜间需要留意安全状况的老人？', opts: ['没有', '有，但目前状况平稳', '有，且比较担心夜间安全'], score: [0, 1, 2], factor: [null, null, '老人夜间安全监护需求'] }
-    ],
-    resolve: function (total) {
-      if (total >= 5) {
-        return {
-          level: '建议尽快监测', color: '#e53e3e', bg: 'rgba(229,62,62,0.1)',
-          priceItems: [
-            { label: '10天体验', value: '1099元(押金2000可退)' },
-            { label: '深度年度套餐', value: '5980元含1299元体验包' }
-          ],
-          advice: '您的情况提示睡眠或夜间安全风险较高，建议优先选择床垫式睡眠监护仪进行非接触式监测，及时掌握睡眠呼吸与夜间体征数据。'
-        };
-      } else if (total >= 2) {
-        return {
-          level: '建议关注', color: '#dd6b20', bg: 'rgba(221,107,32,0.1)',
-          priceItems: [
-            { label: '10天体验', value: '1099元(押金2000可退)' }
-          ],
-          advice: '存在一定睡眠或监护需求，可先从 10 天体验装开始，了解自己的睡眠质量趋势。'
-        };
-      }
-      return {
-        level: '状况良好', color: '#38a169', bg: 'rgba(56,161,105,0.1)',
-        priceItems: [],
-        advice: '目前睡眠及夜间状况较好，仍建议保持规律作息，如家中有老人可考虑绑定监测作为长期安全保障。'
-      };
-    }
-  });
-
-  // 营养风险自测 → 卡乐全全营养配方食品
-  initMiniQuiz({
-    rootId: 'proteinQuiz', totalId: 'proteinTotal', stepId: 'proteinStep', fillId: 'proteinProgressFill',
-    questionId: 'proteinQuestion', optionsId: 'proteinOptions', resultId: 'proteinResult', factorLabel: '主要提示',
-    questions: [
-      { q: '近 3 个月内，您是否有食欲下降或体重明显减轻？', opts: ['没有', '有一些', '比较明显'], score: [0, 1, 2], factor: [null, '轻度食欲下降', '明显体重下降'] },
-      { q: '您是否存在消化吸收功能较差的情况（如腹胀、腹泻、吸收不良）？', opts: ['没有', '偶尔', '经常'], score: [0, 1, 2], factor: [null, null, '消化吸收功能较差'] },
-      { q: '您是否处于外科手术后恢复期，或有代谢类慢病需要营养支持？', opts: ['没有', '是，恢复期较短', '是，需要长期营养支持'], score: [0, 1, 2], factor: [null, '术后恢复期', '长期营养支持需求'] },
-      { q: '您（或需要照顾的对象）年龄是否在 10 岁以上？', opts: ['是', '不确定', '10 岁以下'], score: [0, 0, -99] }
-    ],
-    resolve: function (total) {
-      if (total <= -50) {
-        return {
-          level: '暂不适用', color: '#718096', bg: 'rgba(113,128,150,0.12)',
-          priceItems: [],
-          advice: '该产品适用于 10 岁以上人群，10 岁以下儿童的营养补充请咨询专业儿科医生。'
-        };
-      }
-      if (total >= 3) {
-        return {
-          level: '建议补充营养支持', color: '#e53e3e', bg: 'rgba(229,62,62,0.1)',
-          priceItems: [{ label: '卡乐全® 全营养配方', value: '258元(健康金后198元)' }],
-          advice: '您的情况符合特殊医学用途全营养配方食品的适用人群特征，可作为单一或部分营养来源，帮助改善营养摄入不足的问题。'
-        };
-      } else if (total >= 1) {
-        return {
-          level: '存在一定营养风险', color: '#dd6b20', bg: 'rgba(221,107,32,0.1)',
-          priceItems: [{ label: '卡乐全® 全营养配方', value: '258元(健康金后198元)' }],
-          advice: '建议关注日常营养摄入是否均衡，如持续出现食欲不振或体重变化，可考虑搭配全营养配方食品补充。'
-        };
-      }
-      return {
-        level: '营养状况良好', color: '#38a169', bg: 'rgba(56,161,105,0.1)',
-        priceItems: [],
-        advice: '目前暂未发现明显营养风险，保持均衡饮食即可，如遇手术或病后恢复期可再评估。'
-      };
-    }
-  });
 
   // 体检套餐匹配 → 北京通用健康门诊部
   initMiniQuiz({
