@@ -101,7 +101,7 @@ export default function Home() {
             margin: '0 0 2rem 0',
             lineHeight: 1.55
           }}>
-            智慧健康管理 · 全科医生咨询
+            把临床科研能力转化为可运营的健康管理服务
           </p>
           <p style={{
             fontSize: '1rem',
@@ -110,7 +110,7 @@ export default function Home() {
             margin: '0 auto 2.5rem auto',
             lineHeight: 1.55
           }}>
-            365 天全天候全科医生咨询、健康早筛、日常监测与智能健康管理服务，守护您与家人的健康。
+            云心达整合健康数据整理、连续健康管理与机构运营赋能，为医疗机构提供可持续运营的健康管理服务支持。
           </p>
           <button style={{
             padding: '0.875rem 2rem',
@@ -164,10 +164,10 @@ export default function Home() {
           gap: '2rem'
         }}>
           {[
-            { title: '全科医生咨询', desc: '专业医生 24/7 在线咨询服务' },
-            { title: '健康早筛', desc: '科学的健康风险评估与预防' },
+            { title: '健康数据整理', desc: '专业健康数据采集与结构化管理' },
+            { title: '连续健康管理', desc: '长期个人健康档案跟踪与服务' },
             { title: '日常监测', desc: '持续跟踪健康指标与趋势' },
-            { title: '智能管理', desc: '个性化的健康管理方案' }
+            { title: '机构运营赋能', desc: '为医疗机构提供运营支持方案' }
           ].map((item, i) => (
             <div key={i} style={{
               padding: '1.5rem',
