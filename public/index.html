@@ -1323,10 +1323,19 @@
       gap: 0.5rem;
       align-content: start;
     }
+    .stat-item {
+      padding: 1.75rem; border-radius: 14px; border: 1px solid var(--hairline);
+      background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: default;
+    }
+    .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(119,85,255,0.1);
+      border-color: rgba(119,85,255,0.25);
+    }
     @media (min-width: 768px) {
-      .stats-row { grid-template-columns: repeat(4, 1fr); gap: 0; align-items: start; }
-      .stat-item { padding: 0 2rem; border-left: 1px solid var(--hairline); }
-      .stat-item:first-child { padding-left: 0; border-left: none; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; align-items: start; }
     }
 
     .testimonial-wrap {
@@ -1354,15 +1363,14 @@
     .testimonial-name { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
     .testimonial-role { font-size: 0.875rem; font-weight: 400; color: var(--ink-body); }
     .stat-value {
-      font-size: clamp(2rem, 3.8vw, 2.75rem); font-weight: 500;
-      letter-spacing: -0.03em; color: var(--ink);
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-      display: flex; align-items: flex-end;
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem); font-weight: 600;
+      letter-spacing: -0.02em; color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
     }
     .stat-label {
       margin-top: 0; color: var(--ink-body); font-size: 0.9375rem; font-weight: 400;
-      line-height: 1.45;
+      line-height: 1.55;
     }
 
     /* CTA 暖色带 */
@@ -1579,7 +1587,7 @@
       .platform-ecosystem-core { width: 56px; height: 56px; }
       .platform-ecosystem-core img { width: 42px; }
       .cap-grid { grid-template-columns: 1fr !important; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { grid-template-columns: 1fr; }
     }
 
     /* 产品展示 */
@@ -2147,19 +2155,13 @@
     <div class="container">
       <section id="advantages" class="advantages-inline">
         <div class="section-head center" data-reveal>
-          <h2 class="section-title">平台能为你做什么？</h2>
-          <p class="section-desc lead section-desc--oneline">云心达把咨询、早筛、监测和提醒连成一个持续的健康管理闭环。</p>
+          <h2 class="section-title">我们能做什么？</h2>
         </div>
         <div class="stats-row">
-          <div class="stat-item" data-reveal><div class="stat-value">档案+体质</div><div class="stat-label">健康档案与中医体质测评，一次评估长期追踪</div></div>
-          <div class="stat-item" data-reveal><div class="stat-value">用药+复查</div><div class="stat-label">持续提醒，不错过关键的复查节点</div></div>
-          <div class="stat-item" data-reveal><div class="stat-value">全家协同</div><div class="stat-label">子女可远程查看父母的体检与监测数据</div></div>
-          <div class="stat-item" data-reveal><div class="stat-value">24×7</div><div class="stat-label">视频医生+专属健管师，有问题随时找到人</div></div>
-        </div>
-        <div class="testimonial-wrap" data-reveal>
-          <figure class="testimonial-card">
-            <blockquote class="testimonial-quote">平台内还沉淀了大量由医院医生录制的健康科普内容，配合 AI 问答帮你理解报告、看懂指标，而不是拿到一堆数字却不知道意味着什么。数据全程加密，仅用于你和家人的健康管理。</blockquote>
-          </figure>
+          <div class="stat-item" data-reveal><div class="stat-value">健康数据整理</div><div class="stat-label">将体检、检验、影像、病历、用药记录整理成可持续对比的健康档案</div></div>
+          <div class="stat-item" data-reveal><div class="stat-value">机构运营赋能</div><div class="stat-label">帮助保险公司、体检中心、医院和企事业单位建立服务闭环</div></div>
+          <div class="stat-item" data-reveal><div class="stat-value">连续管理服务</div><div class="stat-label">围绕复查、复诊、用药、家庭协同和报告解读形成长期服务</div></div>
+          <div class="stat-item" data-reveal><div class="stat-value">科研与数据支持</div><div class="stat-label">支持专病数据整理、随访管理、统计分析和项目运营</div></div>
         </div>
       </section>
 
