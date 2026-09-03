@@ -912,13 +912,20 @@
       color: var(--ink-mute); font-size: 0.8rem; background: linear-gradient(160deg, #f5f3ff, #ede9fe);
       border-radius: 14px;
     }
+    .tool-img-stack { display: flex; gap: 0.75rem; justify-content: center; align-items: flex-start; }
+    .tool-img-stack .tool-img-placeholder {
+      min-height: 180px; flex: 1; max-width: 160px;
+    }
     .tool-text h3 { font-size: 1.375rem; font-weight: 600; color: var(--ink); letter-spacing: -0.03em; margin-bottom: 0.75rem; }
-    .tool-text ul { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+    .tool-text .tool-subtitle { font-size: 0.95rem; color: var(--ink-body); font-weight: 500; margin-bottom: 0.75rem; }
+    .tool-text ul { list-style: none; margin: 0 0 0.5rem; padding: 0; }
     .tool-text ul li {
       font-size: 0.9375rem; color: var(--ink-body); line-height: 1.6; padding: 0.25rem 0;
       padding-left: 1.25rem; position: relative;
     }
     .tool-text ul li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); opacity: 0.5; }
+    .tool-text .tool-scene { font-size: 0.875rem; color: var(--ink-muted, #94a3b8); margin-bottom: 1rem; }
+    .tool-text .tool-value { font-size: 0.875rem; color: var(--ink-body); margin-bottom: 1rem; line-height: 1.6; }
     .tool-link {
       display: inline-flex; align-items: center; gap: 0.3rem;
       font-size: 0.9375rem; font-weight: 500; color: var(--primary);
@@ -929,6 +936,8 @@
       .tool-row { grid-template-columns: 1fr; gap: 1.5rem; }
       .tool-row.reverse .tool-img { order: 0; }
       .tool-row.reverse .tool-text { order: 0; }
+      .tool-img-stack { flex-wrap: wrap; }
+      .tool-img-stack .tool-img-placeholder { max-width: 100%; }
     }
 
     .capabilities-block {
@@ -2193,72 +2202,103 @@
         </div>
       </section>
 
+      <section id="workflow" class="workflow-section workflow-inline">
+        <div class="dual-role-block" data-reveal style="max-width:52rem;margin:0 auto;padding:2.5rem;border-radius:16px;border:1px solid var(--hairline);background:#fff;box-shadow:0 2px 12px rgba(15,23,42,0.04);">
+          <p style="font-size:1.125rem;font-weight:600;color:var(--ink);margin-bottom:1rem;">云心达同时服务机构与个人：</p>
+          <p style="font-size:0.95rem;color:var(--ink-body);line-height:1.7;margin-bottom:0.5rem;">为体检中心、保险公司、医院、企事业单位提供健康数据整理、服务运营与资源链接</p>
+          <p style="font-size:0.95rem;color:var(--ink-body);line-height:1.7;margin-bottom:1rem;">为个人用户提供动态健康档案、报告解读、复查提醒与在线医生服务</p>
+          <p style="font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:2rem;">同一套能力，服务两种角色。</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
+            <div style="border-radius:12px;border:1px dashed rgba(119,85,255,0.3);background:rgba(119,85,255,0.03);padding:1.25rem;text-align:center;">
+              <img src="client-view.png" alt="客户看到 - 健康档案" style="width:100%;border-radius:8px;margin-bottom:0.75rem;" />
+              <div style="font-size:0.9rem;font-weight:500;color:var(--ink);">客户看到</div>
+              <div style="font-size:0.8rem;color:var(--ink-body);margin-top:0.2rem;">健康档案</div>
+            </div>
+            <div style="border-radius:12px;border:1px dashed rgba(119,85,255,0.3);background:rgba(119,85,255,0.03);padding:1.25rem;text-align:center;">
+              <img src="org-view.png" alt="机构看到 - 服务线索" style="width:100%;border-radius:8px;margin-bottom:0.75rem;" />
+              <div style="font-size:0.9rem;font-weight:500;color:var(--ink);">机构看到</div>
+              <div style="font-size:0.8rem;color:var(--ink-body);margin-top:0.2rem;">服务线索</div>
+            </div>
+            <div style="border-radius:12px;border:1px dashed rgba(119,85,255,0.3);background:rgba(119,85,255,0.03);padding:1.25rem;text-align:center;">
+              <img src="frontend-view.png" alt="前端看到 - 脱敏话术" style="width:100%;border-radius:8px;margin-bottom:0.75rem;" />
+              <div style="font-size:0.9rem;font-weight:500;color:var(--ink);">前端看到</div>
+              <div style="font-size:0.8rem;color:var(--ink-body);margin-top:0.2rem;">脱敏话术</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <div class="tools-module" data-reveal>
         <div class="section-head center">
           <h2 class="section-title">云心达 · 智能健康工具</h2>
-          <p class="section-desc lead">从咨询到监测，从档案到提醒，云心达提供覆盖全场景的健康管理工具。</p>
+          <p class="section-desc lead">从咨询到监测，从科普到提醒，云心达覆盖健康管理全场景。</p>
         </div>
         <div class="tools-list">
 
-          <div class="tool-row" data-reveal>
-            <div class="tool-img">
-              <div class="tool-img-placeholder">健康问问 AI 界面预览</div>
-            </div>
-            <div class="tool-text">
-              <h3>健康问问 AI</h3>
-              <ul>
-                <li>AI 智能问答，随时解答健康疑问</li>
-                <li>报告指标 AI 帮你解读</li>
-                <li>2000+ 专业医生科普视频</li>
-              </ul>
-              <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
-            </div>
-          </div>
-
           <div class="tool-row reverse" data-reveal>
             <div class="tool-img">
-              <div class="tool-img-placeholder">24×7 视频医生界面预览</div>
+              <div class="tool-img-stack">
+                <div class="tool-img-placeholder">图1</div>
+                <div class="tool-img-placeholder">图2</div>
+                <div class="tool-img-placeholder">图3</div>
+              </div>
             </div>
             <div class="tool-text">
-              <h3>24×7 视频医生</h3>
+              <h3>在线医生服务</h3>
               <ul>
-                <li>365 天 24 小时随时连线全科医生</li>
-                <li>体检报告看不懂？半夜不舒服？随时可问</li>
-                <li>适用场景：报告解读、复查前沟通、慢病管理</li>
+                <li>7×24 视频医生咨询：全科医生随时在线</li>
+                <li>多角色协同：AI小云、健管师、医生三通道切换</li>
+                <li>一键跳转：首页"看医生，就这么简单"入口</li>
               </ul>
+              <p class="tool-scene">适用场景：报告解读、复查沟通、慢病管理、家庭成员代问</p>
               <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
 
           <div class="tool-row" data-reveal>
             <div class="tool-img">
-              <div class="tool-img-placeholder">睡眠监测界面预览</div>
+              <div class="tool-img-stack">
+                <div class="tool-img-placeholder">图1</div>
+                <div class="tool-img-placeholder">图2</div>
+              </div>
             </div>
             <div class="tool-text">
               <h3>睡眠监测</h3>
               <ul>
-                <li>床垫式传感器，无需佩戴</li>
-                <li>监测心率、呼吸、离床、睡眠质量</li>
-                <li>连续日历式记录</li>
-                <li>自己用，也给父母用</li>
+                <li>关键指标：心血管/睡眠/呼吸评分</li>
+                <li>连续日历记录：按日查看睡眠日报</li>
+                <li>监测信息：上床/起床时间、总睡眠、卧床时间、睡眠效率</li>
               </ul>
+              <p class="tool-subtitle">示例数据：</p>
+              <ul>
+                <li>上床 02:34 → 离床 08:17，总睡眠 4 小时 58 分钟</li>
+                <li>睡眠效率 86%</li>
+              </ul>
+              <p class="tool-value">监测数据与在线医生、健管师联动，形成"监测—解释—建议"闭环</p>
               <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
 
           <div class="tool-row reverse" data-reveal>
             <div class="tool-img">
-              <div class="tool-img-placeholder">动态健康档案界面预览</div>
+              <div class="tool-img-stack">
+                <div class="tool-img-placeholder">图1</div>
+              </div>
             </div>
             <div class="tool-text">
-              <h3>动态健康档案</h3>
+              <h3>专业医生科普</h3>
               <ul>
-                <li>体检、检验、影像、病历、用药统一整理</li>
-                <li>历年结果同一器官对比</li>
-                <li>自动生成复查提醒</li>
-                <li>支持家庭协同查看</li>
+                <li>已沉淀 2000+ 条专业科普内容</li>
+                <li>来源：全国各地三甲医院副高级及以上医生</li>
               </ul>
+              <p class="tool-subtitle">医生示例：</p>
+              <ul>
+                <li>郭宏杰 副主任医师 · 北京大学第一医院</li>
+                <li>黄志新 副主任医师 · 广东省第二人民医院</li>
+                <li>汪晨 主任医师 · 中日友好医院</li>
+              </ul>
+              <p class="tool-scene">内容类型：疾病科普、检查须知、康复建议</p>
               <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
@@ -2676,31 +2716,6 @@
 
   <section id="services-continued">
     <div class="container">
-      <section id="workflow" class="workflow-section workflow-inline">
-        <div class="dual-role-block" data-reveal style="max-width:52rem;margin:0 auto;padding:2.5rem;border-radius:16px;border:1px solid var(--hairline);background:#fff;box-shadow:0 2px 12px rgba(15,23,42,0.04);">
-          <p style="font-size:1.125rem;font-weight:600;color:var(--ink);margin-bottom:1rem;">云心达同时服务机构与个人：</p>
-          <p style="font-size:0.95rem;color:var(--ink-body);line-height:1.7;margin-bottom:0.5rem;">为体检中心、保险公司、医院、企事业单位提供健康数据整理、服务运营与资源链接</p>
-          <p style="font-size:0.95rem;color:var(--ink-body);line-height:1.7;margin-bottom:1rem;">为个人用户提供动态健康档案、报告解读、复查提醒与在线医生服务</p>
-          <p style="font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:2rem;">同一套能力，服务两种角色。</p>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
-            <div style="border-radius:12px;border:1px dashed rgba(119,85,255,0.3);background:rgba(119,85,255,0.03);padding:1.25rem;text-align:center;">
-              <img src="client-view.png" alt="客户看到 - 健康档案" style="width:100%;border-radius:8px;margin-bottom:0.75rem;" />
-              <div style="font-size:0.9rem;font-weight:500;color:var(--ink);">客户看到</div>
-              <div style="font-size:0.8rem;color:var(--ink-body);margin-top:0.2rem;">健康档案</div>
-            </div>
-            <div style="border-radius:12px;border:1px dashed rgba(119,85,255,0.3);background:rgba(119,85,255,0.03);padding:1.25rem;text-align:center;">
-              <img src="org-view.png" alt="机构看到 - 服务线索" style="width:100%;border-radius:8px;margin-bottom:0.75rem;" />
-              <div style="font-size:0.9rem;font-weight:500;color:var(--ink);">机构看到</div>
-              <div style="font-size:0.8rem;color:var(--ink-body);margin-top:0.2rem;">服务线索</div>
-            </div>
-            <div style="border-radius:12px;border:1px dashed rgba(119,85,255,0.3);background:rgba(119,85,255,0.03);padding:1.25rem;text-align:center;">
-              <img src="frontend-view.png" alt="前端看到 - 脱敏话术" style="width:100%;border-radius:8px;margin-bottom:0.75rem;" />
-              <div style="font-size:0.9rem;font-weight:500;color:var(--ink);">前端看到</div>
-              <div style="font-size:0.8rem;color:var(--ink-body);margin-top:0.2rem;">脱敏话术</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section class="clients-section" style="margin-bottom:3.5rem;">
         <div class="section-head center" data-reveal>
