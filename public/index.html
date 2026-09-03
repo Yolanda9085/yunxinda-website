@@ -2120,16 +2120,6 @@
         <nav>
           <a href="#home" class="nav-link" data-nav="home">首页</a>
           <a href="#services" class="nav-link" data-nav="services">核心业务</a>
-          <div class="nav-item">
-            <a href="#productsDisplay" class="nav-link" data-nav="products">健康导诊台</a>
-            <div class="nav-dropdown">
-              <div class="nav-dropdown-inner">
-                <a href="#checkupSection" class="nav-dropdown-item">🩺 体检</a>
-                <a href="#screeningSection" class="nav-dropdown-item">🔬 肠癌筛查</a>
-                <a href="#sleepSection" class="nav-dropdown-item">🛏️ 睡眠监测</a>
-              </div>
-            </div>
-          </div>
           <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--sm nav-cta">
             <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
             <span class="glass-button-shadow" aria-hidden="true"></span>
@@ -2145,7 +2135,6 @@
   <div class="mobile-nav" id="mobileNav">
     <a href="#home" data-nav="home" onclick="toggleMenu()">首页</a>
     <a href="#services" data-nav="services" onclick="toggleMenu()">核心业务</a>
-    <a href="#products" onclick="toggleMenu()">健康导诊台</a>
     <a href="#checkupSection" onclick="toggleMenu()">　🩺 体检</a>
     <a href="#screeningSection" onclick="toggleMenu()">　🔬 肠癌筛查</a>
     <a href="#sleepSection" onclick="toggleMenu()">　🛏️ 睡眠监测</a>
@@ -2163,10 +2152,6 @@
             <span class="hero-line2 gradient-text">个人长期健康档案与服务</span>
           </h1>
           <div class="hero-btns">
-            <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--xl">
-              <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
-              <span class="glass-button-shadow" aria-hidden="true"></span>
-            </a>
             <a href="#services" class="glass-button-wrap glass-button-wrap--lg">
               <span class="glass-button"><span class="glass-button-text">了解更多 →</span></span>
             </a>
@@ -2441,32 +2426,6 @@
       </div>
 
       <!-- 健康关怀问诊台：低门槛方向路由，不问敏感信息、不做风险打分 -->
-      <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
-        <div class="triage-card" id="triageCard">
-          <div class="triage-head">
-            <div class="triage-icon" aria-hidden="true">💬</div>
-            <div>
-              <div class="triage-badge">健康关怀问诊台</div>
-              <h3 class="triage-title">今天比较关心哪个方面？</h3>
-            </div>
-          </div>
-          <div class="triage-options" id="triageOptions">
-            <button class="lcs-option" type="button" data-triage="gut">🍽️ 肠胃/消化不太舒服</button>
-            <button class="lcs-option" type="button" data-triage="heart">💤 心脏或睡眠让我有点担心</button>
-            <button class="lcs-option" type="button" data-triage="checkup">🩺 好久没体检，或不满意之前的体检</button>
-            <button class="lcs-option" type="button" data-triage="fine">😊 目前感觉都还不错，就是想了解下</button>
-          </div>
-          <div class="triage-reply" id="triageReply">
-            <div class="lcs-demo-msg lcs-demo-msg--bot" id="triageReplyText"></div>
-            <button class="lcs-btn" type="button" id="triageGoBtn"></button>
-            <button class="lcs-option triage-reset" type="button" id="triageResetBtn">换个话题，重新看看</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-lead-block" data-reveal>
-        <p>如果刚才选的是"肠胃/消化不太舒服"，或者只是想更进一步：从整体体检，到专门针对肠胃健康的深度早筛，由大讲到小，看看下面这一项是否适合你。</p>
-      </div>
 
       <!-- 丽常生 Agent 主卡片 -->
       <div class="lichangsheng-hero" data-reveal id="screeningSection">
@@ -2530,36 +2489,6 @@
         </div>
       </div>
 
-      <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
-        <div class="mini-agent-card" id="proteinProduct" style="padding:0;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-            <div style="padding:2rem;display:flex;flex-direction:column;justify-content:center;">
-              <div class="mini-agent-badge" style="margin-bottom:0.75rem;">国家注册特医食品 · 不是保健品</div>
-              <h3 style="font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">卡乐全® 全营养配方</h3>
-              <p style="font-size:0.95rem;color:var(--ink-body);line-height:1.7;margin-bottom:1.25rem;">国食注字TY20230009，可作为单一营养来源，一袋满足一餐完整营养。专为吃不下、吸收差、恢复中的人设计。</p>
-              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
-                <span style="padding:0.4rem 0.75rem;border-radius:8px;background:rgba(119,85,255,0.08);color:var(--primary);font-size:0.8125rem;font-weight:500;">术后康复期</span>
-                <span style="padding:0.4rem 0.75rem;border-radius:8px;background:rgba(119,85,255,0.08);color:var(--primary);font-size:0.8125rem;font-weight:500;">化疗后食欲差</span>
-                <span style="padding:0.4rem 0.75rem;border-radius:8px;background:rgba(119,85,255,0.08);color:var(--primary);font-size:0.8125rem;font-weight:500;">吞咽困难</span>
-                <span style="padding:0.4rem 0.75rem;border-radius:8px;background:rgba(119,85,255,0.08);color:var(--primary);font-size:0.8125rem;font-weight:500;">消化吸收障碍</span>
-              </div>
-              <a href="#contact" class="lcs-btn" style="text-decoration:none;display:inline-block;width:fit-content;">咨询了解</a>
-            </div>
-            <div style="background:linear-gradient(160deg,#f5f3ff,#ede9fe);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;gap:1.5rem;">
-              <div style="text-align:center;">
-                <div style="font-size:2rem;font-weight:700;color:var(--primary);">258 元/盒</div>
-                <div style="font-size:0.8125rem;color:var(--ink-body);margin-top:0.25rem;">500g（50g × 10袋）</div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:0.5rem;width:100%;max-width:240px;">
-                <div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:var(--ink-body);"><span>一袋 = 一餐完整营养</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:var(--ink-body);"><span>医生或营养师指导使用</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:0.8125rem;color:var(--ink-body);"><span>非日常保健品，按需使用</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
   </section>
 
   <section id="sleepSection" class="selftests-section">
@@ -2570,7 +2499,7 @@
           新一代非接触式睡眠监测科技
         </div>
         <h2 class="section-title">床垫式睡眠监护仪</h2>
-        <p class="section-desc lead">铺在床垫下，<span style="color:var(--primary);font-weight:600;background:rgba(119,85,255,0.06);padding:2px 8px;border-radius:6px;border:1px solid rgba(119,85,255,0.12);">不用戴、插电即用（零续航焦虑）</span>，在你熟睡时全天候无感守护健康。</p>
+        <p class="section-desc lead">铺在床垫下，<span style="color:var(--primary);font-weight:600;background:rgba(119,85,255,0.06);padding:2px 8px;border-radius:6px;border:1px solid rgba(119,85,255,0.12);">不用戴、插电即用（零续航焦虑）</span>，在你熟睡时全天候<span style="white-space:nowrap;">无感守护健康。</span></p>
       </div>
 
       <div class="sleep-layout" data-reveal>
@@ -2708,10 +2637,6 @@
       <h2>准备好开启健康管理服务了吗？</h2>
       <p>无论是全科医生咨询、健康早筛还是日常监测，云心达愿与您携手守护健康。</p>
       <p class="cta-trust">免费咨询 · 24 小时内回复 · 信息严格保密</p>
-      <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--lg" style="margin-top:2rem;">
-        <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
-        <span class="glass-button-shadow" aria-hidden="true"></span>
-      </a>
     </div>
   </section>
 
@@ -2836,10 +2761,6 @@
       </div>
       <div class="footer-cta-row">
         <p class="footer-contact">咨询邮箱：待补充 · 联系电话：待补充</p>
-        <a href="#contact" class="glass-button-wrap glass-button-wrap--primary glass-button-wrap--sm">
-          <span class="glass-button"><span class="glass-button-text">预约咨询</span></span>
-          <span class="glass-button-shadow" aria-hidden="true"></span>
-        </a>
       </div>
       <p class="copyright">© 2026 云心达. All rights reserved.<span class="footer-legal">业务咨询专用 · 用户隐私严格保护</span></p>
     </div>
@@ -3352,62 +3273,6 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   })();
 
   var HealthPoints = { award: function() { return null; } };
-
-  // 健康关怀问诊台：低门槛方向路由，只做引导，不打分不问隐私
-  (function () {
-    var card = document.getElementById('triageCard');
-    if (!card) return;
-    var optionsEl = document.getElementById('triageOptions');
-    var replyEl = document.getElementById('triageReply');
-    var replyTextEl = document.getElementById('triageReplyText');
-    var goBtn = document.getElementById('triageGoBtn');
-    var resetBtn = document.getElementById('triageResetBtn');
-    var routes = {
-      gut: {
-        reply: '肠胃不舒服的时候，很多人会先自己扛一扛，这能理解。如果想更清楚地了解情况，居家就能做的丽常生早筛是个方便的方式，不用请假排队。',
-        btnText: '看看丽常生早筛',
-        targetId: 'lcsQuiz'
-      },
-      heart: {
-        reply: '心脏和睡眠这类问题，靠自己"感觉"确实不太好判断，需要一点客观数据帮忙。睡眠监护仪能在家里安装，安静记录夜间指标，也适合帮家里老人多一层留意。',
-        btnText: '看看睡眠监护仪',
-        targetId: 'sleepSection'
-      },
-      checkup: {
-        reply: '很多人对体检的困扰不是"要不要做"，而是"该做哪种"。回答几个小问题，我们可以帮你把方向理清楚，不用自己对着一堆项目名称猜。',
-        btnText: '匹配适合我的体检方向',
-        targetId: 'checkupQuiz'
-      },
-      fine: {
-        reply: '状态不错，也值得保持住。比起等有需要才着急找医生，很多人会提前把"随时能问医生"这件事安排好，平时有点小问题也能马上问一下，安心一些。',
-        btnText: '了解在线医生服务',
-        targetId: 'services'
-      }
-    };
-    function highlight(el) {
-      var prev = el.style.boxShadow;
-      el.style.transition = 'box-shadow 0.3s ease';
-      el.style.boxShadow = '0 0 0 3px rgba(119,85,255,0.45)';
-      setTimeout(function () { el.style.boxShadow = prev; }, 1600);
-    }
-    optionsEl.addEventListener('click', function (e) {
-      var key = e.target.getAttribute('data-triage');
-      if (!key || !routes[key]) return;
-      var r = routes[key];
-      optionsEl.hidden = true;
-      replyTextEl.textContent = r.reply;
-      goBtn.textContent = r.btnText;
-      goBtn.onclick = function () {
-        var target = document.getElementById(r.targetId);
-        if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); highlight(target); }
-      };
-      replyEl.classList.add('is-active');
-    });
-    resetBtn.addEventListener('click', function () {
-      replyEl.classList.remove('is-active');
-      optionsEl.hidden = false;
-    });
-  })();
 
   // 通用小型自测工具引擎（睡眠 / 营养 / 体检匹配）
   function initMiniQuiz(cfg) {
