@@ -2308,6 +2308,84 @@
     </div>
   </section>
 
+  <section id="awaken" class="awaken-section">
+    <div class="awaken-tabbar" data-reveal role="tablist">
+      <button type="button" class="awaken-tab is-active" data-awaken-tab="screening" role="tab" aria-selected="true">🔬 早筛意识唤醒</button>
+      <button type="button" class="awaken-tab" data-awaken-tab="balance" role="tab" aria-selected="false">💳 健康余额提醒</button>
+      <button type="button" class="awaken-tab" data-awaken-tab="credit" role="tab" aria-selected="false">📊 健康信用分</button>
+    </div>
+
+    <div class="awaken-panel screening-section is-active" data-awaken-panel="screening">
+      <div class="container">
+        <div class="scr-card" id="scrCard">
+          <h2 class="scr-title">肠道健康，早知道差别有多大</h2>
+          <p class="scr-subtitle">跟着走一遍，看看"早一点"和"等一等"会走向怎样不同的结局</p>
+          <div id="scrStage"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="awaken-panel balance-section" data-awaken-panel="balance" hidden>
+      <div class="container">
+        <div class="balance-phone">
+          <div class="balance-bar"></div>
+          <div class="balance-header">
+            <div class="balance-icon">⚠️</div>
+            <div class="balance-title">健康账户余额不足</div>
+            <div class="balance-sub">云心达 · 健康账户中心</div>
+          </div>
+          <div class="balance-body" id="balanceBody">
+            <div class="balance-amount">
+              <div class="balance-amount-num">-1,460 天</div>
+              <div class="balance-amount-label">当前健康余额（已逾期 2 年）</div>
+            </div>
+            <div class="balance-warn">您的健康账户已连续透支 2 年 3 个月<br/>再不充值，账户将被冻结（不可恢复）</div>
+            <div class="balance-plans">
+              <div class="balance-plan"><span class="balance-plan-tag">早筛</span><span class="balance-plan-text">完成一次丽常生肠癌早筛</span><span class="balance-plan-gain">+1,825 天</span></div>
+              <div class="balance-plan"><span class="balance-plan-tag">体检</span><span class="balance-plan-text">完成年度全面体检</span><span class="balance-plan-gain">+365 天</span></div>
+              <div class="balance-plan"><span class="balance-plan-tag">监测</span><span class="balance-plan-text">绑定日常监测（每月）</span><span class="balance-plan-gain">+30 天/月</span></div>
+            </div>
+            <div class="balance-actions">
+              <button class="balance-btn balance-btn--primary" data-scroll="products">立即充值</button>
+              <button class="balance-btn balance-btn--ghost" id="balanceLater">稍后提醒</button>
+            </div>
+          </div>
+          <div class="balance-confirm" id="balanceConfirm">
+            <div style="font-size:0.85rem;color:#c53030;line-height:1.6;margin-bottom:0.5rem;">您确定继续透支健康账户吗？</div>
+            <div class="balance-confirm-num">-1,460 天</div>
+            <div style="font-size:0.78rem;color:#718096;margin-bottom:1.25rem;line-height:1.6;">每拖延 1 天，健康余额再 -1 天<br/>逾期 3 年将永久冻结账户</div>
+            <div class="balance-actions">
+              <button class="balance-btn balance-btn--primary" data-scroll="products">马上充值</button>
+              <button class="balance-btn balance-btn--ghost" id="balanceBack">返回</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="awaken-panel credit-section" data-awaken-panel="credit" hidden>
+      <div class="container">
+        <div class="credit-wrap">
+          <div class="credit-gauge">
+            <div class="credit-ring"></div>
+            <div class="credit-center">
+              <div class="credit-score" id="creditScore">0</div>
+              <div class="credit-level">一般</div>
+              <div class="credit-max">/ 850 分</div>
+            </div>
+          </div>
+          <div class="credit-info">
+            <h3>您的健康信用分</h3>
+            <p>芝麻信用影响你能不能借钱，健康信用影响你能不能活着花钱。完成早筛、规律监测，分数自然上涨。</p>
+            <div class="credit-dims" id="creditDims"></div>
+            <div class="credit-tips">💡 提升方式：完成一次早筛 +50 · 年度体检 +30 · 绑定日常监测 +20 · 戒烟限酒 +15</div>
+            <button class="credit-cta" data-scroll="products">立即提升信用分</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="products">
     <div class="container">
       <div class="section-head center" data-reveal>
@@ -2556,15 +2634,7 @@
         </div>
       </div>
 
-      <div class="branch-cta-card" id="videoDoctorCta" data-reveal>
-        <div class="branch-cta-icon" aria-hidden="true">☎️</div>
-        <div class="branch-cta-body">
-          <div class="branch-cta-badge">体检的另一条线 · 随时问医生</div>
-          <h3>体检报告看不懂？或者半夜突然不舒服？</h3>
-          <p>不管是体检前的疑问，还是检后报告解读，365 天 24 小时都能连线专业全科医生，365元/365天，无需专门为一次咨询挂号排队。</p>
-        </div>
-        <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" class="branch-cta-btn" target="_blank" rel="noopener noreferrer">了解24×7视频医生 ↗</a>
-      </div>
+
     </div>
   </section>
 
@@ -2618,83 +2688,6 @@
     </div>
   </section>
 
-  <section id="awaken" class="awaken-section">
-    <div class="awaken-tabbar" data-reveal role="tablist">
-      <button type="button" class="awaken-tab is-active" data-awaken-tab="screening" role="tab" aria-selected="true">🔬 早筛意识唤醒</button>
-      <button type="button" class="awaken-tab" data-awaken-tab="balance" role="tab" aria-selected="false">💳 健康余额提醒</button>
-      <button type="button" class="awaken-tab" data-awaken-tab="credit" role="tab" aria-selected="false">📊 健康信用分</button>
-    </div>
-
-    <div class="awaken-panel screening-section is-active" data-awaken-panel="screening">
-      <div class="container">
-        <div class="scr-card" id="scrCard">
-          <h2 class="scr-title">肠道健康，早知道差别有多大</h2>
-          <p class="scr-subtitle">跟着走一遍，看看"早一点"和"等一等"会走向怎样不同的结局</p>
-          <div id="scrStage"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="awaken-panel balance-section" data-awaken-panel="balance" hidden>
-      <div class="container">
-        <div class="balance-phone">
-          <div class="balance-bar"></div>
-          <div class="balance-header">
-            <div class="balance-icon">⚠️</div>
-            <div class="balance-title">健康账户余额不足</div>
-            <div class="balance-sub">云心达 · 健康账户中心</div>
-          </div>
-          <div class="balance-body" id="balanceBody">
-            <div class="balance-amount">
-              <div class="balance-amount-num">-1,460 天</div>
-              <div class="balance-amount-label">当前健康余额（已逾期 2 年）</div>
-            </div>
-            <div class="balance-warn">您的健康账户已连续透支 2 年 3 个月<br/>再不充值，账户将被冻结（不可恢复）</div>
-            <div class="balance-plans">
-              <div class="balance-plan"><span class="balance-plan-tag">早筛</span><span class="balance-plan-text">完成一次丽常生肠癌早筛</span><span class="balance-plan-gain">+1,825 天</span></div>
-              <div class="balance-plan"><span class="balance-plan-tag">体检</span><span class="balance-plan-text">完成年度全面体检</span><span class="balance-plan-gain">+365 天</span></div>
-              <div class="balance-plan"><span class="balance-plan-tag">监测</span><span class="balance-plan-text">绑定日常监测（每月）</span><span class="balance-plan-gain">+30 天/月</span></div>
-            </div>
-            <div class="balance-actions">
-              <button class="balance-btn balance-btn--primary" data-scroll="products">立即充值</button>
-              <button class="balance-btn balance-btn--ghost" id="balanceLater">稍后提醒</button>
-            </div>
-          </div>
-          <div class="balance-confirm" id="balanceConfirm">
-            <div style="font-size:0.85rem;color:#c53030;line-height:1.6;margin-bottom:0.5rem;">您确定继续透支健康账户吗？</div>
-            <div class="balance-confirm-num">-1,460 天</div>
-            <div style="font-size:0.78rem;color:#718096;margin-bottom:1.25rem;line-height:1.6;">每拖延 1 天，健康余额再 -1 天<br/>逾期 3 年将永久冻结账户</div>
-            <div class="balance-actions">
-              <button class="balance-btn balance-btn--primary" data-scroll="products">马上充值</button>
-              <button class="balance-btn balance-btn--ghost" id="balanceBack">返回</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="awaken-panel credit-section" data-awaken-panel="credit" hidden>
-      <div class="container">
-        <div class="credit-wrap">
-          <div class="credit-gauge">
-            <div class="credit-ring"></div>
-            <div class="credit-center">
-              <div class="credit-score" id="creditScore">0</div>
-              <div class="credit-level">一般</div>
-              <div class="credit-max">/ 850 分</div>
-            </div>
-          </div>
-          <div class="credit-info">
-            <h3>您的健康信用分</h3>
-            <p>芝麻信用影响你能不能借钱，健康信用影响你能不能活着花钱。完成早筛、规律监测，分数自然上涨。</p>
-            <div class="credit-dims" id="creditDims"></div>
-            <div class="credit-tips">💡 提升方式：完成一次早筛 +50 · 年度体检 +30 · 绑定日常监测 +20 · 戒烟限酒 +15</div>
-            <button class="credit-cta" data-scroll="products">立即提升信用分</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 
   <section class="band-cream cta-band">
@@ -3375,8 +3368,8 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       },
       fine: {
         reply: '状态不错，也值得保持住。比起等有需要才着急找医生，很多人会提前把"随时能问医生"这件事安排好，平时有点小问题也能马上问一下，安心一些。',
-        btnText: '了解24×7视频医生',
-        targetId: 'videoDoctorCta'
+        btnText: '了解在线医生服务',
+        targetId: 'services'
       }
     };
     function highlight(el) {
