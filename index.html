@@ -890,6 +890,47 @@
     .advantages-inline, .workflow-inline { margin-bottom: 3.5rem; }
 
     /* 第二部分 · 智慧工具卡片（Octagos Trusted Tools） */
+    /* 智能健康工具 — 图文交错模块 */
+    .tools-module { margin-top: 0; padding-top: 4rem; border-top: 1px solid var(--hairline); }
+    .tools-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+    .tool-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+      padding: 2rem; border-radius: 20px; background: #fff;
+      border: 1px solid var(--hairline); box-shadow: 0 4px 16px rgba(15,23,42,0.04);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .tool-row:hover {
+      border-color: rgba(119,85,255,0.2); box-shadow: 0 12px 36px rgba(119,85,255,0.1);
+      transform: translateY(-2px);
+    }
+    .tool-row.reverse .tool-img { order: 2; }
+    .tool-row.reverse .tool-text { order: 1; }
+    .tool-img { border-radius: 14px; overflow: hidden; background: var(--canvas-soft); min-height: 200px; display: flex; align-items: center; justify-content: center; }
+    .tool-img img { width: 100%; height: auto; display: block; border-radius: 14px; }
+    .tool-img-placeholder {
+      width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center;
+      color: var(--ink-mute); font-size: 0.8rem; background: linear-gradient(160deg, #f5f3ff, #ede9fe);
+      border-radius: 14px;
+    }
+    .tool-text h3 { font-size: 1.375rem; font-weight: 600; color: var(--ink); letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .tool-text ul { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+    .tool-text ul li {
+      font-size: 0.9375rem; color: var(--ink-body); line-height: 1.6; padding: 0.25rem 0;
+      padding-left: 1.25rem; position: relative;
+    }
+    .tool-text ul li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); opacity: 0.5; }
+    .tool-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.9375rem; font-weight: 500; color: var(--primary);
+      transition: color 0.2s, gap 0.2s;
+    }
+    .tool-link:hover { color: var(--primary-press); gap: 0.5rem; }
+    @media (max-width: 768px) {
+      .tool-row { grid-template-columns: 1fr; gap: 1.5rem; }
+      .tool-row.reverse .tool-img { order: 0; }
+      .tool-row.reverse .tool-text { order: 0; }
+    }
+
     .capabilities-block {
       margin-top: 0; padding-top: 4rem;
       border-top: 1px solid var(--hairline);
@@ -2153,66 +2194,75 @@
       </section>
 
 
-      <div class="capabilities-block" data-reveal>
+      <div class="tools-module" data-reveal>
         <div class="section-head center">
-          <h2 class="section-title">省心工具，精准守护</h2>
-          <p class="section-desc lead">为简洁、精准与可持续健康管理而设计。点击卡片查看界面详情。</p>
+          <h2 class="section-title">云心达 · 智能健康工具</h2>
+          <p class="section-desc lead">从咨询到监测，从档案到提醒，云心达提供覆盖全场景的健康管理工具。</p>
         </div>
-        <div class="cap-grid" id="capGrid">
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="点击底部「健康问问」展开三通道：AI 小云、24×7 视频医生、专属健管师。">
-            <div class="cap-card-top">
-              <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-              <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="tools-list">
+
+          <div class="tool-row" data-reveal>
+            <div class="tool-img">
+              <div class="tool-img-placeholder">健康问问 AI 界面预览</div>
             </div>
-            <h3 class="cap-card-title">健康问问入口</h3>
-            <p class="cap-card-desc">三通道一键展开，快速进入咨询。</p>
-            <div class="cap-card-visual cap-card-visual--purple"><div class="cap-img-slot" data-img-src="consult-entry.png">界面预览</div></div>
-          </article>
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="AI 智能问答、科普视频、报告解读与医院/食物排名等快捷入口。">
-            <div class="cap-card-top">
-              <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></div>
-              <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="tool-text">
+              <h3>健康问问 AI</h3>
+              <ul>
+                <li>AI 智能问答，随时解答健康疑问</li>
+                <li>报告指标 AI 帮你解读</li>
+                <li>2000+ 专业医生科普视频</li>
+              </ul>
+              <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <h3 class="cap-card-title">AI 小云</h3>
-            <p class="cap-card-desc">智能问答、科普视频与报告解读。</p>
-            <div class="cap-card-visual cap-card-visual--blue"><div class="cap-img-slot" data-img-src="consult-ai.png">界面预览</div></div>
-          </article>
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="通用技术（宝石花）在线健康咨询：7×24 小时在线极速咨询，线上问诊不用排队。">
-            <div class="cap-card-top">
-              <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-              <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          </div>
+
+          <div class="tool-row reverse" data-reveal>
+            <div class="tool-img">
+              <div class="tool-img-placeholder">24×7 视频医生界面预览</div>
             </div>
-            <h3 class="cap-card-title">24×7 视频医生</h3>
-            <p class="cap-card-desc">365元/365天 · 已售15,985 · 不排队极速问诊</p>
-            <div class="cap-card-visual cap-card-visual--cyan"><div class="cap-img-slot" data-img-src="consult-doctor.png">界面预览</div></div>
-          </article>
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="专属健康管理师提供慢病管理、检后康复与一对一咨询指导。">
-            <div class="cap-card-top">
-              <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-              <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="tool-text">
+              <h3>24×7 视频医生</h3>
+              <ul>
+                <li>365 天 24 小时随时连线全科医生</li>
+                <li>体检报告看不懂？半夜不舒服？随时可问</li>
+                <li>适用场景：报告解读、复查前沟通、慢病管理</li>
+              </ul>
+              <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <h3 class="cap-card-title">专属健管师</h3>
-            <p class="cap-card-desc">慢病管理、检后康复指导。</p>
-            <div class="cap-card-visual cap-card-visual--pink"><div class="cap-img-slot" data-img-src="consult-manager.png">界面预览</div></div>
-          </article>
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="常乐芯、丽常生、丽畅轻等居家早筛产品，配合风险问卷与癌症联检。">
-            <div class="cap-card-top">
-              <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-              <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          </div>
+
+          <div class="tool-row" data-reveal>
+            <div class="tool-img">
+              <div class="tool-img-placeholder">睡眠监测界面预览</div>
             </div>
-            <h3 class="cap-card-title">健康早筛</h3>
-            <p class="cap-card-desc">居家检测、风险问卷与癌症联检。</p>
-            <div class="cap-card-visual cap-card-visual--green"><div class="cap-img-slot" data-img-src="screen-health.jpg">界面预览</div></div>
-          </article>
-          <article class="cap-card cap-card--feature" data-cap-card data-cap-detail="血压血糖血氧、睡眠垫日报与家庭成员数据共享，支持长期趋势查看。">
-            <div class="cap-card-top">
-              <div class="cap-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg></div>
-              <button type="button" class="cap-expand-btn" aria-label="查看详情"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M10 14h4v-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="tool-text">
+              <h3>睡眠监测</h3>
+              <ul>
+                <li>床垫式传感器，无需佩戴</li>
+                <li>监测心率、呼吸、离床、睡眠质量</li>
+                <li>连续日历式记录</li>
+                <li>自己用，也给父母用</li>
+              </ul>
+              <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <h3 class="cap-card-title">日常监测</h3>
-            <p class="cap-card-desc">指标趋势、睡眠日报与全家共享。</p>
-            <div class="cap-card-visual cap-card-visual--violet"><div class="cap-img-slot" data-img-src="monitor-daily.jpg">界面预览</div></div>
-          </article>
+          </div>
+
+          <div class="tool-row reverse" data-reveal>
+            <div class="tool-img">
+              <div class="tool-img-placeholder">动态健康档案界面预览</div>
+            </div>
+            <div class="tool-text">
+              <h3>动态健康档案</h3>
+              <ul>
+                <li>体检、检验、影像、病历、用药统一整理</li>
+                <li>历年结果同一器官对比</li>
+                <li>自动生成复查提醒</li>
+                <li>支持家庭协同查看</li>
+              </ul>
+              <a href="#" class="tool-link">了解详情 <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
