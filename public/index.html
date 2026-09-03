@@ -1972,9 +1972,54 @@
     .product-tip-title { font-size: 0.82rem; font-weight: 700; color: #dd6b20; margin-bottom: 0.35rem; }
     .product-tip-text { font-size: 0.78rem; color: var(--ink-body); line-height: 1.65; }
 
-    /* 睡眠监护仪：左右双栏布局 */
+    /* 睡眠监护仪：code_artifact 风格布局 */
+    .sleep-layout {
+      display: grid; grid-template-columns: 7fr 5fr; gap: 1.5rem;
+      max-width: 64rem; margin: 0 auto;
+    }
+    .sleep-main-card {
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border: 1px solid var(--hairline); border-radius: 24px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 10px 25px -5px rgba(148,163,184,0.1);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .sleep-main-card:hover {
+      border-color: rgba(119,85,255,0.3);
+      box-shadow: 0 20px 35px -10px rgba(119,85,255,0.12);
+    }
+    .sleep-scene-col { display: flex; flex-direction: column; gap: 1rem; justify-content: space-between; }
+    .sleep-scene-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem; border-radius: 16px;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border: 1px solid var(--hairline);
+      box-shadow: 0 10px 25px -5px rgba(148,163,184,0.1);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .sleep-scene-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(119,85,255,0.3);
+      box-shadow: 0 20px 35px -10px rgba(119,85,255,0.12);
+    }
+    .sleep-scene-icon {
+      flex-shrink: 0; width: 48px; height: 48px;
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    .sleep-scene-item:hover .sleep-scene-icon { background: var(--primary) !important; color: #fff !important; }
+    .sleep-scene-item:hover .sleep-scene-icon svg { stroke: #fff; }
+    .sleep-func-grid { }
+    .sleep-func-item {
+      padding: 0.75rem; border-radius: 12px;
+      background: rgba(255,255,255,0.9); border: 1px solid var(--hairline);
+      text-align: center; transition: border-color 0.2s, background 0.2s;
+    }
+    .sleep-func-item:hover { border-color: rgba(119,85,255,0.3); background: rgba(119,85,255,0.04); }
     @media (max-width: 768px) {
-      #sleepSection [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      .sleep-layout { grid-template-columns: 1fr; }
+      .sleep-func-grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
 
     /* 叙事引导段落（早晚对比 / 社会数据钩子） */
@@ -2485,10 +2530,6 @@
         </div>
       </div>
 
-      <div class="section-lead-block" data-reveal>
-        <p>完成早筛只是第一步。如果检测提示需要观察，或者你正处于术后 / 慢病恢复期，肠胃与消化吸收功能往往更需要额外支持——这也是我们把营养补充作为早筛的延伸，而不是单独推销的原因。</p>
-      </div>
-
       <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
         <div class="mini-agent-card" id="proteinProduct" style="padding:0;overflow:hidden;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
@@ -2524,61 +2565,143 @@
   <section id="sleepSection" class="selftests-section">
     <div class="container">
       <div class="section-head center" data-reveal>
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:rgba(119,85,255,0.08);border:1px solid rgba(119,85,255,0.15);color:var(--primary);font-size:0.75rem;font-weight:600;letter-spacing:0.04em;margin-bottom:1rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5H18l-3.5 2.5 1.5 4.5L12 12l-4 2.5 1.5-4.5L6 7.5h4.5z"/></svg>
+          新一代非接触式睡眠监测科技
+        </div>
         <h2 class="section-title">床垫式睡眠监护仪</h2>
-        <p class="section-desc lead">放在床垫下，不用戴，不用充电，睡着就在监测。</p>
+        <p class="section-desc lead">铺在床垫下，<span style="color:var(--primary);font-weight:600;background:rgba(119,85,255,0.06);padding:2px 8px;border-radius:6px;border:1px solid rgba(119,85,255,0.12);">不用戴、插电即用（零续航焦虑）</span>，在你熟睡时全天候无感守护健康。</p>
       </div>
 
-      <div data-reveal style="max-width:52rem;margin:0 auto;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
-          <div style="padding:2rem;border-radius:16px;background:linear-gradient(160deg,#0f172a,#1e293b);color:#fff;">
-            <p style="font-size:1.125rem;font-weight:600;margin-bottom:1rem;">你知道自己昨晚睡得怎么样吗？</p>
-            <p style="font-size:0.9rem;color:#94a3b8;line-height:1.7;margin-bottom:1.5rem;">我国超 3 亿人受心血管疾病困扰，睡眠质量与心血管健康密切相关。很多问题不是"感觉"得出来的，需要连续客观的数据。</p>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-              <div style="flex:1;min-width:100px;text-align:center;padding:0.75rem;border-radius:10px;background:rgba(255,255,255,0.08);">
-                <div style="font-size:1.25rem;font-weight:700;color:#a78bfa;">心率</div>
-                <div style="font-size:0.75rem;color:#94a3b8;">实时记录</div>
-              </div>
-              <div style="flex:1;min-width:100px;text-align:center;padding:0.75rem;border-radius:10px;background:rgba(255,255,255,0.08);">
-                <div style="font-size:1.25rem;font-weight:700;color:#a78bfa;">呼吸</div>
-                <div style="font-size:0.75rem;color:#94a3b8;">异常预警</div>
-              </div>
-              <div style="flex:1;min-width:100px;text-align:center;padding:0.75rem;border-radius:10px;background:rgba(255,255,255,0.08);">
-                <div style="font-size:1.25rem;font-weight:700;color:#a78bfa;">离床</div>
-                <div style="font-size:0.75rem;color:#94a3b8;">超时提醒</div>
-              </div>
-              <div style="flex:1;min-width:100px;text-align:center;padding:0.75rem;border-radius:10px;background:rgba(255,255,255,0.08);">
-                <div style="font-size:1.25rem;font-weight:700;color:#a78bfa;">睡眠质量</div>
-                <div style="font-size:0.75rem;color:#94a3b8;">日报评分</div>
-              </div>
+      <div class="sleep-layout" data-reveal>
+
+        <div class="sleep-main-card">
+          <div style="position:absolute;right:-4rem;top:-4rem;width:14rem;height:14rem;background:rgba(119,85,255,0.08);border-radius:50%;filter:blur(48px);pointer-events:none;"></div>
+          <div style="position:relative;z-index:1;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+              <span style="font-size:0.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--primary);background:rgba(119,85,255,0.08);padding:4px 10px;border-radius:999px;">健康警示</span>
+              <span style="font-size:0.6875rem;color:var(--ink-mute);display:flex;align-items:center;gap:6px;font-weight:500;">
+                <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span> 24H 实时监测模式
+              </span>
+            </div>
+            <h3 style="font-size:1.375rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:0.75rem;">你知道自己昨晚睡眠的真实质量吗？</h3>
+            <p style="font-size:0.875rem;color:var(--ink-body);line-height:1.7;">我国超 <strong style="color:var(--ink);font-weight:700;text-decoration:underline;text-decoration-color:#a78bfa;text-underline-offset:3px;">3 亿人</strong> 受心血管与睡眠问题困扰。睡眠质量与心血管健康密切相关，许多隐患需要连续客观的数据监控。</p>
+          </div>
+          <!-- 深色仪表盘 -->
+          <div style="margin:1.5rem 0;padding:1rem;border-radius:16px;background:#0f172a;color:#fff;border:1px solid #1e293b;position:relative;z-index:1;">
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.6875rem;color:#94a3b8;margin-bottom:0.5rem;">
+              <span style="display:flex;align-items:center;gap:6px;font-family:monospace;color:#c4b5fd;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                生体体征信号波形
+              </span>
+              <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;background:rgba(34,197,94,0.15);color:#86efac;font-size:0.6875rem;font-weight:500;border:1px solid rgba(34,197,94,0.25);">
+                <span style="width:5px;height:5px;border-radius:50%;background:#4ade80;display:inline-block;"></span> 深度睡眠
+              </span>
+            </div>
+            <div style="height:3.5rem;width:100%;overflow:hidden;display:flex;align-items:center;">
+              <svg style="width:100%;height:48px;" fill="none" viewBox="0 0 500 60" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 0 30 Q 30 30 50 30 T 90 30 T 110 10 T 125 50 T 140 20 T 155 35 T 170 30 T 250 30 T 270 5 T 285 55 T 300 15 T 315 35 T 330 30 T 500 30"/>
+              </svg>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;font-size:0.6875rem;border-top:1px solid rgba(30,41,59,0.8);padding-top:0.625rem;color:#94a3b8;">
+              <span>心率平均: <strong style="color:#fff;font-family:monospace;font-weight:600;">64 bpm</strong></span>
+              <span>呼吸频率: <strong style="color:#fff;font-family:monospace;font-weight:600;">16 次/分</strong></span>
             </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:1rem;">
-            <div style="flex:1;padding:1.25rem;border-radius:14px;border:1px solid var(--hairline);background:#fff;transition:transform 0.25s,box-shadow 0.25s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(119,85,255,0.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
-              <div style="font-size:0.75rem;font-weight:600;color:var(--primary);margin-bottom:0.5rem;">给自己</div>
-              <div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;">醒来就看睡眠报告</div>
-              <div style="font-size:0.8125rem;color:var(--ink-body);line-height:1.6;">心率、呼吸、翻身全自动记录，不用戴，不用改变习惯</div>
+
+          <!-- 四大功能格子 -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;position:relative;z-index:1;" class="sleep-func-grid">
+            <div class="sleep-func-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--ink);margin-top:4px;">心率</div>
+              <div style="font-size:0.625rem;color:var(--ink-mute);">实时无感记录</div>
             </div>
-            <div style="flex:1;padding:1.25rem;border-radius:14px;border:1px solid var(--hairline);background:#fff;transition:transform 0.25s,box-shadow 0.25s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(119,85,255,0.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
-              <div style="font-size:0.75rem;font-weight:600;color:var(--primary);margin-bottom:0.5rem;">给爸妈</div>
-              <div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;">不在身边也能安心</div>
-              <div style="font-size:0.8125rem;color:var(--ink-body);line-height:1.6;">远程查看父母睡眠状态，离床超时自动推送提醒</div>
+            <div class="sleep-func-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--ink);margin-top:4px;">呼吸</div>
+              <div style="font-size:0.625rem;color:var(--ink-mute);">暂停/异常预警</div>
             </div>
-            <div style="flex:1;padding:1.25rem;border-radius:14px;border:1px solid var(--hairline);background:#fff;transition:transform 0.25s,box-shadow 0.25s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(119,85,255,0.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
-              <div style="font-size:0.75rem;font-weight:600;color:var(--primary);margin-bottom:0.5rem;">给全家</div>
-              <div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;">一个传感器，全家都能看</div>
-              <div style="font-size:0.8125rem;color:var(--ink-body);line-height:1.6;">老人、孩子、自己，谁需要关注一目了然</div>
+            <div class="sleep-func-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--ink);margin-top:4px;">离床</div>
+              <div style="font-size:0.625rem;color:var(--ink-mute);">夜间超时提醒</div>
+            </div>
+            <div class="sleep-func-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--ink);margin-top:4px;">睡眠质量</div>
+              <div style="font-size:0.625rem;color:var(--ink-mute);">多维日报评分</div>
             </div>
           </div>
         </div>
-        <div style="text-align:center;">
-          <p style="font-size:0.875rem;color:var(--ink-muted,#94a3b8);margin-bottom:1rem;">高精度传感器 + AI 算法 + 云端服务</p>
-          <a href="#contact" class="lcs-btn" style="text-decoration:none;display:inline-block;">咨询了解 →</a>
+
+        <div class="sleep-scene-col">
+
+          <div class="sleep-scene-item">
+            <div class="sleep-scene-icon" style="background:rgba(119,85,255,0.08);color:var(--primary);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:0.6875rem;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(119,85,255,0.08);color:var(--primary);">给自己</span>
+                <h3 style="font-size:1rem;font-weight:700;color:var(--ink);margin:0;">醒来就看睡眠报告</h3>
+              </div>
+              <p style="font-size:0.8125rem;color:var(--ink-body);line-height:1.65;margin:0;">心率、呼吸、翻身全自动记录，无需佩戴手环，无约束感，不改变原有睡眠习惯。</p>
+            </div>
+          </div>
+
+          <div class="sleep-scene-item">
+            <div class="sleep-scene-icon" style="background:rgba(244,63,94,0.08);color:#f43f5e;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:0.6875rem;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(244,63,94,0.08);color:#e11d48;">给爸妈</span>
+                <h3 style="font-size:1rem;font-weight:700;color:var(--ink);margin:0;">不在身边也能安心</h3>
+              </div>
+              <p style="font-size:0.8125rem;color:var(--ink-body);line-height:1.65;margin:0;">远程查看父母夜间睡眠状态，遇到起夜过久或离床超时，自动给子女发送微信/短信推送提醒。</p>
+            </div>
+          </div>
+
+          <div class="sleep-scene-item">
+            <div class="sleep-scene-icon" style="background:rgba(14,165,233,0.08);color:#0ea5e9;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:0.6875rem;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(14,165,233,0.08);color:#0284c7;">给全家</span>
+                <h3 style="font-size:1rem;font-weight:700;color:var(--ink);margin:0;">一个传感器，全家共享关爱</h3>
+              </div>
+              <p style="font-size:0.8125rem;color:var(--ink-body);line-height:1.65;margin:0;">老人、孩子、自己均可使用。账号多端绑定，随时掌握全家人的健康状况。</p>
+            </div>
+          </div>
+
         </div>
+
       </div>
+
+      <!-- 底部技术标签 + CTA -->
+      <div data-reveal style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--hairline);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;font-size:0.75rem;color:var(--ink-body);">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--hairline);box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+            高精度压电传感器
+          </span>
+          <span style="color:var(--hairline);">·</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--hairline);box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0 1.32 4.24"/><path d="M12 4.5a2.5 2.5 0 0 1 4.96-.46 2.5 2.5 0 0 1 1.98 3 2.5 2.5 0 0 1-1.32 4.24"/><path d="M15.5 16a2.5 2.5 0 0 1-3.5 2.29 2.5 2.5 0 0 1-3.5-2.29"/><line x1="12" y1="12" x2="12" y2="21"/></svg>
+            AI 睡眠滤波算法
+          </span>
+          <span style="color:var(--hairline);">·</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--hairline);box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+            云端健康预警服务
+          </span>
+        </div>
+        <a href="#contact" class="lcs-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">咨询了解详情 <span style="transition:transform 0.2s;">→</span></a>
+      </div>
+
     </div>
   </section>
-
-
 
   <section class="band-cream cta-band">
     <div class="container" data-reveal>

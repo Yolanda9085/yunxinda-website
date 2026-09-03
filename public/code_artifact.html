@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>床垫式睡眠监护仪 - 浅色极简宣传模块</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            900: '#581c87',
+                        }
+                    },
+                    boxShadow: {
+                        'soft-glow': '0 20px 40px -15px rgba(147, 51, 234, 0.08)',
+                        'card-hover': '0 20px 30px -10px rgba(147, 51, 234, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+        /* 浅色微光背景：柔和紫/蓝弥散渐变 */
+        .ambient-light-bg {
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(233, 213, 255, 0.4) 0%, rgba(248, 250, 252, 0) 65%),
+                radial-gradient(circle at 80% 40%, rgba(224, 242, 254, 0.3) 0%, rgba(248, 250, 252, 0) 50%);
+        }
+        /* 浅色玻璃拟态卡片 */
+        .light-glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 25px -5px rgba(148, 163, 184, 0.1), 0 8px 10px -6px rgba(148, 163, 184, 0.05);
+        }
+        .light-glass-card:hover {
+            border-color: rgba(192, 132, 252, 0.5);
+            box-shadow: 0 20px 35px -10px rgba(147, 51, 234, 0.12), 0 10px 12px -5px rgba(148, 163, 184, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen ambient-light-bg flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <main class="max-w-6xl w-full mx-auto space-y-10">
+
+        <!-- 头部 Header：清爽现代风格 -->
+        <header class="text-center space-y-4 max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100/80 border border-purple-200/60 text-purple-700 text-xs font-semibold tracking-wide shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-600"></i>
+                新一代非接触式睡眠监测科技
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900">
+                床垫式睡眠监护仪
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                铺在床垫下，<span class="text-purple-700 font-semibold bg-purple-50 px-2 py-0.5 rounded border border-purple-100">不用戴、插电即用（零续航焦虑）</span>，在你熟睡时全天候无感守护健康。
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+            <!-- 卡片 1: 痛点引入与核心科技（占 7 列） -->
+            <div class="md:col-span-7 light-glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative overflow-hidden group">
+                <!-- 背景柔光装饰球 -->
+                <div class="absolute -right-16 -top-16 w-56 h-56 bg-purple-200/40 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-300/50 transition-all"></div>
+
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-3 py-1 rounded-full">健康警示</span>
+                        <span class="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 24H 实时监测模式
+                        </span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900 leading-snug">
+                        你知道自己昨晚睡眠的真实质量吗？
+                    </h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        我国超 <strong class="text-slate-900 font-bold underline decoration-purple-400 decoration-2 underline-offset-2">3 亿人</strong> 受心血管与睡眠问题困扰。睡眠质量与心血管健康密切相关，许多隐患需要连续客观的数据监控。
+                    </p>
+                </div>
+
+                <!-- 拟物化高科技仪表盘区域（暗色调内嵌屏，对比强烈且极具视觉吸引力） -->
+                <div class="my-6 p-4 rounded-2xl bg-slate-900 text-white shadow-md border border-slate-800 space-y-3 relative z-10">
+                    <div class="flex items-center justify-between text-xs text-slate-400">
+                        <span class="flex items-center gap-1.5 font-mono text-purple-300">
+                            <i data-lucide="activity" class="w-4 h-4 text-purple-400"></i> 生体体征信号波形
+                        </span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[11px] font-medium border border-emerald-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 深度睡眠
+                        </span>
+                    </div>
+                    
+                    <!-- 动态波形 SVG -->
+                    <div class="h-16 w-full flex items-center overflow-hidden">
+                        <svg class="w-full h-12 stroke-purple-400" fill="none" viewBox="0 0 500 60">
+                            <path d="M 0 30 Q 30 30 50 30 T 90 30 T 110 10 T 125 50 T 140 20 T 155 35 T 170 30 T 250 30 T 270 5 T 285 55 T 300 15 T 315 35 T 330 30 T 500 30" 
+                                  stroke-width="2.5" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-xs border-t border-slate-800/80 pt-2.5">
+                        <div class="flex justify-between text-slate-400">
+                            <span>心率平均: <strong class="text-white font-mono font-semibold">64 bpm</strong></span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>呼吸频率: <strong class="text-white font-mono font-semibold">16 次/分</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 四大核心功能（浅色精致切片） -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 relative z-10">
+                    <div class="p-3 rounded-xl bg-white/90 border border-slate-200/80 hover:border-purple-300 hover:bg-purple-50/50 shadow-sm transition text-center group/item">
+                        <i data-lucide="heart-pulse" class="w-5 h-5 mx-auto text-pink-500 mb-1 group-hover/item:scale-110 transition-transform"></i>
+                        <div class="text-xs font-bold text-slate-800">心率</div>
+                        <div class="text-[10px] text-slate-500">实时无感记录</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/90 border border-slate-200/80 hover:border-purple-300 hover:bg-purple-50/50 shadow-sm transition text-center group/item">
+                        <i data-lucide="wind" class="w-5 h-5 mx-auto text-cyan-600 mb-1 group-hover/item:scale-110 transition-transform"></i>
+                        <div class="text-xs font-bold text-slate-800">呼吸</div>
+                        <div class="text-[10px] text-slate-500">暂停/异常预警</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/90 border border-slate-200/80 hover:border-purple-300 hover:bg-purple-50/50 shadow-sm transition text-center group/item">
+                        <i data-lucide="log-out" class="w-5 h-5 mx-auto text-amber-500 mb-1 group-hover/item:scale-110 transition-transform"></i>
+                        <div class="text-xs font-bold text-slate-800">离床</div>
+                        <div class="text-[10px] text-slate-500">夜间超时提醒</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/90 border border-slate-200/80 hover:border-purple-300 hover:bg-purple-50/50 shadow-sm transition text-center group/item">
+                        <i data-lucide="moon" class="w-5 h-5 mx-auto text-purple-600 mb-1 group-hover/item:scale-110 transition-transform"></i>
+                        <div class="text-xs font-bold text-slate-800">睡眠质量</div>
+                        <div class="text-[10px] text-slate-500">多维日报评分</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 卡片 2: 适用人群卡片（占 5 列） -->
+            <div class="md:col-span-5 space-y-4 flex flex-col justify-between">
+
+                <!-- 场景 1：给自己 -->
+                <div class="light-glass-card rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 flex items-start gap-4 group">
+                    <div class="p-3 rounded-xl bg-purple-100 text-purple-700 group-hover:bg-purple-600 group-hover:text-white transition-colors shrink-0 shadow-sm">
+                        <i data-lucide="user-check" class="w-6 h-6"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">给自己</span>
+                            <h3 class="text-base font-bold text-slate-900">醒来就看睡眠报告</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            心率、呼吸、翻身全自动记录，无需佩戴手环，无约束感，不改变原有睡眠习惯。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 场景 2：给爸妈 -->
+                <div class="light-glass-card rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 flex items-start gap-4 group">
+                    <div class="p-3 rounded-xl bg-rose-100 text-rose-600 group-hover:bg-rose-500 group-hover:text-white transition-colors shrink-0 shadow-sm">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">给爸妈</span>
+                            <h3 class="text-base font-bold text-slate-900">不在身边也能安心</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            远程查看父母夜间睡眠状态，遇到起夜过久或离床超时，自动给子女发送微信/短信推送提醒。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 场景 3：给全家 -->
+                <div class="light-glass-card rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 flex items-start gap-4 group">
+                    <div class="p-3 rounded-xl bg-sky-100 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors shrink-0 shadow-sm">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800">给全家</span>
+                            <h3 class="text-base font-bold text-slate-900">一个传感器，全家共享关爱</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            老人、孩子、自己均可使用。账号多端绑定，随时掌握全家人的健康状况。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 底部行动区（CTA） & 技术标签 -->
+        <footer class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-slate-200/80">
+            <!-- 核心技术认证 Tag -->
+            <div class="flex items-center gap-2 sm:gap-3 text-xs text-slate-600 flex-wrap justify-center sm:justify-start">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
+                    <i data-lucide="cpu" class="w-4 h-4 text-purple-600"></i> 高精度压电/毫米波传感器
+                </span>
+                <span class="hidden sm:inline text-slate-300">•</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
+                    <i data-lucide="brain-circuit" class="w-4 h-4 text-purple-600"></i> AI 睡眠滤波算法
+                </span>
+                <span class="hidden sm:inline text-slate-300">•</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
+                    <i data-lucide="cloud" class="w-4 h-4 text-purple-600"></i> 云端健康预警服务
+                </span>
+            </div>
+
+            <!-- 主按钮 CTA -->
+            <button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group">
+                <span>咨询了解详情</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
