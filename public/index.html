@@ -2309,11 +2309,6 @@
   </section>
 
   <section id="awaken" class="awaken-section">
-    <div class="awaken-tabbar" data-reveal role="tablist">
-      <button type="button" class="awaken-tab is-active" data-awaken-tab="screening" role="tab" aria-selected="true">🔬 早筛意识唤醒</button>
-      <button type="button" class="awaken-tab" data-awaken-tab="balance" role="tab" aria-selected="false">💳 健康余额提醒</button>
-      <button type="button" class="awaken-tab" data-awaken-tab="credit" role="tab" aria-selected="false">📊 健康信用分</button>
-    </div>
 
     <div class="awaken-panel screening-section is-active" data-awaken-panel="screening">
       <div class="container">
@@ -2321,66 +2316,6 @@
           <h2 class="scr-title">肠道健康，早知道差别有多大</h2>
           <p class="scr-subtitle">跟着走一遍，看看"早一点"和"等一等"会走向怎样不同的结局</p>
           <div id="scrStage"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="awaken-panel balance-section" data-awaken-panel="balance" hidden>
-      <div class="container">
-        <div class="balance-phone">
-          <div class="balance-bar"></div>
-          <div class="balance-header">
-            <div class="balance-icon">⚠️</div>
-            <div class="balance-title">健康账户余额不足</div>
-            <div class="balance-sub">云心达 · 健康账户中心</div>
-          </div>
-          <div class="balance-body" id="balanceBody">
-            <div class="balance-amount">
-              <div class="balance-amount-num">-1,460 天</div>
-              <div class="balance-amount-label">当前健康余额（已逾期 2 年）</div>
-            </div>
-            <div class="balance-warn">您的健康账户已连续透支 2 年 3 个月<br/>再不充值，账户将被冻结（不可恢复）</div>
-            <div class="balance-plans">
-              <div class="balance-plan"><span class="balance-plan-tag">早筛</span><span class="balance-plan-text">完成一次丽常生肠癌早筛</span><span class="balance-plan-gain">+1,825 天</span></div>
-              <div class="balance-plan"><span class="balance-plan-tag">体检</span><span class="balance-plan-text">完成年度全面体检</span><span class="balance-plan-gain">+365 天</span></div>
-              <div class="balance-plan"><span class="balance-plan-tag">监测</span><span class="balance-plan-text">绑定日常监测（每月）</span><span class="balance-plan-gain">+30 天/月</span></div>
-            </div>
-            <div class="balance-actions">
-              <button class="balance-btn balance-btn--primary" data-scroll="products">立即充值</button>
-              <button class="balance-btn balance-btn--ghost" id="balanceLater">稍后提醒</button>
-            </div>
-          </div>
-          <div class="balance-confirm" id="balanceConfirm">
-            <div style="font-size:0.85rem;color:#c53030;line-height:1.6;margin-bottom:0.5rem;">您确定继续透支健康账户吗？</div>
-            <div class="balance-confirm-num">-1,460 天</div>
-            <div style="font-size:0.78rem;color:#718096;margin-bottom:1.25rem;line-height:1.6;">每拖延 1 天，健康余额再 -1 天<br/>逾期 3 年将永久冻结账户</div>
-            <div class="balance-actions">
-              <button class="balance-btn balance-btn--primary" data-scroll="products">马上充值</button>
-              <button class="balance-btn balance-btn--ghost" id="balanceBack">返回</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="awaken-panel credit-section" data-awaken-panel="credit" hidden>
-      <div class="container">
-        <div class="credit-wrap">
-          <div class="credit-gauge">
-            <div class="credit-ring"></div>
-            <div class="credit-center">
-              <div class="credit-score" id="creditScore">0</div>
-              <div class="credit-level">一般</div>
-              <div class="credit-max">/ 850 分</div>
-            </div>
-          </div>
-          <div class="credit-info">
-            <h3>您的健康信用分</h3>
-            <p>芝麻信用影响你能不能借钱，健康信用影响你能不能活着花钱。完成早筛、规律监测，分数自然上涨。</p>
-            <div class="credit-dims" id="creditDims"></div>
-            <div class="credit-tips">💡 提升方式：完成一次早筛 +50 · 年度体检 +30 · 绑定日常监测 +20 · 戒烟限酒 +15</div>
-            <button class="credit-cta" data-scroll="products">立即提升信用分</button>
-          </div>
         </div>
       </div>
     </div>
@@ -2453,16 +2388,26 @@
       <div id="productsDisplay" data-reveal>
         <div class="section-head center">
           <div class="packages-section-head-row">
-            <h2 class="section-title" style="margin-top:0;">体检套餐一览</h2>
+            <h2 class="section-title" style="margin-top:0;">合作体检中心</h2>
             <button type="button" class="package-video-link" id="packageVideoBtn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
               观看体检流程介绍视频
             </button>
           </div>
-          <p class="section-desc lead">全部套餐均在北京通用健康门诊部（通用健康旗舰中心）完成，统一包含星级住宿与科学营养配餐。</p>
+          <p class="section-desc lead">全部体检项目均在北京通用健康门诊部（通用健康旗舰中心）完成。</p>
         </div>
-        <div class="packages-grid" id="packagesGrid"></div>
-        <p class="package-note">以上套餐名称、价格与描述为占位信息，正式内容确认后将同步更新，敬请留意。</p>
+        <div style="max-width:48rem;margin:0 auto;padding:2rem;border-radius:16px;border:1px solid var(--hairline);background:#fff;box-shadow:0 2px 12px rgba(15,23,42,0.04);">
+          <h3 style="font-size:1.25rem;font-weight:600;color:var(--ink);margin-bottom:1rem;">北京通用健康门诊部</h3>
+          <p style="font-size:0.95rem;color:var(--ink-body);line-height:1.7;margin-bottom:1rem;">通用技术集团旗下健康管理旗舰中心，依托央企医疗资源，提供从体检到健康管理的一站式服务。</p>
+          <ul style="list-style:none;padding:0;margin:0 0 1.5rem;">
+            <li style="font-size:0.9375rem;color:var(--ink-body);line-height:1.8;padding-left:1.25rem;position:relative;"><span style="position:absolute;left:0;top:0.65em;width:6px;height:6px;border-radius:50;background:var(--primary);opacity:0.5;display:inline-block;"></span>三甲级专家团队，覆盖心内科、消化科、内分泌科等多学科</li>
+            <li style="font-size:0.9375rem;color:var(--ink-body);line-height:1.8;padding-left:1.25rem;position:relative;"><span style="position:absolute;left:0;top:0.65em;width:6px;height:6px;border-radius:50;background:var(--primary);opacity:0.5;display:inline-block;"></span>高端医疗设备：低剂量螺旋CT、超声、核磁等全面影像检查</li>
+            <li style="font-size:0.9375rem;color:var(--ink-body);line-height:1.8;padding-left:1.25rem;position:relative;"><span style="position:absolute;left:0;top:0.65em;width:6px;height:6px;border-radius:50;background:var(--primary);opacity:0.5;display:inline-block;"></span>星级住宿与科学营养配餐，体检不仅是检查，也是一次健康体验</li>
+            <li style="font-size:0.9375rem;color:var(--ink-body);line-height:1.8;padding-left:1.25rem;position:relative;"><span style="position:absolute;left:0;top:0.65em;width:6px;height:6px;border-radius:50;background:var(--primary);opacity:0.5;display:inline-block;"></span>检后由云心达提供持续健康管理：报告解读、复查提醒、动态健康档案</li>
+          </ul>
+          <p style="font-size:0.875rem;color:var(--ink-muted,#94a3b8);line-height:1.6;">具体套餐方案与价格请联系云心达顾问，我们将根据您的需求定制合适的体检方向。</p>
+          <a href="#contact" class="lcs-btn" style="margin-top:1rem;text-decoration:none;text-align:center;display:inline-block;">咨询预约</a>
+        </div>
       </div>
 
       <div class="package-video-modal" id="packageVideoModal" role="dialog" aria-modal="true" hidden>
@@ -2496,38 +2441,6 @@
             <div class="lcs-demo-msg lcs-demo-msg--bot" id="triageReplyText"></div>
             <button class="lcs-btn" type="button" id="triageGoBtn"></button>
             <button class="lcs-option triage-reset" type="button" id="triageResetBtn">换个话题，重新看看</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 体检根：体检套餐匹配自测 -->
-      <div class="mini-agent-grid mini-agent-grid--single" data-reveal>
-        <div class="mini-agent-card mini-agent-card--root" id="checkupSection">
-          <div class="mini-agent-head">
-            <div class="mini-agent-icon" aria-hidden="true">🏥</div>
-            <div>
-              <div class="mini-agent-badge">体检套餐匹配 · 你的健康起点</div>
-              <h3 class="mini-agent-title">北京通用健康门诊部体检</h3>
-            </div>
-          </div>
-          <p class="mini-agent-desc">全部体检项目均在北京通用健康门诊部（通用健康旗舰中心）进行。回答 4 个问题，为您匹配合适的体检方向。</p>
-          <div class="mini-agent-demo" id="checkupQuiz">
-            <div class="lcs-screen" data-screen="intro">
-              <div class="lcs-demo-msg lcs-demo-msg--bot">您好，我是体检匹配助手。回答 4 个问题，帮您匹配合适的体检方向。</div>
-              <button class="lcs-btn" data-action="start" type="button">开始匹配</button>
-            </div>
-            <div class="lcs-screen" data-screen="quiz" hidden>
-              <div class="lcs-progress-wrap">
-                <div class="lcs-progress-bar"><div class="lcs-progress-fill" id="checkupProgressFill" style="width:0%"></div></div>
-                <div class="lcs-progress-text">第 <span id="checkupStep">1</span>/<span id="checkupTotal">4</span> 题</div>
-              </div>
-              <div class="lcs-demo-msg lcs-demo-msg--bot" id="checkupQuestion"></div>
-              <div class="lcs-options" id="checkupOptions"></div>
-            </div>
-            <div class="lcs-screen" data-screen="result" hidden>
-              <div id="checkupResult"></div>
-              <button class="lcs-btn" data-action="restart" type="button">重新匹配</button>
-            </div>
           </div>
         </div>
       </div>
@@ -2597,15 +2510,6 @@
           </div>
         </div>
       </div>
-      <div class="branch-cta-card mp-bridge-block" data-reveal>
-        <div class="branch-cta-icon" aria-hidden="true">📱</div>
-        <div class="branch-cta-body">
-          <div class="branch-cta-badge">确认需求后 · 去小程序看看</div>
-          <h3>了解了自己的风险等级，想进一步看看检测项目？</h3>
-          <p>丽常生早筛、居家采样、报告解读等具体项目与预约方式，都在云心达小程序里，无需在网站上下单。</p>
-        </div>
-        <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" class="branch-cta-btn" target="_blank" rel="noopener noreferrer">进入小程序 ↗</a>
-      </div>
 
       <div class="section-lead-block" data-reveal>
         <p>完成早筛只是第一步。如果检测提示需要观察，或者你正处于术后 / 慢病恢复期，肠胃与消化吸收功能往往更需要额外支持——这也是我们把营养补充作为早筛的延伸，而不是单独推销的原因。</p>
@@ -2630,7 +2534,7 @@
             <p class="product-tip-title">我需要吗？</p>
             <p class="product-tip-text">如果您属于以下情况之一，建议咨询医生或营养师：术后恢复期 / 体重明显下降 / 食欲不振，进食量明显减少 / 消化吸收功能不佳。如果只是日常保健，建议优先从饮食中获取营养。</p>
           </div>
-          <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer" class="lcs-btn" style="margin-top:1rem;text-decoration:none;text-align:center;display:block;">去小程序了解详情 ↗</a>
+          <a href="#contact" class="lcs-btn" style="margin-top:1rem;text-decoration:none;text-align:center;display:inline-block;">咨询了解</a>
         </div>
       </div>
 
@@ -2683,7 +2587,7 @@
           <div class="sleep-summary-item"><strong>给父母</strong>远程查看夜间状态，离床超时自动提醒</div>
           <div class="sleep-summary-item"><strong>给全家</strong>一器多用，家人健康数据随时掌握</div>
         </div>
-        <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer" class="lcs-btn" style="text-decoration:none;text-align:center;display:block;max-width:320px;margin:0 auto;">去小程序了解详情 ↗</a>
+        <a href="#contact" class="lcs-btn" style="text-decoration:none;text-align:center;display:block;max-width:320px;margin:0 auto;">咨询了解 →</a>
       </div>
     </div>
   </section>
@@ -2818,7 +2722,6 @@
         <nav class="footer-nav">
           <a href="#home">首页</a>
           <a href="#services">核心业务</a>
-          <a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer">早筛小程序 ↗</a>
           <a href="#contact">联系我们</a>
         </nav>
       </div>
@@ -3192,7 +3095,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (newPoints !== null) {
         html += '<div class="mini-agent-points-toast">🎉 完成本次自测 +20 健康积分（当前 ' + newPoints + ' 分）</div>';
       }
-      html += '<a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer" class="lcs-btn" style="text-decoration:none;text-align:center;">去小程序看看适合我的方案 ↗</a>';
+      html += '<a href="#contact" class="lcs-btn" style="text-decoration:none;text-align:center;">咨询了解 →</a>';
       document.getElementById('lcsResult').innerHTML = html;
       show('result');
     }
@@ -3450,7 +3353,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (newPoints !== null) {
         html += '<div class="mini-agent-points-toast">🎉 完成本次自测 +20 健康积分（当前 ' + newPoints + ' 分）</div>';
       }
-      html += '<a href="https://zmkj.zmkjsaas.cn/index.php/Wechat/Main/user_home.html" target="_blank" rel="noopener noreferrer" class="lcs-btn" style="text-decoration:none;text-align:center;">去小程序看看适合我的方案 ↗</a>';
+      html += '<a href="#contact" class="lcs-btn" style="text-decoration:none;text-align:center;">咨询了解 →</a>';
       document.getElementById(cfg.resultId).innerHTML = html;
       show('result');
     }
